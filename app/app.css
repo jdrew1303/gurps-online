@@ -1,0 +1,7 @@
+@font-face {
+    font-family: Korinna;
+    src: local("Korinna"),
+         local("Korinna"),
+         url(assets/font/korinna.ttf);
+    font-weight: bold;
+}

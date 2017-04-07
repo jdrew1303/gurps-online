@@ -1,7 +1,7 @@
 /**
  * Created by lelabo on 05/04/17.
  */
-var app = angular.module('gurps-online', ['ngRoute']);
+var app = angular.module('gurps-online', ['ngRoute', 'ngMaterial']);
 
 app.config(function($routeProvider) {
     $routeProvider
