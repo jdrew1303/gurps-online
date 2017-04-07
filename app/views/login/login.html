@@ -1,35 +1,29 @@
-<div class="login-ctrl">
-    <br/>
-    <md-content>
-        <md-input-container class="md-icon-float md-block">
-            <!-- Use floating label instead of placeholder -->
-            <label>Name</label>
-            <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
-            <input ng-model="user.name" type="text">
-        </md-input-container>
+<div class="login-ctrl md-inline-form" layout-padding="" ng-cloak="">
+    <md-content class="md-padding" layout-xs="row" layout="column" layout-align="center center">
 
-        <md-input-container md-no-float class="md-block">
-            <md-icon md-svg-src="img/icons/ic_phone_24px.svg"></md-icon>
-            <input ng-model="user.phone" type="text" placeholder="Phone Number">
-        </md-input-container>
-
-        <md-input-container class="md-block">
-            <!-- Use floating placeholder instead of label -->
-            <md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
-            <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
-        </md-input-container>
-
-        <md-input-container md-no-float class="md-block">
-            <input ng-model="user.address" type="text" placeholder="Address" >
-            <md-icon md-svg-src="img/icons/ic_place_24px.svg" style="display:inline-block;"></md-icon>
-        </md-input-container>
-
-        <md-input-container class="md-icon-float md-icon-right md-block">
-            <label>Donation Amount</label>
-            <md-icon md-svg-src="img/icons/ic_card_giftcard_24px.svg"></md-icon>
-            <input ng-model="user.donation" type="number" step="0.01">
-            <md-icon md-svg-src="img/icons/ic_euro_24px.svg"></md-icon>
-        </md-input-container>
-
+        <h1 style="text-align: center; font-family: Korinna">
+            <img src="assets/gurps-logo.png" style="height: auto; width: 50%">
+            <br/>
+            SIMULATOR
+        </h1>
+        <br/>
+        <form name="LoginForm" ng-submit="login(LoginForm, user)" style="width: 70%">
+            <div layout-gt-sm="row" layout-align="center end">
+                <md-input-container class="md-block" flex-gt-sm="">
+                    <label>Email</label>
+                    <input type="email" name="email" ng-model="user.email"/>
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row" layout-align="center end">
+                <md-input-container class="md-block" flex-gt-sm="">
+                    <label>Password</label>
+                    <input type="password" name="password" ng-model="user.password"/>
+                </md-input-container>
+            </div>
+            <div layout="row" layout-align="center end" style="margin-top: -5px;">
+                <md-button class="md-raised md-primary">Sign In</md-button>
+                <md-button class="md-raised">Sign Up</md-button>
+            </div>
+        </form>
     </md-content>
 </div>
