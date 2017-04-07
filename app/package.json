@@ -2,7 +2,7 @@
   "name": "gurps-online",
   "version": "1.0.0",
   "description": "GURPS plateform to emulate most action of the RP system",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

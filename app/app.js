@@ -7,21 +7,24 @@ app.config(function($routeProvider) {
     $routeProvider
     // route for the home page
         .when('/', {
-            templateUrl : 'views/home.html',
-            controller  : 'mainController'
+            templateUrl : 'views/login/login.html',
+            controller  : 'loginCtrl'
         })
-
         // route for the about page
         .when('/about', {
             templateUrl : 'views/about.html',
             controller  : 'aboutController'
         })
-
         // route for the contact page
         .when('/contact', {
             templateUrl : 'views/contact.html',
             controller  : 'contactController'
-        });
+        })
+        .when('/login', {
+            templateUrl : 'views/login/login.html',
+            controller  : 'loginCtrl'
+        })
+        .otherwise({redirectTo : '/login'});
 });
 
 // create the controller and inject Angular's $scope
