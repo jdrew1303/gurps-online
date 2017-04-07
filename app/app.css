@@ -5,3 +5,7 @@
          url(assets/font/korinna.ttf);
     font-weight: bold;
 }
+
+md-dialog > form {
+    overflow: visible;
+}

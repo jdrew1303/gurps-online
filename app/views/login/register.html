@@ -1,13 +1,12 @@
-<div class="login-ctrl md-inline-form" layout-padding="" ng-cloak="">
-    <md-content class="md-padding" layout-xs="row" layout="column" layout-align="center center">
-
-        <h1 style="text-align: center; font-family: Korinna">
-            <img src="assets/gurps-logo.png" style="height: auto; width: 50%">
-            <br/>
-            SIMULATOR
-        </h1>
-        <br/>
-        <form name="LoginForm" ng-submit="login(user)" style="width: 70%">
+<md-dialog aria-label="Register" style="width: 50%; height: auto" class="md-padding">
+    <form ng-cloak>
+        <form name="RegisterForm" ng-submit="register(user)">
+            <div layout-gt-sm="row" layout-align="center end">
+                <md-input-container class="md-block" flex-gt-sm="">
+                    <label>Username</label>
+                    <input type="text" name="username" ng-model="user.username" required/>
+                </md-input-container>
+            </div>
             <div layout-gt-sm="row" layout-align="center end">
                 <md-input-container class="md-block" flex-gt-sm="">
                     <label>Email</label>
@@ -21,9 +20,9 @@
                 </md-input-container>
             </div>
             <div layout="row" layout-align="center end" style="margin-top: -5px;">
-                <md-button type="submit" class="md-raised md-primary">Sign In</md-button>
-                <md-button class="md-raised" ng-click="showRegister($event)">Sign Up</md-button>
+                <md-button type="submit" class="md-raised md-primary" ng-click="register(user)">Register</md-button>
+                <md-button class="md-primary" ng-click="cancel()">Cancel</md-button>
             </div>
         </form>
-    </md-content>
-</div>
+    </form>
+</md-dialog>
