@@ -13,7 +13,9 @@
     "express": "~4.15.2",
     "jsonwebtoken": "^7.3.0",
     "mongoose": "^4.9.3",
+    "mongoose-migration": "^0.2.0",
     "morgan": "^1.8.1",
+    "password-hash": "^1.2.2",
     "serve-favicon": "~2.4.2"
   }
 }
