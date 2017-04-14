@@ -12,12 +12,6 @@ angular.module('gurps-online').factory('AuthService', function ($http, $q, $reso
             headers: {
                 'Content-Type': 'application/json'
             }
-        },
-
-        test: {
-            method: "GET",
-            url: serviceUri + "/",
-            isArray: true
         }
     });
 
@@ -25,18 +19,12 @@ angular.module('gurps-online').factory('AuthService', function ($http, $q, $reso
         var deferred = $q.defer();
         AuthResource.login({username: myusername, password: mypassword}).$promise
             .then(function (resp) {
-                Storage.set('token', resp.token);
-                console.log(resp);
-                AuthResource.test().$promise
-                    .then(function (resp) {
-                        console.log(resp);
-                    }, deferred.reject);
-                // if (!data || !data.hasOwnProperty("token")) {
-                //     deferred.reject(data);
-                // } else {
-                //     Api.setToken(data.token);
-                //     deferred.resolve(data);
-                // }
+                if (!resp || !resp.hasOwnProperty("token")) {
+                    deferred.reject(resp);
+                } else {
+                    Storage.set('token', resp.token);
+                    deferred.resolve(resp);
+                }
             }, deferred.reject);
         return deferred.promise;
     };
