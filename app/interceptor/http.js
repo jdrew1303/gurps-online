@@ -18,7 +18,6 @@ angular.module('gurps-online').factory('HttpInterceptor', function (Storage, $in
     return {
         'request': function (config) {
             var token = Storage.get('token');
-            console.log(token);
             if (token) {
                 config.headers["x-access-token"] = Storage.get('token');
             }
