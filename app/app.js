@@ -1,36 +1,41 @@
 /**
  * Created by lelabo on 05/04/17.
  */
-var app = angular.module('gurps-online', ['ngRoute', 'ngMaterial', 'ngResource', 'LocalStorageModule']);
+var app = angular.module('gurps-online', ['ui.router', 'ngMaterial', 'ngResource', 'LocalStorageModule']);
 
 app.constant("global", {
     "api_dev": "http://localhost:4000/api",
 });
 
-app.config(function($routeProvider, $httpProvider) {
+app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
     $httpProvider.interceptors.push('HttpInterceptor');
 
-    $routeProvider
-    // route for the home page
-        .when('/', {
-            templateUrl : 'views/login/login.html',
-            controller  : 'loginCtrl'
+    $stateProvider
+        .state('login', {
+            url: '/login',
+            templateUrl: 'views/login/login.html',
+            controller: 'loginCtrl',
+            // onEnter: onUnSecureEnter
         })
-        // route for the about page
-        .when('/about', {
-            templateUrl : 'views/about.html',
-            controller  : 'aboutController'
-        })
-        // route for the contact page
-        .when('/contact', {
-            templateUrl : 'views/contact.html',
-            controller  : 'contactController'
-        })
-        .when('/login', {
-            templateUrl : 'views/login/login.html',
-            controller  : 'loginCtrl'
-        })
-        .otherwise({redirectTo : '/login'});
+        .state('app', {
+            url: '/',
+            templateUrl: 'views/app/app.html',
+            controller: 'appCtrl',
+        });
+
+    $urlRouterProvider.otherwise('/login');
+    // $stateProvider
+    // // route for the home page
+    //     .when('/', {
+    //         templateUrl : 'views/login/login.html',
+    //         controller  : 'loginCtrl'
+    //     })
+    //     // route for the about page
+    //     .when('/home', {
+    //         templateUrl : 'views/home.html',
+    //         controller  : 'mainController'
+    //     })
+    //     .otherwise({redirectTo : '/login'});
 });
 
 // create the controller and inject Angular's $scope
