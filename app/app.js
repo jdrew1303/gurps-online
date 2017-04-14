@@ -1,9 +1,15 @@
 /**
  * Created by lelabo on 05/04/17.
  */
-var app = angular.module('gurps-online', ['ngRoute', 'ngMaterial']);
+var app = angular.module('gurps-online', ['ngRoute', 'ngMaterial', 'ngResource', 'LocalStorageModule']);
 
-app.config(function($routeProvider) {
+app.constant("global", {
+    "api_dev": "http://localhost:4000/api",
+});
+
+app.config(function($routeProvider, $httpProvider) {
+    $httpProvider.interceptors.push('HttpInterceptor');
+
     $routeProvider
     // route for the home page
         .when('/', {
