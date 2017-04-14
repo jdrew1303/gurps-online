@@ -1,13 +1,14 @@
 /**
  * Created by lelabo on 07/04/17.
  */
-angular.module('gurps-online').controller('loginCtrl', function($scope, $mdDialog) {
+angular.module('gurps-online').controller('loginCtrl', function($scope, $mdDialog, AuthService) {
     $scope.user = {
-        email: "",
+        username: "",
         password: ""
     };
 
     $scope.login = function (data) {
+        AuthService.login(data.username, data.password);
          console.log(data);
     };
 
