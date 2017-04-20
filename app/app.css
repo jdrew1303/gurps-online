@@ -6,38 +6,23 @@
     font-weight: bold;
 }
 
+.text-korinna {
+    font-family: Korinna;
+}
+
 md-dialog > form {
     overflow: visible;
 }
 
-body {
-    font-family: 'Ubuntu', sans-serif;
-    color: orangered;
-}
-
-.fill-height{
-    display: flex;
-    flex: 1;
-    min-height: 100%;
-}
-
-.fill-height > div{
-    min-height: 100%;
-    display: flex;
-}
-
 md-sidenav {
-    overflow: visible;
-
+    /*overflow: visible;*/
+    height: 100vh;
 }
+
 .side-menu, .side-menu ul {
     list-style: none;
     padding: 0;
     margin-top: 0;
-}
-
-.side-menu .md-button.active {
-    color: deeppink;
 }
 
 .side-menu .menu-toggle-list a.md-button {
@@ -111,4 +96,8 @@ md-sidenav {
 .side-menu menu-toggle span{
     padding-top: 12px;
     padding-bottom: 12px;
+}
+
+.fa-md {
+    height: auto;
 }
