@@ -28,13 +28,9 @@ angular.module('gurps-online').factory('AuthService', function ($http, $q, $reso
             }, deferred.reject);
         return deferred.promise;
     };
-    // this.logout = function () {
-    //     OauthService.logout();
-    //     Storage.removeItem("userToken");
-    //     UserService.reset();
-    //     FidelisService.reset();
-    //     $state.go('login');
-    // };
+    this.logout = function () {
+        Storage.set('token', null);
+    };
     // this.register = function (user) {
     //     var deferred = $q.defer();
     //     $http.post(Api.getServer() + '/auth/register', user).success(function (data) {

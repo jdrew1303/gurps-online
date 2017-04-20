@@ -30,13 +30,14 @@
                            ng-click="vm.toggleNav()" ng-if="!vm.isNavOpen()">
                     <md-icon md-font-icon="fa-bars" class="fa fa-2x" style="color: white; height: auto;"></md-icon>
                 </md-button>
-                <!--<div layout="row" flex="" class="fill-height layout-row flex">-->
-                    <!--<h2 class="md-toolbar-item md-breadcrumb md-headline ng-isolate-scope">-->
-                        <!--{{vm.currentSection.name}}-->
-                    <!--</h2>-->
                 <h2>
                     {{vm.currentSection.name || 'Home'}}
                 </h2>
+                <span flex> </span>
+                <md-button class="md-icon-button md-primary" aria-label="Logout"
+                           ng-click="vm.logout()">
+                    <md-icon md-svg-src="assets/exit.svg" style="color: white; height: auto;"></md-icon>
+                </md-button>
             </div>
         </md-toolbar>
         <ui-view name="content"></ui-view>

@@ -2,13 +2,17 @@
  * Created by lelabo on 14/04/17.
  */
 angular.module('gurps-online').controller('menuCtrl', function ($rootScope, $scope, $state, $location,
-                                                                $mdSidenav, menu) {
+                                                                $mdSidenav, menu, AuthService) {
 
     this.autoFocusContent = false;
     this.menu = menu;
     this.status = {
         isFirstOpen: true,
         isFirstDisabled: false
+    };
+    this.logout = function () {
+      AuthService.logout();
+        $state.go('login');
     };
     this.goHome = function () {
         this.currentSection = null;
