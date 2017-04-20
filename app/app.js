@@ -34,12 +34,12 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
             url: 'characters',
             abstract: true
         })
-        .state('home.characters.list', {
-            url: '/list',
-
+        .state('home.characters.menu', {
+            url: '/menu',
             views: {
                 'content@home': {
-                    templateUrl: 'views/characters/list/characters-list.html'
+                    templateUrl: 'views/characters/menu.html',
+                    controller: 'charactersMenuCtrl'
                 }
             }
         });

@@ -15,9 +15,9 @@ angular.module('gurps-online').factory('menu', function ($location) {
         name: 'Characters',
         type: 'toggle',
         pages: [{
-            name: 'List',
+            name: 'Menu',
             type: 'link',
-            state: 'home.characters.list',
+            state: 'home.characters.menu',
             icon: 'fa fa-group'
         }
         ]
