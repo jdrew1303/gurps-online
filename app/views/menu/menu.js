@@ -1,31 +1,30 @@
 /**
  * Created by lelabo on 14/04/17.
  */
-angular.module('gurps-online').controller('appCtrl', function ($rootScope, $log, $state, $timeout, $location, menu) {
+angular.module('gurps-online').controller('menuCtrl', function ($rootScope, $scope, $state, $location,
+                                                                $mdSidenav, menu) {
 
-    var vm = this;
-    var aboutMeArr = ['Family', 'Location', 'Lifestyle'];
-    var budgetArr = ['Housing', 'LivingExpenses', 'Healthcare', 'Travel'];
-    var incomeArr = ['SocialSecurity', 'Savings', 'Pension', 'PartTimeJob'];
-    var advancedArr = ['Assumptions', 'BudgetGraph', 'AccountBalanceGraph', 'IncomeBalanceGraph'];
-
-    //functions for menu-link and menu-toggle
-    vm.isOpen = isOpen;
-    vm.toggleOpen = toggleOpen;
-    vm.autoFocusContent = false;
-    vm.menu = menu;
-
-    console.log(vm.menu.sections);
-
-    vm.status = {
+    this.autoFocusContent = false;
+    this.menu = menu;
+    this.status = {
         isFirstOpen: true,
         isFirstDisabled: false
     };
-    function isOpen(section) {
+    this.goHome = function () {
+        this.currentSection = null;
+        $state.go('home');
+    };
+    this.isOpen = function(section) {
         return menu.isSectionSelected(section);
-    }
-    function toggleOpen(section) {
+    };
+    this.toggleOpen = function(section) {
         menu.toggleSelectSection(section);
+    };
+    this.isNavOpen = function () {
+        return $mdSidenav('left').isOpen() || $mdSidenav('left').isLockedOpen();
+    };
+    this.toggleNav = function () {
+        $mdSidenav('left').toggle();
     }
 });
 
