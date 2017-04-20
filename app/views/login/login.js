@@ -26,7 +26,13 @@ angular.module('gurps-online').controller('loginCtrl', function($scope, $mdDialo
             clickOutsideToClose: true,
             targetEvent: ev
         }).then(function(answer) {
-            console.log(answer);
+           AuthService.register(answer.username, answer.password, answer.email)
+               .then(function (success) {
+                   $scope.login(answer);
+               },
+               function (error) {
+                   console.log(error)
+               });
         });
     };
 });

@@ -12,12 +12,19 @@ angular.module('gurps-online').factory('AuthService', function ($http, $q, $reso
             headers: {
                 'Content-Type': 'application/json'
             }
+        },
+        register: {
+            method: "POST",
+            url: serviceUri + "/",
+            headers: {
+                'Content-Type': 'application/json'
+            }
         }
     });
 
-    this.login = function (myusername, mypassword) {
+    this.login = function (username, password) {
         var deferred = $q.defer();
-        AuthResource.login({username: myusername, password: mypassword}).$promise
+        AuthResource.login({username: username, password: password}).$promise
             .then(function (resp) {
                 if (!resp || !resp.hasOwnProperty("token")) {
                     deferred.reject(resp);
@@ -31,13 +38,14 @@ angular.module('gurps-online').factory('AuthService', function ($http, $q, $reso
     this.logout = function () {
         Storage.set('token', null);
     };
-    // this.register = function (user) {
-    //     var deferred = $q.defer();
-    //     $http.post(Api.getServer() + '/auth/register', user).success(function (data) {
-    //         deferred.resolve(data);
-    //     }).error(deferred.reject);
-    //     return deferred.promise;
-    // };
+    this.register = function (username, password, email) {
+        var deferred = $q.defer();
+        AuthResource.register({username: username, password: password, email: email}).$promise
+            .then(function (resp) {
+                deferred.resolve(resp);
+            }, deferred.reject);
+        return deferred.promise;
+    };
     // this.isConnected = function () {
     //     return Api.getToken() && Api.getToken() !== 'null';
     // };
