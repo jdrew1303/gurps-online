@@ -6,6 +6,7 @@ var app         = express();
 var bodyParser  = require('body-parser');
 var morgan      = require('morgan');
 var mongoose    = require('mongoose');
+var cors        = require('cors');
 
 
 var config = require('./config'); // get our config file
@@ -22,13 +23,7 @@ app.use(bodyParser.json());
 
 
 app.use(morgan('dev')); // LOG
-app.use(function(req, res, next) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Credentials", "true");
-    res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Origin, x-access-token");
-    return next();
-});
+app.use(cors());
 app.use('/api/users', auth);
 app.use('/api', middleware);
 app.use('/api/users', users);
