@@ -10,6 +10,11 @@ router.get('/', function(req, res) {
     });
 });
 
+router.get('/me', function(req, res) {
+    res.json(req.user);
+});
+
+
 router.get('/:id', function(req, res) {
     User.find({_id: req.params.id}, function(err, users) {
         res.json(users);
