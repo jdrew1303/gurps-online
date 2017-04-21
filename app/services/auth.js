@@ -46,20 +46,8 @@ angular.module('gurps-online').factory('AuthService', function ($http, $q, $reso
             }, deferred.reject);
         return deferred.promise;
     };
-    // this.isConnected = function () {
-    //     return Api.getToken() && Api.getToken() !== 'null';
-    // };
-    // this.aboutConnectedUser = function (force) {
-    //     var defer = $q.defer();
-    //     if (self.isConnected() === false) {
-    //         defer.reject();
-    //     } else {
-    //         UserService.about(force).then(defer.resolve, function () {
-    //             defer.reject();
-    //             self.logout();
-    //         });
-    //     }
-    //     return defer.promise;
-    // };
+    this.connected = function () {
+        return Storage.get('token') != null;
+    };
     return this;
 });
