@@ -10,16 +10,16 @@ angular.module('gurps-online').factory('HttpInterceptor', function (Storage, $in
             goToLogin();
         }
     }
-    function catchNoConnection(request) {
-        if (request.status <= 0) {
-            goToLogin();
-        }
-    }
+    // function catchNoConnection(request) {
+    //     if (request.status <= 0) {
+    //         goToLogin();
+    //     }
+    // }
     return {
         'request': function (config) {
             var token = Storage.get('token');
             if (token) {
-                config.headers["x-access-token"] = Storage.get('token');
+                config.headers["x-access-token"] = token;
             }
             config.timeout = 10000;
             return config || $q.when(config);
@@ -27,13 +27,13 @@ angular.module('gurps-online').factory('HttpInterceptor', function (Storage, $in
         'response': function (response) {
             $rootScope.$broadcast('loading:hide');
             catch401(response);
-            catchNoConnection(response);
+            // catchNoConnection(response);
             return response;
         },
         'responseError': function (error) {
             $rootScope.$broadcast('loading:hide');
             catch401(error);
-            catchNoConnection(error);
+            // catchNoConnection(error);
             return error;
         }
     };
