@@ -26,7 +26,8 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                     controller: 'menuCtrl as vm'
                 },
                 'content@home': {
-                    templateUrl: 'views/home/home.html'
+                    templateUrl: 'views/home/home.html',
+                    controller: 'homeCtrl'
                 }
             }
         })
