@@ -11,6 +11,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/me', function(req, res) {
+    delete req.user.password;
     res.json(req.user);
 });
 
