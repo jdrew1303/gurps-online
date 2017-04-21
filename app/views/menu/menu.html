@@ -3,7 +3,7 @@
         <md-toolbar md-scroll-shrink>
             <div class="md-toolbar-tools text-korinna">
                 <a ng-click="vm.goHome()">
-                    <img src="assets/gurps-logo.png" style="height: auto; width: 50%">
+                    <img src="assets/gurps-logo.svg" style="height: auto; width: 50%; color: white">
                     ONLINE
                 </a>
             </div>
@@ -28,7 +28,7 @@
             <div class="md-toolbar-tools">
                 <md-button class="md-icon-button md-primary" aria-label="Settings"
                            ng-click="vm.toggleNav()" ng-if="!vm.isNavOpen()">
-                    <md-icon md-font-icon="fa-bars" class="fa fa-2x" style="color: white; height: auto;"></md-icon>
+                    <md-icon md-font-icon="fa-bars" class="fa fa-2x" style="color: white;"></md-icon>
                 </md-button>
                 <h2>
                     {{vm.currentSection.name || 'Home'}}

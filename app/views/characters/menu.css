@@ -1,0 +1,29 @@
+.charactersMenu .md-fab-top-right {
+    top: 5px; }
+
+@media (max-device-width: 600px) {
+    .charactersMenu .md-fab-top-right {
+        top: 9px;
+        right: 9px; } }
+
+.charactersMenu .md-fab.demo-fab.trigger-fab:hover, .charactersMenu .md-fab.demo-fab.trigger-fab.md-focused, .charactersMenu .md-fab.demo-fab.action-fab:hover, .charactersMenu .md-fab.demo-fab.action-fab.md-focused {
+    background-color: #333; }
+
+.charactersMenu .md-fab.demo-fab.action-fab {
+    background-color: #aaa; }
+
+.charactersMenu md-content div[flex="50"] {
+    padding: 15px; }
+
+.charactersMenu md-fab-speed-dial {
+    margin-top: 0px; }
+.charactersMenu md-fab-speed-dial md-fab-trigger {
+    transition: all 0.3s ease-in-out;
+    transform: scale(1); }
+.charactersMenu md-fab-speed-dial.md-scale.ng-hide-add.ng-hide-add-active, .charactersMenu md-fab-speed-dial.md-fling.ng-hide-add.ng-hide-add-active {
+    display: flex !important; }
+.charactersMenu md-fab-speed-dial.md-scale.ng-hide md-fab-trigger, .charactersMenu md-fab-speed-dial.md-fling.ng-hide md-fab-trigger {
+    transform: scale(0); }
+
+.charactersMenu .intro {
+    padding-left: 5px; }
