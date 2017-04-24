@@ -47,7 +47,7 @@ angular.module('gurps-online').factory('AuthService', function ($http, $q, $reso
         return deferred.promise;
     };
     this.connected = function () {
-        return Storage.get('token') != null;
+        return Storage.get('token') != null && Storage.get('token') != 'null';
     };
     return this;
 });

@@ -11,12 +11,13 @@ angular.module('gurps-online').controller('menuCtrl', function ($rootScope, $sco
         isFirstDisabled: false
     };
     this.logout = function () {
-      AuthService.logout();
+        this.currentSection = null;
+        AuthService.logout();
         $state.go('login');
     };
     this.goHome = function () {
         this.currentSection = null;
-        $state.go('home');
+        $state.go('app');
     };
     this.isOpen = function(section) {
         return menu.isSectionSelected(section);

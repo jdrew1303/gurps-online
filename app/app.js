@@ -1,23 +1,40 @@
 /**
  * Created by lelabo on 05/04/17.
  */
-var app = angular.module('gurps-online', ['ui.router', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngResource', 'LocalStorageModule']);
+var app = angular.module('gurps-online',
+    ['ui.router', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngResource',
+    'LocalStorageModule']);
 
 app.constant("global", {
     "api_dev": "http://localhost:4000/api",
 });
 
+app.run(function ($q) {
+    window.Promise = $q;
+});
+
 app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
     $httpProvider.interceptors.push('HttpInterceptor');
+
+    function onSecureEnter($location, AuthService) {
+        if (!AuthService.connected()) {
+            $location.path('/login');
+        }
+    }
+    function onUnSecureEnter($location, AuthService) {
+        if (AuthService.connected()) {
+            $location.path('/');
+        }
+    }
 
     $stateProvider
         .state('login', {
             url: '/login',
             templateUrl: 'views/login/login.html',
             controller: 'loginCtrl',
-            // onEnter: onUnSecureEnter
+            onEnter: onUnSecureEnter
         })
-        .state('home', {
+        .state('app', {
             url: '/',
             views: {
 
@@ -25,20 +42,21 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                     templateUrl: 'views/menu/menu.html',
                     controller: 'menuCtrl as vm'
                 },
-                'content@home': {
+                'content@app': {
                     templateUrl: 'views/home/home.html',
-                    controller: 'homeCtrl'
+                    controller: 'homeCtrl',
+                    onEnter: onSecureEnter
                 }
-            }
+            },
         })
-        .state('home.characters', {
-            url: 'characters',
+        .state('app.characters', {
+            url: '/characters',
             abstract: true
         })
-        .state('home.characters.menu', {
+        .state('app.characters.menu', {
             url: '/menu',
             views: {
-                'content@home': {
+                'content@app': {
                     templateUrl: 'views/characters/menu.html',
                     controller: 'charactersMenuCtrl'
                 }
