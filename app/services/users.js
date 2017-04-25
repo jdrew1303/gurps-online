@@ -16,17 +16,17 @@ angular.module('gurps-online').factory('UserService', function ($http, $q, $reso
         var deferred = $q.defer();
         if (!currentUser || force) {
             UserResource.about().$promise.then(function (resp) {
-                if (!resp.success) {
-                    deferred.reject(resp);
-                } else {
-                    currentUser = User.from_response(success);
-                    deferred.resolve(currentUser);
-                }
+                currentUser = User.from_response(resp);
+                deferred.resolve(currentUser);
             }, deferred.reject);
         } else {
             deferred.resolve(currentUser);
         }
         return deferred.promise;
+    };
+
+    this.getCurrentUser = async function () {
+      return await self.me();
     };
 
     return this;

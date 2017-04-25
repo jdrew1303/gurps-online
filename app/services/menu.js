@@ -1,7 +1,7 @@
 /**
  * Created by lelabo on 19/04/17.
  */
-angular.module('gurps-online').factory('menu', function ($location) {
+angular.module('gurps-online').factory('MenuService', function ($location) {
 
     // var sections = [{
     //     name: 'Getting Started',
@@ -25,6 +25,7 @@ angular.module('gurps-online').factory('menu', function ($location) {
 
     var self = {
         sections: sections,
+        currentTitle: null,
         toggleSelectSection: function (section) {
             self.openedSection = (self.openedSection === section ? null : section);
         },
