@@ -57,6 +57,15 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                     controller: 'charactersMenuCtrl'
                 }
             }
+        })
+        .state('app.characters.new', {
+            url: '/new',
+            views: {
+                'content@app': {
+                    templateUrl: 'views/characters/new.html',
+                    controller: 'charactersNewCtrl'
+                }
+            }
         });
 
     $urlRouterProvider.otherwise('/login');
