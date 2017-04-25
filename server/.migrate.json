@@ -1,8 +1,9 @@
 {
   "basepath": "migrations",
   "connection": "mongodb://localhost/gurps-online",
-  "current_timestamp": 1491989279276,
+  "current_timestamp": 1493116472004,
   "models": {
-    "User": "models/user.js"
+    "User": "models/user.js",
+    "Character": "models/character.js"
   }
 }
