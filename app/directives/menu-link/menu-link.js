@@ -7,13 +7,13 @@ angular.module('gurps-online').directive('menuLink', function () {
             section: '='
         },
         templateUrl: 'directives/menu-link/menu-link.html',
-        link: function ($scope, $element) {
+        link: function ($scope, $element, menu) {
             var controller = $element.parent().controller();
 
             $scope.focusSection = function () {
+                menu.currentTitle = $scope.section.name;
                 // set flag to be used later when
                 // $locationChangeSuccess calls openPage()
-                controller.currentSection = $scope.section;
                 controller.autoFocusContent = true;
             };
         }
