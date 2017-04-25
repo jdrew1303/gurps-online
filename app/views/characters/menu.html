@@ -1,5 +1,5 @@
 <div ng-controller="charactersMenuCtrl as vm" layout="column" ng-cloak="" class="charactersMenu">
-    <md-content class="md-padding" layout="column" style="height: 200px">
+    <md-content class="md-padding" layout="column" style="min-height: 200px">
 
         <div layout="row" layout-align="center center">
             <md-fab-speed-dial md-direction="down" class="md-fling md-fab-top-right md-hover-full" md-open="vm.isOpen"
@@ -12,7 +12,7 @@
                 </md-fab-trigger>
 
                 <md-fab-actions>
-                    <md-button aria-label="new" class="md-fab md-raised md-mini">
+                    <md-button aria-label="new" class="md-fab md-raised md-mini" ng-click="goToNew()">
                         <md-tooltip md-direction="left" md-visible="tooltipVisible" md-autohide="false">
                             new
                         </md-tooltip>
@@ -36,17 +36,6 @@
                 </md-list-item>
             </md-list>
         </div>
-        <!--<div layout="row" layout-align="center center">-->
-            <!--<md-list flex>-->
-                <!--<md-list-item class="md-3-line" ng-repeat="item in characters" ng-click="null">-->
-                    <!--<div class="md-list-item-text" layout="column">-->
-                        <!--<h3>{{ item.who }}</h3>-->
-                        <!--<h4>{{ item.what }}</h4>-->
-                        <!--<p>{{ item.notes }}</p>-->
-                    <!--</div>-->
-                <!--</md-list-item>-->
-            <!--</md-list>-->
-        <!--</div>-->
 
     </md-content>
 </div>
