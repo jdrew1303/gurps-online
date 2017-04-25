@@ -9,5 +9,6 @@ module.exports = mongoose.model('User', new Schema({
     username: String,
     mail: String,
     password: String,
-    admin: Boolean
+    admin: Boolean,
+    characters: [{ type: Schema.Types.ObjectId, ref: 'Character' }]
 }));

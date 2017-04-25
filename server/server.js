@@ -10,10 +10,6 @@ var cors        = require('cors');
 
 
 var config = require('./config'); // get our config file
-var users = require('./routes/users');
-var auth = require('./routes/auth');
-var middleware = require('./routes/middleware');
-
 var port = process.env.PORT || 4000; // used to create, sign, and verify tokens
 mongoose.connect(config.database); // connect to database
 
@@ -24,9 +20,10 @@ app.use(bodyParser.json());
 
 app.use(morgan('dev')); // LOG
 app.use(cors());
-app.use('/api/users', auth);
-app.use('/api', middleware);
-app.use('/api/users', users);
+app.use('/api/users', require('./routes/auth'));
+app.use('/api', require('./routes/middleware'));
+app.use('/api/users', require('./routes/users'));
+app.use('/api/characters', require('./routes/characters'));
 
 app.listen(port);
 console.log("Server ready!");
