@@ -4,9 +4,7 @@
 angular.module('gurps-online').controller('charactersMenuCtrl', function($scope, $timeout, Characters) {
 
     var self = this;
-    self.hidden = false;
-    self.isOpen = false;
-    self.hover = false;
+        self.isOpen = false;
 
     $scope.$watch('vm.isOpen', function(isOpen) {
         if (isOpen) {
@@ -19,7 +17,9 @@ angular.module('gurps-online').controller('charactersMenuCtrl', function($scope,
     });
 
 
-    $scope.todos = [
-        new Characters()
+    $scope.characters = [
+        new Characters(null, "MARC LE LABOURIER", 100),
+        new Characters(null, "XAVIER SOMNIER", 50)
+
     ];
 });

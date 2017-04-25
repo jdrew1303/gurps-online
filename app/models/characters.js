@@ -6,21 +6,13 @@ angular.module('gurps-online').factory('Characters', function() {
     /**
      * Constructor, with class name
      */
-    function Characters(owner, firstName, lastName, exp) {
+    function Characters(owner, name, exp) {
         this.owner = owner;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
         this.exp = exp;
         this.availablePoints = exp;
         this.status = possibleStatus.alive;
     }
-
-    /**
-     * Public method, assigned to prototype
-     */
-    Characters.prototype.getFullName = function () {
-        return this.firstName + ' ' + this.lastName;
-    };
 
     /**
      * Private property
@@ -51,8 +43,7 @@ angular.module('gurps-online').factory('Characters', function() {
     Characters.build = function (data) {
         return new Characters(
             data.owner,
-            data.firstName,
-            data.lastName,
+            data.name,
             data.exp,
         );
     };

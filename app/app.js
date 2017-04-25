@@ -9,10 +9,6 @@ app.constant("global", {
     "api_dev": "http://localhost:4000/api",
 });
 
-app.run(function ($q) {
-    window.Promise = $q;
-});
-
 app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
     $httpProvider.interceptors.push('HttpInterceptor');
 
@@ -21,18 +17,18 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
             $location.path('/login');
         }
     }
-    function onUnSecureEnter($location, AuthService) {
-        if (AuthService.connected()) {
-            $location.path('/');
-        }
-    }
+    // function onUnSecureEnter($location, AuthService) {
+    //     if (AuthService.connected()) {
+    //         $location.path('/');
+    //     }
+    // }
 
     $stateProvider
         .state('login', {
             url: '/login',
             templateUrl: 'views/login/login.html',
             controller: 'loginCtrl',
-            onEnter: onUnSecureEnter
+            // onEnter: onUnSecureEnter
         })
         .state('app', {
             url: '/',
@@ -45,12 +41,12 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                 'content@app': {
                     templateUrl: 'views/home/home.html',
                     controller: 'homeCtrl',
-                    onEnter: onSecureEnter
+                    // onEnter: onSecureEnter
                 }
             },
         })
         .state('app.characters', {
-            url: '/characters',
+            url: '^/characters',
             abstract: true
         })
         .state('app.characters.menu', {
