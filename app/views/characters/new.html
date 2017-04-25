@@ -1,0 +1,20 @@
+<md-content class="md-padding"  layout-xs="row" layout="column" layout-align="center center">
+    <form name="NewCharacterForm" ng-submit="newCharacter(character)" style="width: 70%">
+        <div layout-gt-sm="row" layout-align="center end">
+            <md-input-container class="md-block" flex-gt-sm="">
+                <label>Name</label>
+                <input type="text" name="name" ng-model="character.name" required/>
+            </md-input-container>
+        </div>
+        <div layout-gt-sm="row" layout-align="center end">
+            <md-input-container class="md-block" flex-gt-sm="">
+                <label>Experience Available</label>
+                <input type="number" name="exp" ng-model="character.exp" required/>
+            </md-input-container>
+        </div>
+        <div layout="row" layout-align="center end" style="margin-top: -5px;">
+            <md-button type="submit" class="md-raised md-primary">Create new character</md-button>
+            <md-button class="md-raised" ng-click="goBack()">Cancel</md-button>
+        </div>
+    </form>
+</md-content>
