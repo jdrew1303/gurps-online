@@ -66,20 +66,30 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                     controller: 'charactersNewCtrl'
                 }
             }
+        })
+        .state('app.campaigns', {
+            url: '^/campaigns',
+            abstract: true
+        })
+        .state('app.campaigns.menu', {
+            url: '/menu',
+            views: {
+                'content@app': {
+                    templateUrl: 'views/campaigns/menu.html',
+                    controller: 'campaignsMenuCtrl'
+                }
+            }
+        })
+        .state('app.campaigns.new', {
+            url: '/new',
+            views: {
+                'content@app': {
+                    templateUrl: 'views/campaigns/new.html',
+                    controller: 'campaignsNewCtrl'
+                }
+            }
         });
-        // .state('app.campaigns', {
-        //     url: '^/campaigns',
-        //     abstract: true
-        // })
-        // .state('app.campaigns.menu', {
-        //     url: '/menu',
-        //     views: {
-        //         'content@app': {
-        //             templateUrl: 'views/characters/menu.html',
-        //             controller: 'charactersMenuCtrl'
-        //         }
-        //     }
-        // });
+
 
     $urlRouterProvider.otherwise('/login');
 });

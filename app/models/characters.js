@@ -6,7 +6,8 @@ angular.module('gurps-online').factory('Characters', function() {
     /**
      * Constructor, with class name
      */
-    function Characters(owner, name, exp) {
+    function Characters(id, owner, name, exp) {
+        this._id = id;
         this.owner = owner;
         this.name = name;
         this.exp = exp;
@@ -42,10 +43,19 @@ angular.module('gurps-online').factory('Characters', function() {
      */
     Characters.build = function (data) {
         return new Characters(
+            data._id,
             data._owner,
             data.name,
             data.exp,
         );
+    };
+
+    Characters.json_to_objects = function (characters) {
+        var result = [];
+        angular.forEach(characters, function(value, key) {
+            this.push(Characters.build(value));
+        }, result);
+        return result;
     };
 
     /**

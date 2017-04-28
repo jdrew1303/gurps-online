@@ -5,16 +5,15 @@
         </div>
         <div layout="row" layout-align="center center" style="margin-top: 35px">
             <md-list flex>
-                <md-list-item class="md-3-line" ng-repeat="item in characters" ng-click="null" layout="row">
+                <md-list-item class="md-2-line" ng-repeat="item in characters" ng-click="null" layout="row">
                     <md-button class="md-icon-button md-fab md-mini" aria-label="delete"
                                ng-click="deleteCharacter(item)"
                                ng-if="canDelete" style="background-color: red;">
                         <md-icon md-font-icon="fa-minus" class="md-primary fa" ></md-icon>
                     </md-button>
                     <div class="md-list-item-text" layout="column">
-                        <h3>{{ item.name }}</h3>
-                        <h4>{{ item.exp }}</h4>
-                        <p>{{ item.owner }}</p>
+                        <h3>Name: {{ item.name }} | Exp: {{ item.exp }}</h3>
+                        <h4>Owner: {{ item.owner.username }}</h4>
                     </div>
                 </md-list-item>
             </md-list>

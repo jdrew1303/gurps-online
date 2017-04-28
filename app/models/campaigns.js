@@ -6,7 +6,8 @@ angular.module('gurps-online').factory('Campaigns', function() {
     /**
      * Constructor, with class name
      */
-    function Campaigns(owner, name, players) {
+    function Campaigns(id, owner, name, players) {
+        this._id = id;
         this.owner = owner;
         this.name = name;
         this.players = characterJsonToObject(players);
@@ -15,10 +16,10 @@ angular.module('gurps-online').factory('Campaigns', function() {
     /**
      * Private function
      */
-    function characterJsonToObject(characters) {
+    function characterJsonToObject(campaigns) {
         var result = [];
-        for (var i in characters) {
-            result.push(Characters.build(characters[i]));
+        for (var i in campaigns) {
+            result.push(Campaigns.build(campaigns[i]));
         }
         return result;
     }
@@ -30,10 +31,19 @@ angular.module('gurps-online').factory('Campaigns', function() {
      */
     Campaigns.build = function (data) {
         return new Campaigns(
+            data._id,
             data._owner,
             data.name,
             data.players,
         );
+    };
+
+    Campaigns.json_to_objects = function (campaigns) {
+        var result = [];
+        angular.forEach(campaigns, function(value, key) {
+            this.push(Campaigns.build(value));
+        }, result);
+        return result;
     };
 
     /**

@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<md-content class="md-padding"  layout-xs="row" layout="column" layout-align="center center">
+    <form name="NewCampaignForm" ng-submit="newCampaign(campaign)" style="width: 70%">
+        <div layout-gt-sm="row" layout-align="center end">
+            <md-input-container class="md-block" flex-gt-sm="">
+                <label>Name</label>
+                <input type="text" name="name" ng-model="campaign.name" required/>
+            </md-input-container>
+        </div>
+        <div layout="row" layout-align="center end" style="margin-top: -5px;">
+            <md-button type="submit" class="md-raised md-primary">Create new campaign</md-button>
+            <md-button class="md-raised" ng-click="goBack()">Cancel</md-button>
+        </div>
+    </form>
+</md-content>

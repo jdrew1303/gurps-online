@@ -2,15 +2,15 @@
  * Created by lelabo on 20/04/17.
  */
 angular.module('gurps-online').controller('charactersMenuCtrl', function($scope, $state, $timeout, CharactersService,
-                                                                         MenuService) {
+                                                                         Characters, MenuService) {
 
-    MenuService.currentTitle = 'Menu';
+    MenuService.currentTitle = 'Characters';
     $scope.canDelete = false;
 
     $scope.characters = null;
     $scope.loadCharacters = function () {
         CharactersService.userCharacters().then(function (success) {
-            $scope.characters = success;
+            $scope.characters = Characters.json_to_objects(success);
         }, function (error) {
             console.log(error);
         });

@@ -1,42 +1,30 @@
 /**
  * Created by lelabo on 28/04/17.
  */
-angular.module('gurps-online').controller('campaignsMenuCtrl', function($scope, $state, $timeout, CharactersService,
-                                                                        MenuService) {
+angular.module('gurps-online').controller('campaignsMenuCtrl', function($scope, $state, $timeout, CampaignService,
+                                                                        Campaigns, MenuService) {
 
-    MenuService.currentTitle = 'Menu';
-    var self = this;
-    self.isOpen = false;
-    self.canDelete = false;
+    MenuService.currentTitle = 'Campaigns';
+    $scope.canDelete = false;
 
-    $scope.characters = null;
-    $scope.loadCharacters = function () {
-        CharactersService.userCharacters().then(function (success) {
-            $scope.characters = success;
+    $scope.campaigns = null;
+    $scope.loadCampaigns = function () {
+        CampaignService.userCampaigns().then(function (success) {
+            $scope.campaigns = Campaigns.json_to_objects(success);
+            console.log($scope.campaigns);
         }, function (error) {
             console.log(error);
         });
     };
-    $scope.loadCharacters();
+    $scope.loadCampaigns();
 
     $scope.goToNew = function () {
-        $state.go('app.characters.new');
+        $state.go('app.campaigns.new');
     };
 
-    $scope.$watch('vm.isOpen', function(isOpen) {
-        if (isOpen) {
-            $timeout(function() {
-                $scope.tooltipVisible = self.isOpen;
-            }, 600);
-        } else {
-            $scope.tooltipVisible = self.isOpen;
-        }
-    });
-
-    $scope.deleteCharacter = function (character) {
-        CharactersService.remove(character._id).then(function (resp) {
-            console.log(resp);
-            $scope.loadCharacters();
+    $scope.deleteCampaign = function (campaign) {
+        CampaignService.remove(campaign._id).then(function (resp) {
+            $scope.loadCampaigns();
         });
     };
 

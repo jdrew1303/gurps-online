@@ -22,16 +22,16 @@ angular.module('gurps-online').factory('MenuService', function ($location) {
                 icon: 'fa fa-group'
             }]
         },
-        // {
-        //     name: 'Campaigns',
-        //     type: 'toggle',
-        //     pages: [{
-        //         name: 'Menu',
-        //         type: 'link',
-        //         state: 'app.campaigns.menu',
-        //         icon: 'fa story-icon'
-        //     }]
-        // }
+        {
+            name: 'Campaigns',
+            type: 'toggle',
+            pages: [{
+                name: 'Menu',
+                type: 'link',
+                state: 'app.campaigns.menu',
+                icon: 'fa story-icon'
+            }]
+        }
     );
 
     var self = {
