@@ -1,0 +1,26 @@
+.MenuFab .md-fab-top-right {
+    top: 5px;  }
+
+@media (max-device-width: 600px) {
+    .MenuFab .md-fab-top-right {
+        top: 9px;
+        right: 9px; } }
+
+.MenuFab .md-fab.demo-fab.trigger-fab:hover, .MenuFab .md-fab.demo-fab.trigger-fab.md-focused, .MenuFab .md-fab.demo-fab.action-fab:hover, .MenuFab .md-fab.demo-fab.action-fab.md-focused {
+    background-color: #333; }
+
+.MenuFab .md-fab.demo-fab.action-fab {
+    background-color: #aaa; }
+
+.MenuFab md-fab-speed-dial {
+    margin-top: 0px;  }
+.MenuFab md-fab-speed-dial md-fab-trigger {
+    transition: all 0.3s ease-in-out;
+    transform: scale(1); }
+.MenuFab md-fab-speed-dial.md-scale.ng-hide-add.ng-hide-add-active, .MenuFab md-fab-speed-dial.md-fling.ng-hide-add.ng-hide-add-active {
+    display: flex !important; }
+.MenuFab md-fab-speed-dial.md-scale.ng-hide md-fab-trigger, .MenuFab md-fab-speed-dial.md-fling.ng-hide md-fab-trigger {
+    transform: scale(0); }
+
+.MenuFab .intro {
+    padding-left: 5px; }
