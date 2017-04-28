@@ -1,16 +1,17 @@
 /**
  * Created by lelabo on 21/04/17.
  */
-angular.module('gurps-online').factory('User', function() {
+angular.module('gurps-online').factory('User', function(Characters) {
 
     /**
      * Constructor, with class name
      */
-    function User(id, username, email, admin) {
+    function User(id, username, email, admin, characters) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.admin = admin;
+        this.characters = characterJsonToObject(characters);
     }
 
     /**
@@ -23,8 +24,20 @@ angular.module('gurps-online').factory('User', function() {
             data.username,
             data.mail,
             data.admin,
+            data.characters,
         );
     };
+
+    /**
+     * Private function
+     */
+    function characterJsonToObject(characters) {
+        var result = [];
+        for (var i in characters) {
+            result.push(Characters.build(characters[i]));
+        }
+        return result;
+    }
 
     /**
      * Return the constructor function

@@ -42,7 +42,7 @@ angular.module('gurps-online').factory('Characters', function() {
      */
     Characters.build = function (data) {
         return new Characters(
-            data.owner,
+            data._owner,
             data.name,
             data.exp,
         );
