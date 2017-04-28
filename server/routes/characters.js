@@ -25,11 +25,22 @@ router.get('/', function(req, res) {
 });
 
 router.get('/:id', function(req, res) {
-    Character.find({_id: mongoose.Schema.Types.ObjectId(req.params.id)}, function(err, users) {
+    Character.findOne({id: mongoose.Schema.Types.ObjectId(req.params.id)}).exec(function(err, users) {
         if (err) throw err;
         res.json(users);
     });
 });
 
+router.delete('/:id', function(req, res) {
+    console.log(req.params.id);
+    Character.findOne({id : mongoose.Schema.Types.ObjectId(req.params.id)}).exec(function (err, obj){
+        console.log(obj);
+        if (err) throw err;
+        obj.remove(function (err) {
+            if (err) throw err;
+            res.json({ success: true });
+        });
+    });
+});
 
 module.exports = router;
