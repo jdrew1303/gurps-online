@@ -1,0 +1,25 @@
+<md-fab-speed-dial md-direction="down" class="md-fling md-fab-top-right md-hover-full" md-open="isOpen"
+                   ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false">
+    <md-fab-trigger>
+        <md-button aria-label="menu" class="md-fab" style="background-color: #2196F3">
+            <md-tooltip md-direction="left" md-visible="tooltipVisible">Menu</md-tooltip>
+            <md-icon md-font-icon="fa-cog" class="fa fa-2x" style="color: white;"></md-icon>
+        </md-button>
+    </md-fab-trigger>
+
+    <md-fab-actions>
+        <md-button aria-label="new" class="md-fab md-raised md-mini" ng-click="onNew($event)">
+            <md-tooltip md-direction="left" md-visible="tooltipVisible" md-autohide="false">
+                new
+            </md-tooltip>
+            <md-icon md-font-icon="fa-plus" class="fa fa-2x" style="color: #81C784;"></md-icon>
+        </md-button>
+        <md-button aria-label="delete" class="md-fab md-raised md-mini"
+                   ng-click="onDelete($event)">
+            <md-tooltip md-direction="left" md-visible="tooltipVisible" md-autohide="false">
+                delete
+            </md-tooltip>
+            <md-icon md-font-icon="fa-trash-o" class="fa fa-2x" style="color: #FF5722;"></md-icon>
+        </md-button>
+    </md-fab-actions>
+</md-fab-speed-dial>
