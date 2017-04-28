@@ -11,17 +11,28 @@ angular.module('gurps-online').factory('MenuService', function ($location) {
     var sections = [];
 
 
-    sections.push({
-        name: 'Characters',
-        type: 'toggle',
-        pages: [{
-            name: 'Menu',
-            type: 'link',
-            state: 'app.characters.menu',
-            icon: 'fa fa-group'
-        }
-        ]
-    });
+    sections.push(
+        {
+            name: 'Characters',
+            type: 'toggle',
+            pages: [{
+                name: 'Menu',
+                type: 'link',
+                state: 'app.characters.menu',
+                icon: 'fa fa-group'
+            }]
+        },
+        // {
+        //     name: 'Campaigns',
+        //     type: 'toggle',
+        //     pages: [{
+        //         name: 'Menu',
+        //         type: 'link',
+        //         state: 'app.campaigns.menu',
+        //         icon: 'fa story-icon'
+        //     }]
+        // }
+    );
 
     var self = {
         sections: sections,

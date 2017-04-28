@@ -6,50 +6,38 @@ angular.module('gurps-online').factory('Campaigns', function() {
     /**
      * Constructor, with class name
      */
-    function Campaigns(owner, name, exp) {
+    function Campaigns(owner, name, players) {
         this.owner = owner;
         this.name = name;
-        this.exp = exp;
-        this.availablePoints = exp;
-        this.status = possibleStatus.alive;
+        this.players = characterJsonToObject(players);
     }
-
-    /**
-     * Private property
-     */
-    var possibleStatus = {
-        alive: 0,
-        dead: 1,
-        in_campaign: 2
-    };
 
     /**
      * Private function
      */
-    function checkStatus(status) {
-        return possibleStatus.hasOwnProperty(status) !== -1;
+    function characterJsonToObject(characters) {
+        var result = [];
+        for (var i in characters) {
+            result.push(Characters.build(characters[i]));
+        }
+        return result;
     }
 
-    /**
-     * Static property
-     * Using copy to prevent modifications to private property
-     */
-    Characters.possibleStatus = angular.copy(possibleStatus);
 
     /**
      * Static method, assigned to class
      * Instance ('this') is not available in static context
      */
-    Characters.build = function (data) {
-        return new Characters(
+    Campaigns.build = function (data) {
+        return new Campaigns(
             data._owner,
             data.name,
-            data.exp,
+            data.players,
         );
     };
 
     /**
      * Return the constructor function
      */
-    return Characters;
+    return Campaigns;
 });
