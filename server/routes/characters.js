@@ -28,14 +28,14 @@ router.get('/', function(req, res) {
 });
 
 router.get('/:id', function(req, res) {
-    Character.findOne({id: ObjectId(req.params.id)}).populate('_owner').exec(function(err, characters) {
+    Character.findOne({_id: ObjectId(req.params.id)}).populate('_owner').exec(function(err, characters) {
         if (err) throw err;
         res.json(characters);
     });
 });
 
 router.delete('/:id', function(req, res) {
-    Character.findOne({id : ObjectId(req.params.id)}).exec(function (err, obj){
+    Character.findOne({_id : ObjectId(req.params.id)}).exec(function (err, obj){
         if (err) throw err;
         obj.remove(function (err) {
             if (err) throw err;
