@@ -5,6 +5,7 @@ angular.module('gurps-online').factory('CharactersService', function ($http, $q,
     var self = this;
     var serviceUri = global.api_dev + "/characters";
     var CharactersResource = $resource(serviceUri, {}, {
+        characterId: '@id',
         create: {
             method: "POST",
             url: serviceUri + "/",
@@ -16,10 +17,14 @@ angular.module('gurps-online').factory('CharactersService', function ($http, $q,
             method: "GET",
             url: serviceUri + "/",
             isArray: true
+        },
+        remove: {
+            method: "DELETE",
+            url: serviceUri + "/:characterId"
         }
     });
 
-    this.new = function (name, exp) {
+    this.create = function (name, exp) {
         var deferred = $q.defer();
         UserService.me().then(function (user) {
             CharactersResource.create({_owner: user._id, name: name, exp: exp}).$promise
@@ -33,6 +38,12 @@ angular.module('gurps-online').factory('CharactersService', function ($http, $q,
     this.userCharacters = function () {
         var deferred = $q.defer();
         CharactersResource.find().$promise.then(deferred.resolve, deferred.reject);
+        return deferred.promise;
+    };
+
+    this.remove = function (id) {
+        var deferred = $q.defer();
+        CharactersResource.remove({characterId: id}).$promise.then(deferred.resolve, deferred.reject);
         return deferred.promise;
     };
 

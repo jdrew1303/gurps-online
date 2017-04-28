@@ -14,7 +14,7 @@ angular.module('gurps-online').controller('charactersNewCtrl', function($scope, 
     };
 
     $scope.newCharacter = function (data) {
-        CharactersService.new(data.name, data.exp)
+        CharactersService.create(data.name, data.exp)
             .then(function (success) {
                 $state.go('app.characters.menu');
             }, function (err) {

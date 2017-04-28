@@ -102,3 +102,6 @@ md-sidenav {
     height: auto;
 }
 
+body, md-content {
+    background-color: white;
+}

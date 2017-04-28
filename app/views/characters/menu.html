@@ -1,6 +1,5 @@
 <div ng-controller="charactersMenuCtrl as vm" layout="column" ng-cloak="" class="charactersMenu">
     <md-content class="md-padding" layout="column" style="min-height: 200px">
-
         <div layout="row" layout-align="center center">
             <md-fab-speed-dial md-direction="down" class="md-fling md-fab-top-right md-hover-full" md-open="vm.isOpen"
                                ng-mouseenter="vm.isOpen=true" ng-mouseleave="vm.isOpen=false">
@@ -18,7 +17,8 @@
                         </md-tooltip>
                         <md-icon md-font-icon="fa-plus" class="fa fa-2x" style="color: #81C784;"></md-icon>
                     </md-button>
-                    <md-button aria-label="delete" class="md-fab md-raised md-mini">
+                    <md-button aria-label="delete" class="md-fab md-raised md-mini"
+                               ng-click="vm.canDelete = !vm.canDelete">
                         <md-tooltip md-direction="left" md-visible="tooltipVisible" md-autohide="false">
                             delete
                         </md-tooltip>
@@ -26,8 +26,15 @@
                     </md-button>
                 </md-fab-actions>
             </md-fab-speed-dial>
+        </div>
+        <div layout="row" layout-align="center center" style="margin-top: 35px">
             <md-list flex>
-                <md-list-item class="md-3-line" ng-repeat="item in characters" ng-click="null">
+                <md-list-item class="md-3-line" ng-repeat="item in characters" ng-click="null" layout="row">
+                    <md-button class="md-icon-button md-fab md-mini" aria-label="delete"
+                               ng-click="deleteCharacter(item)"
+                               ng-if="vm.canDelete" style="background-color: red;">
+                        <md-icon md-font-icon="fa-minus" class="md-primary fa" ></md-icon>
+                    </md-button>
                     <div class="md-list-item-text" layout="column">
                         <h3>{{ item.name }}</h3>
                         <h4>{{ item.exp }}</h4>

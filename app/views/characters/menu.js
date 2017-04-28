@@ -7,6 +7,17 @@ angular.module('gurps-online').controller('charactersMenuCtrl', function($scope,
     MenuService.currentTitle = 'Menu';
     var self = this;
     self.isOpen = false;
+    self.canDelete = false;
+
+    $scope.characters = null;
+    $scope.loadCharacters = function () {
+        CharactersService.userCharacters().then(function (success) {
+            $scope.characters = success;
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    $scope.loadCharacters();
 
     $scope.goToNew = function () {
       $state.go('app.characters.new');
@@ -22,11 +33,12 @@ angular.module('gurps-online').controller('charactersMenuCtrl', function($scope,
         }
     });
 
+    $scope.deleteCharacter = function (character) {
+        CharactersService.remove(character._id).then(function (resp) {
+            console.log(resp);
+            $scope.loadCharacters();
+        });
+    };
 
-    $scope.characters = null;
-    CharactersService.userCharacters().then(function (success) {
-        $scope.characters = success;
-    }, function (error) {
-        console.log(error);
-    });
+
 });
