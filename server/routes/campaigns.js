@@ -1,41 +1,40 @@
 /**
- * Created by lelabo on 25/04/17.
+ * Created by lelabo on 28/04/17.
  */
 var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
-var Character = require('../models/character');
+var Campaign = require('../models/campaign');
 var ObjectId = mongoose.Types.ObjectId;
 
 router.post('/', function (req, res) {
-    new Character({
+    new Campaign({
         _owner: ObjectId(req.user._id),
         name: req.body.name,
-        exp: req.body.exp,
-    }).save(function(err, character) {
+    }).save(function(err, campaign) {
         if (err) throw err;
-        req.user.characters.push(ObjectId(character._id));
+        req.user.campaigns.push(ObjectId(campaign._id));
         req.user.save();
         res.json({ success: true });
     });
 });
 
 router.get('/', function(req, res) {
-    Character.find({_owner: ObjectId(req.user._id)}).populate('_owner').exec(function(err, characters) {
+    Campaign.find({_owner: ObjectId(req.user._id)}).populate('_owner').exec(function(err, campaigns) {
         if (err) throw err;
-        res.json(characters);
+        res.json(campaigns);
     });
 });
 
 router.get('/:id', function(req, res) {
-    Character.findOne({id: ObjectId(req.params.id)}).populate('_owner').exec(function(err, characters) {
+    Campaign.findOne({id: ObjectId(req.params.id)}).populate('_owner').exec(function(err, campaigns) {
         if (err) throw err;
-        res.json(characters);
+        res.json(campaigns);
     });
 });
 
 router.delete('/:id', function(req, res) {
-    Character.findOne({id : ObjectId(req.params.id)}).exec(function (err, obj){
+    Campaign.findOne({id : ObjectId(req.params.id)}).exec(function (err, obj){
         if (err) throw err;
         obj.remove(function (err) {
             if (err) throw err;
