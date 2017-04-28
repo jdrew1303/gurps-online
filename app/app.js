@@ -67,6 +67,19 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                 }
             }
         });
+        // .state('app.campaigns', {
+        //     url: '^/campaigns',
+        //     abstract: true
+        // })
+        // .state('app.campaigns.menu', {
+        //     url: '/menu',
+        //     views: {
+        //         'content@app': {
+        //             templateUrl: 'views/characters/menu.html',
+        //             controller: 'charactersMenuCtrl'
+        //         }
+        //     }
+        // });
 
     $urlRouterProvider.otherwise('/login');
 });

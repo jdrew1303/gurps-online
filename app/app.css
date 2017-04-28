@@ -105,3 +105,12 @@ md-sidenav {
 body, md-content {
     background-color: white;
 }
+
+.story-icon:before {
+    content: url(assets/story.svg);
+    background-size: 10px 20px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    transform: translate(0, 4px);
+}
