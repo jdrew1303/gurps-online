@@ -5,6 +5,7 @@ var express = require('express');
 var router  = express.Router();
 var jwt     = require('jsonwebtoken');
 var config  = require('../config');
+var User   = require('../models/user');
 
 router.use(function(req, res, next) {
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
@@ -14,8 +15,10 @@ router.use(function(req, res, next) {
                 return res.json({ success: false, message: 'Failed to authenticate token.' });
             } else {
                 req.token = decoded;
-                req.user = decoded._doc;
-                next();
+                User.findOne({_id: decoded._doc._id}).populate('characters').exec(function(err, user) {
+                    req.user = user;
+                    next();
+                });
             }
         });
     } else {
