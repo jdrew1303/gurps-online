@@ -20,6 +20,9 @@ angular.module('gurps-online').controller('charactersMenuCtrl', function($scope,
     $scope.goToNew = function () {
         $state.go('app.characters.new');
     };
+    $scope.goToProfile = function (character) {
+      $state.go('app.characters.profile', {'characterId': character._id});
+    };
 
     $scope.deleteCharacter = function (character) {
         console.log(character);

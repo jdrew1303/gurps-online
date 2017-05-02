@@ -27,6 +27,14 @@ router.get('/', function(req, res) {
     });
 });
 
+router.get('/all', function(req, res) {
+    Campaign.find({}).populate('_owner').exec(function(err, campaigns) {
+        if (err) throw err;
+        res.json(campaigns);
+    });
+});
+
+
 router.get('/:id', function(req, res) {
     Campaign.findOne({_id: ObjectId(req.params.id)}).populate('_owner').exec(function(err, campaigns) {
         if (err) throw err;

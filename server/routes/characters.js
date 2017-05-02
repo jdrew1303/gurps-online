@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var router = express.Router();
 var Character = require('../models/character');
 var User = require('../models/user');
+var Campaign = require('../models/campaign');
 var ObjectId = mongoose.Types.ObjectId;
 
 router.post('/', function (req, res) {
@@ -29,8 +30,9 @@ router.get('/', function(req, res) {
 });
 
 router.get('/:id', function(req, res) {
-    Character.findOne({_id: ObjectId(req.params.id)}).populate('_owner').exec(function(err, characters) {
+    Character.findOne({_id: ObjectId(req.params.id)}).populate('_owner campaign').exec(function(err, characters) {
         if (err) throw err;
+        console.log(characters);
         res.json(characters);
     });
 });
@@ -44,6 +46,32 @@ router.delete('/:id', function(req, res) {
                 if (err) throw err;
                 res.json({ success: true });
             });
+        });
+    });
+});
+
+router.get('/join/:id/:campaign', function (req, res) {
+    Character.findOne({_id : ObjectId(req.params.id)}).exec(function (err, character) {
+        if (err) throw err;
+        Campaign.findOne({_id : ObjectId(req.params.campaign)}).exec(function (err, campaign) {
+            if (err) throw err;
+            campaign.players.push(ObjectId(character._id));
+            character.campaign = ObjectId(campaign._id);
+            campaign.save();
+            character.save();
+            res.json({ success: true });
+        });
+    });
+});
+
+router.get('/leave/:id', function (req, res) {
+    Character.findOne({_id : ObjectId(req.params.id)}).exec(function (err, character) {
+        if (err) throw err;
+        Campaign.findOneAndUpdate({_id: ObjectId(character.campaign)}, {$pull: {players: ObjectId(character._id)}}, function(err){
+            if (err) throw err;
+            character.campaign = null;
+            character.save();
+            res.json({ success: true });
         });
     });
 });

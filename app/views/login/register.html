@@ -1,28 +1,26 @@
 <md-dialog aria-label="Register" style="width: 50%; height: auto" class="md-padding">
-    <form ng-cloak>
-        <form name="RegisterForm" ng-submit="register(user)">
-            <div layout-gt-sm="row" layout-align="center end">
-                <md-input-container class="md-block" flex-gt-sm="">
-                    <label>Username</label>
-                    <input type="text" name="username" ng-model="user.username" required/>
-                </md-input-container>
-            </div>
-            <div layout-gt-sm="row" layout-align="center end">
-                <md-input-container class="md-block" flex-gt-sm="">
-                    <label>Email</label>
-                    <input type="email" name="email" ng-model="user.email" required/>
-                </md-input-container>
-            </div>
-            <div layout-gt-sm="row" layout-align="center end">
-                <md-input-container class="md-block" flex-gt-sm="">
-                    <label>Password</label>
-                    <input type="password" name="password" ng-model="user.password" required/>
-                </md-input-container>
-            </div>
-            <div layout="row" layout-align="center end" style="margin-top: -5px;">
-                <md-button type="submit" class="md-raised md-primary" ng-click="register(user)">Register</md-button>
-                <md-button class="md-primary" ng-click="cancel()">Cancel</md-button>
-            </div>
-        </form>
+    <form name="RegisterForm" ng-submit="register(user)" ng-cloak>
+        <div layout-gt-sm="row" layout-align="center end">
+            <md-input-container class="md-block" flex-gt-sm="">
+                <label>Username</label>
+                <input type="text" name="username" ng-model="user.username" required/>
+            </md-input-container>
+        </div>
+        <div layout-gt-sm="row" layout-align="center end">
+            <md-input-container class="md-block" flex-gt-sm="">
+                <label>Email</label>
+                <input type="email" name="email" ng-model="user.email" required/>
+            </md-input-container>
+        </div>
+        <div layout-gt-sm="row" layout-align="center end">
+            <md-input-container class="md-block" flex-gt-sm="">
+                <label>Password</label>
+                <input type="password" name="password" ng-model="user.password" required/>
+            </md-input-container>
+        </div>
+        <div layout="row" layout-align="center end" style="margin-top: -5px;">
+            <md-button type="submit" class="md-raised md-primary" ng-click="register(user)">Register</md-button>
+            <md-button class="md-primary" ng-click="cancel()">Cancel</md-button>
+        </div>
     </form>
 </md-dialog>

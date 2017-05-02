@@ -13,7 +13,12 @@ angular.module('gurps-online').factory('CampaignService', function ($http, $q, $
                 'Content-Type': 'application/json'
             }
         },
-        find: {
+        all: {
+            method: "GET",
+            url: serviceUri + "/all",
+            isArray: true
+        },
+        owned: {
             method: "GET",
             url: serviceUri + "/",
             isArray: true
@@ -34,10 +39,14 @@ angular.module('gurps-online').factory('CampaignService', function ($http, $q, $
         });
         return deferred.promise;
     };
-
+    this.all = function () {
+        var deferred = $q.defer();
+        CampaignsResource.all().$promise.then(deferred.resolve, deferred.reject);
+        return deferred.promise;
+    };
     this.userCampaigns = function () {
         var deferred = $q.defer();
-        CampaignsResource.find().$promise.then(deferred.resolve, deferred.reject);
+        CampaignsResource.owned().$promise.then(deferred.resolve, deferred.reject);
         return deferred.promise;
     };
 
@@ -46,7 +55,6 @@ angular.module('gurps-online').factory('CampaignService', function ($http, $q, $
         CampaignsResource.remove({campaignId: id}).$promise.then(deferred.resolve, deferred.reject);
         return deferred.promise;
     };
-
     return this;
 
 });

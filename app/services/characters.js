@@ -6,6 +6,7 @@ angular.module('gurps-online').factory('CharactersService', function ($http, $q,
     var serviceUri = global.api_dev + "/characters";
     var CharactersResource = $resource(serviceUri, {}, {
         characterId: '@id',
+        campaignId: '@campaign',
         create: {
             method: "POST",
             url: serviceUri + "/",
@@ -15,12 +16,24 @@ angular.module('gurps-online').factory('CharactersService', function ($http, $q,
         },
         find: {
             method: "GET",
+            url: serviceUri + "/:characterId",
+        },
+        ownned: {
+            method: "GET",
             url: serviceUri + "/",
             isArray: true
         },
         remove: {
             method: "DELETE",
             url: serviceUri + "/:characterId"
+        },
+        join: {
+            method: "GET",
+            url: serviceUri + "/join/:characterId/:campaignId"
+        },
+        leave: {
+            method: "GET",
+            url: serviceUri + "/leave/:characterId"
         }
     });
 
@@ -35,9 +48,26 @@ angular.module('gurps-online').factory('CharactersService', function ($http, $q,
         return deferred.promise;
     };
 
+    this.get = function (characterId) {
+        var deferred = $q.defer();
+        CharactersResource.find({characterId: characterId}).$promise.then(deferred.resolve, deferred.reject);
+        return deferred.promise;
+    };
+    this.joinCampaign = function (characterId, campaignId) {
+        var deferred = $q.defer();
+        CharactersResource.join({characterId: characterId, campaignId: campaignId})
+            .$promise.then(deferred.resolve, deferred.reject);
+        return deferred.promise;
+    };
+    this.leaveCampaign = function (characterId) {
+        var deferred = $q.defer();
+        CharactersResource.leave({characterId: characterId}).$promise.then(deferred.resolve, deferred.reject);
+        return deferred.promise;
+    };
+
     this.userCharacters = function () {
         var deferred = $q.defer();
-        CharactersResource.find().$promise.then(deferred.resolve, deferred.reject);
+        CharactersResource.ownned().$promise.then(deferred.resolve, deferred.reject);
         return deferred.promise;
     };
 

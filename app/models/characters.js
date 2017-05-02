@@ -6,13 +6,14 @@ angular.module('gurps-online').factory('Characters', function() {
     /**
      * Constructor, with class name
      */
-    function Characters(id, owner, name, exp) {
+    function Characters(id, owner, name, exp, campaign, status) {
         this._id = id;
         this.owner = owner;
         this.name = name;
         this.exp = exp;
         this.availablePoints = exp;
-        this.status = possibleStatus.alive;
+        this.status = status;
+        this.campaign = campaign;
     }
 
     /**
@@ -47,6 +48,8 @@ angular.module('gurps-online').factory('Characters', function() {
             data._owner,
             data.name,
             data.exp,
+            data.campaign,
+            data.status,
         );
     };
 

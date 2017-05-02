@@ -1,0 +1,18 @@
+<md-content class="md-padding"  layout-xs="row" layout="column" layout-align="center center">
+    <div layout="row" layout-align="center center">
+        <md-button class="md-raised md-primary" aria-label="delete"
+                   ng-if="!character.campaign" style="background-color: red;"
+                   ng-click="showJoin()">
+            JOIN
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="delete"
+                   ng-if="character.campaign" style="background-color: red;"
+                   ng-click="leave()">
+            LEAVE
+        </md-button>
+    </div>
+    <div layout="row" layout-align="center center">
+        <h1> Campaign: {{character.campaign}} </h1>
+    </div>
+
+</md-content>
