@@ -67,6 +67,15 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('app.characters.profile', {
+            url: '/profile/:characterId',
+            views: {
+                'content@app': {
+                    templateUrl: 'views/characters/profile.html',
+                    controller: 'charactersProfileCtrl'
+                }
+            }
+        })
         .state('app.campaigns', {
             url: '^/campaigns',
             abstract: true
