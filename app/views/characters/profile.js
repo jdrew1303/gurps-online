@@ -5,10 +5,10 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
                                                                             CharactersService, Characters,
                                                                             MenuService) {
     function loadCharacter() {
-        CharactersService.get($stateParams.characterId).then(function (user) {
-            $scope.character = Characters.build(user);
+        CharactersService.get($stateParams.characterId).then(function (character) {
+            $scope.character = Characters.build(character);
             console.log($scope.character);
-            MenuService.currentTitle = $scope.character.name;
+            MenuService.currentTitle = 'Character : ' + $scope.character.name;
         }, function (err) {
             console.log(err);
         });
@@ -30,8 +30,9 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
     };
 
     $scope.leave = function () {
-        CharactersService.leaveCampaign($scope.character._id);
-        loadCharacter();
+        CharactersService.leaveCampaign($scope.character._id).then(function () {
+            loadCharacter();
+        });
     }
 });
 

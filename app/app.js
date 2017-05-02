@@ -97,6 +97,15 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                     controller: 'campaignsNewCtrl'
                 }
             }
+        })
+        .state('app.campaigns.profile', {
+            url: '/profile/:campaignId',
+            views: {
+                'content@app': {
+                    templateUrl: 'views/campaigns/profile.html',
+                    controller: 'campaignsProfileCtrl'
+                }
+            }
         });
 
 

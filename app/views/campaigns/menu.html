@@ -5,7 +5,8 @@
         </div>
         <div layout="row" layout-align="center center" style="margin-top: 35px">
             <md-list flex>
-                <md-list-item class="md-2-line" ng-repeat="item in campaigns" ng-click="null" layout="row">
+                <md-list-item class="md-2-line" ng-repeat="item in campaigns"
+                              ng-click="goToProfile(item)" layout="row">
                     <md-button class="md-icon-button md-fab md-mini" aria-label="delete"
                                ng-click="deleteCampaign(item)"
                                ng-if="canDelete" style="background-color: red;">

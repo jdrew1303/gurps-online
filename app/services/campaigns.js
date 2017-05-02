@@ -13,6 +13,10 @@ angular.module('gurps-online').factory('CampaignService', function ($http, $q, $
                 'Content-Type': 'application/json'
             }
         },
+        find: {
+            method: "GET",
+            url: serviceUri + "/:campaignId",
+        },
         all: {
             method: "GET",
             url: serviceUri + "/all",
@@ -37,6 +41,11 @@ angular.module('gurps-online').factory('CampaignService', function ($http, $q, $
         }, function (error) {
             console.log(error);
         });
+        return deferred.promise;
+    };
+    this.get = function (campaignId) {
+        var deferred = $q.defer();
+        CampaignsResource.find({campaignId: campaignId}).$promise.then(deferred.resolve, deferred.reject);
         return deferred.promise;
     };
     this.all = function () {

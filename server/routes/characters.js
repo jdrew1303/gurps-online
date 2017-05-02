@@ -32,7 +32,6 @@ router.get('/', function(req, res) {
 router.get('/:id', function(req, res) {
     Character.findOne({_id: ObjectId(req.params.id)}).populate('_owner campaign').exec(function(err, characters) {
         if (err) throw err;
-        console.log(characters);
         res.json(characters);
     });
 });

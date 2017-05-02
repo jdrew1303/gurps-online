@@ -1,0 +1,20 @@
+<md-content class="md-padding"  layout-xs="row" layout="column">
+    <div flex>
+        <h2> Players: </h2>
+    </div>
+    <div flex>
+        <md-list flex>
+            <md-list-item class="md-2-line" ng-repeat="item in players" layout="row">
+                <div class="md-list-item-text" layout="column">
+                    <h3>Name: {{ item.name }}</h3>
+                    <h4>Owner: {{ item.owner.username }}</h4>
+                </div>
+                <md-icon md-font-icon="fa-info" class="md-primary fa md-secondary md-hue-3"
+                         ng-click="test($event)" style="font-size: 20px"></md-icon>
+                <md-icon md-font-icon="fa-ban" class="md-primary fa md-secondary md-hue-3"
+                         ng-click="ban(item)" style="font-size: 16px"></md-icon>
+            </md-list-item>
+        </md-list>
+    </div>
+
+</md-content>

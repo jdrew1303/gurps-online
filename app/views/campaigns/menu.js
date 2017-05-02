@@ -21,6 +21,9 @@ angular.module('gurps-online').controller('campaignsMenuCtrl', function($scope, 
     $scope.goToNew = function () {
         $state.go('app.campaigns.new');
     };
+    $scope.goToProfile = function (campaign) {
+        $state.go('app.campaigns.profile', {'campaignId': campaign._id});
+    };
 
     $scope.deleteCampaign = function (campaign) {
         CampaignService.remove(campaign._id).then(function (resp) {

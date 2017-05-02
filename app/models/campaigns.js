@@ -10,20 +10,8 @@ angular.module('gurps-online').factory('Campaigns', function() {
         this._id = id;
         this.owner = owner;
         this.name = name;
-        this.players = characterJsonToObject(players);
+        this.players = players;
     }
-
-    /**
-     * Private function
-     */
-    function characterJsonToObject(campaigns) {
-        var result = [];
-        for (var i in campaigns) {
-            result.push(Campaigns.build(campaigns[i]));
-        }
-        return result;
-    }
-
 
     /**
      * Static method, assigned to class
