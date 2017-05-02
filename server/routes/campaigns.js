@@ -5,6 +5,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
 var Campaign = require('../models/campaign');
+var User = require('../models/user');
 var ObjectId = mongoose.Types.ObjectId;
 
 router.post('/', function (req, res) {
@@ -36,10 +37,14 @@ router.get('/:id', function(req, res) {
 router.delete('/:id', function(req, res) {
     Campaign.findOne({_id : ObjectId(req.params.id)}).exec(function (err, obj){
         if (err) throw err;
-        obj.remove(function (err) {
+        User.findOneAndUpdate({_id: ObjectId(obj._owner)}, {$pull: {campaigns: ObjectId(obj._id)}}, function(err, data){
             if (err) throw err;
-            res.json({ success: true });
+            obj.remove(function (err) {
+                if (err) throw err;
+                res.json({ success: true });
+            });
         });
+
     });
 });
 
