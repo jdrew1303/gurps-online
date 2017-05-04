@@ -14,6 +14,9 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
         });
     }
 
+    $scope.myNumber = 10;
+    this.slider = 10;
+    $scope.canEdit = true;
     loadCharacter();
 
     $scope.showJoin = function (ev) {
@@ -24,8 +27,19 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
             clickOutsideToClose: true,
             targetEvent: ev
         }).then(function(answer) {
-            CharactersService.joinCampaign($scope.character._id, answer._id);
-            loadCharacter();
+            CharactersService.joinCampaign($scope.character._id, answer._id).then(function () {
+                loadCharacter();
+            });
+        });
+    };
+
+    $scope.showInfo = function (template, ev) {
+        $mdDialog.show({
+            controller: InfoController,
+            templateUrl: template,
+            parent: angular.element(document.body),
+            clickOutsideToClose: true,
+            targetEvent: ev
         });
     };
 
@@ -51,5 +65,14 @@ function JoinController($scope, $mdDialog, CampaignService, Campaigns) {
     };
     $scope.joinIt = function(answer) {
         $mdDialog.hide(answer);
+    };
+}
+
+function InfoController($scope, $mdDialog) {
+    $scope.hide = function() {
+        $mdDialog.hide();
+    };
+    $scope.cancel = function() {
+        $mdDialog.cancel();
     };
 }

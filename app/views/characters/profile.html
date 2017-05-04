@@ -1,18 +1,111 @@
-<md-content class="md-padding"  layout-xs="row" layout="column" layout-align="center center">
-    <div layout="row" layout-align="center center">
-        <md-button class="md-raised md-primary" aria-label="delete"
-                   ng-if="!character.campaign" style="background-color: red;"
-                   ng-click="showJoin()">
+<md-content class="md-padding characterProfile"  layout-xs="row" layout="column">
+    <div layout layout-align="center center">
+        <h4 flex> Campaign: {{character.campaign.name}} </h4>
+        <md-button class="md-raised md-primary" aria-label="join"
+                   ng-if="!character.campaign"
+                   ng-click="showJoin()" flex="10">
             JOIN
         </md-button>
-        <md-button class="md-raised md-primary" aria-label="delete"
-                   ng-if="character.campaign" style="background-color: red;"
-                   ng-click="leave()">
+        <md-button class="md-raised" aria-label="leave" style="color: white; background-color: #F44336"
+                   ng-if="character.campaign"
+                   ng-click="leave()" flex="10">
             LEAVE
         </md-button>
+        <md-button class="md-raised" aria-label="leave"
+                   ng-click="canEdit = !canEdit" flex="10">
+            EDIT
+        </md-button>
     </div>
-    <div layout="row" layout-align="center center">
-        <h1> Campaign: {{character.campaign}} </h1>
+    <div layout="row">
+        <div layout="row" flex>
+            <h3 class="text-korinna">
+                Strength (ST)
+                <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
+                ng-click="showInfo('views/characters/info/strength.html', $event)"></md-icon>
+            </h3>
+            <number-picker number="myNumber" edit="canEdit" flex>
+                <label class="text-korinna">±10 points/level</label>
+            </number-picker>
+        </div>
+        <div layout="row" flex>
+            <h3 class="text-korinna">
+                Dexterity (DX)
+                <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
+                         ng-click="showInfo('views/characters/info/dexterity.html', $event)"></md-icon>
+            </h3>
+            <number-picker number="myNumber" edit="canEdit" flex>
+                <label class="text-korinna">±20 points/level</label>
+            </number-picker>
+        </div>
+        <div layout="row" flex>
+            <h3 class="text-korinna">
+                Intelligence (IQ)
+                <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
+                         ng-click="showInfo('views/characters/info/intelligence.html', $event)"></md-icon>
+            </h3>
+            <number-picker number="myNumber" edit="canEdit" flex>
+                <label class="text-korinna">±20 points/level</label>
+            </number-picker>
+        </div>
+        <div layout="row" flex>
+            <h3 class="text-korinna">
+                Health (HT)
+                <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
+                         ng-click="showInfo('views/characters/info/health.html', $event)"></md-icon>
+            </h3>
+            <number-picker number="myNumber" edit="canEdit" flex>
+                <label class="text-korinna">±10 points/level</label>
+            </number-picker>
+        </div>
+    </div>
+    <value-bar name="HP" info="views/characters/info/hitpoints.html" value="myNumber" total="100"></value-bar>
+    <value-bar name="Will" info="views/characters/info/will.html" value="myNumber" total="100"></value-bar>
+    <value-bar name="Stamina" info="views/characters/info/fatigue.html" value="myNumber" total="100"></value-bar>
+    <div layout="row">
+        <div layout="row">
+            <h3 class="text-korinna">
+                Perception (Per)
+                <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
+                         ng-click="showInfo('views/characters/info/perception.html', $event)"></md-icon>
+                {{myNumber}}
+            </h3>
+        </div>
+        <md-divider vertical></md-divider>
+        <div layout="row">
+            <h3 class="text-korinna">
+                Basic Speed
+                <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
+                         ng-click="showInfo('views/characters/info/speed.html', $event)"></md-icon>
+                {{myNumber}}
+            </h3>
+        </div>
+        <md-divider vertical></md-divider>
+        <div layout="row">
+            <h3 class="text-korinna">
+                Dodge
+                <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
+                         ng-click="showInfo('views/characters/info/dodge.html', $event)"></md-icon>
+                {{myNumber}}
+            </h3>
+        </div>
+        <md-divider vertical></md-divider>
+        <div layout="row">
+            <h3 class="text-korinna">
+                Basic Move
+                <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
+                         ng-click="showInfo('views/characters/info/move.html', $event)"></md-icon>
+                {{myNumber}}
+            </h3>
+        </div>
+    </div>
+    <div layout="row">
+        <h3 class="text-korinna">
+            Damage
+            <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
+                     ng-click="showInfo('views/characters/info/damage.html', $event)"></md-icon>
+            Thrust: {{myNumber}}
+            Swing: {{myNumber}}
+        </h3>
     </div>
 
 </md-content>

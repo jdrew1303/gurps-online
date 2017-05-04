@@ -3,7 +3,7 @@
         <div layout="row" layout-align="center center">
             <side-menu-fab can-delete="canDelete" on-click-new="goToNew"></side-menu-fab>
         </div>
-        <div layout="row" layout-align="center center" style="margin-top: 35px">
+        <div layout="row" layout-align="center center" style="margin-top: 50px">
             <md-list flex>
                 <md-list-item class="md-2-line" ng-repeat="item in characters"
                               ng-click="goToProfile(item)" layout="row">
@@ -16,6 +16,8 @@
                         <h3>Name: {{ item.name }} | Exp: {{ item.exp }}</h3>
                         <h4>Owner: {{ item.owner.username }}</h4>
                     </div>
+                    <md-icon md-svg-src="assets/heart.svg" ng-if="item.status != 'dead'" style="font-weight: bolder"></md-icon>
+                    <md-icon md-svg-src="assets/skull.svg" ng-if="item.status == 'dead'"></md-icon>
                 </md-list-item>
             </md-list>
         </div>
