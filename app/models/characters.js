@@ -6,37 +6,22 @@ angular.module('gurps-online').factory('Characters', function() {
     /**
      * Constructor, with class name
      */
-    function Characters(id, owner, name, exp, campaign, status) {
+    function Characters(id, owner, name, exp, campaign, status, st, dx, iq, ht, hand, hp, will, fp) {
         this._id = id;
         this.owner = owner;
         this.name = name;
         this.exp = exp;
-        this.availablePoints = exp;
         this.status = status;
         this.campaign = campaign;
+        this.strength = st;
+        this.dexterity = dx;
+        this.intelligence = iq;
+        this.health = ht;
+        this.handedness = hand;
+        this.hp = hp;
+        this.will = will;
+        this.fp = fp;
     }
-
-    /**
-     * Private property
-     */
-    var possibleStatus = {
-        alive: 0,
-        dead: 1,
-        in_campaign: 2
-    };
-
-    /**
-     * Private function
-     */
-    function checkStatus(status) {
-        return possibleStatus.hasOwnProperty(status) !== -1;
-    }
-
-    /**
-     * Static property
-     * Using copy to prevent modifications to private property
-     */
-    Characters.possibleStatus = angular.copy(possibleStatus);
 
     /**
      * Static method, assigned to class
@@ -50,6 +35,14 @@ angular.module('gurps-online').factory('Characters', function() {
             data.exp,
             data.campaign,
             data.status,
+            data.strength,
+            data.dexterity,
+            data.intelligence,
+            data.health,
+            data.handedness,
+            data.hp,
+            data.will,
+            data.fp,
         );
     };
 

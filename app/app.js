@@ -2,14 +2,14 @@
  * Created by lelabo on 05/04/17.
  */
 var app = angular.module('gurps-online',
-    ['ui.router', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngResource',
+    ['ui.router', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngResource', 'md.data.table',
     'LocalStorageModule']);
 
 app.constant("global", {
     "api_dev": "http://localhost:4000/api",
 });
 
-app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $mdThemingProvider) {
     $httpProvider.interceptors.push('HttpInterceptor');
 
     function onSecureEnter($location, AuthService) {
