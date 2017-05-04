@@ -1,0 +1,16 @@
+<div ng-if="edit">
+    <md-input-container class="md-icon-float md-block md-input-has-value" style="min-height: 30px;">
+        <div ng-transclude></div>
+        <div class="number-picker">
+            <button class="number-picker--btn" ng-click="decrement()" ng-class="buttonClass">-</button>
+            <div class="number-picker--value">{{number}}</div>
+            <button class="number-picker--btn" ng-click="increment()" ng-class="buttonClass">+</button>
+        </div>
+    </md-input-container>
+</div>
+<div ng-if="!edit">
+    <md-input-container class="md-icon-float md-block md-input-has-value" style="min-height: 30px;">
+        <div ng-transclude></div>
+        <input ng-model="number" ng-readonly="true" type="number" style="max-width: 100px"/>
+    </md-input-container>
+</div>
