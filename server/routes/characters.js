@@ -56,6 +56,7 @@ router.get('/join/:id/:campaign', function (req, res) {
             if (err) throw err;
             campaign.players.push(ObjectId(character._id));
             character.campaign = ObjectId(campaign._id);
+            character.status = 'campaign';
             campaign.save();
             character.save();
             res.json({ success: true });
@@ -69,6 +70,7 @@ router.get('/leave/:id', function (req, res) {
         Campaign.findOneAndUpdate({_id: ObjectId(character.campaign)}, {$pull: {players: ObjectId(character._id)}}, function(err){
             if (err) throw err;
             character.campaign = null;
+            character.status = 'alive';
             character.save();
             res.json({ success: true });
         });
