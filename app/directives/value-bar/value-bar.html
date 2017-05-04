@@ -1,0 +1,11 @@
+<div layout="row" class="valueBar">
+    <h3 class="text-korinna no-margin-top" style="padding-right: 10px">
+        {{name}}
+    </h3>
+    <md-icon md-font-icon="fa-info-circle" class="fa md-primary no-margin-top"
+             ng-click="showInfo(info, $event)"></md-icon>
+    <md-progress-linear style="margin-top: 4px;" md-mode="determinate" value="{{value}}" class="lowlife" flex></md-progress-linear>
+    <h3 class="text-korinna no-margin-top inline" style="padding-left: 10px;">
+        {{value}}/{{total}}
+    </h3>
+</div>
