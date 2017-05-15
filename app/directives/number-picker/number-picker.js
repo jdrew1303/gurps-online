@@ -8,49 +8,51 @@ angular.module('gurps-online').directive('numberPicker', ['$timeout', function($
             edit: '=',
             min: '@',
             max: '@',
+            capital: '=',
+            cost: '@',
             step: '@',
             buttonClass: '@'
         },
         transclude: true,
         templateUrl: 'directives/number-picker/number-picker.html',
-        link: function($scope, $element) {
-            // default values
-            var defaults = {
-                min: 0,
-                max: 100,
-                step: 1
-            };
-
-            // object assign function for merging th default values with potential binding values
-            var assign = function(dest, src) {
-                for (var key in src) {
-                    if (!dest[key]) {
-                        dest[key] = src[key];
-                    }
-                }
-                return dest;
-            };
+        link: function($scope, $element, $attrs) {
 
             $scope.number = parseInt($scope.number, 10) || 0;
-
-            var opts = assign({
-                min: this.min,
-                max: this.max,
-                step: this.step
-            }, defaults);
+            if ($scope.capital !== undefined) {
+                $scope.capital = parseInt($scope.capital, 10);
+            }
+            if ($scope.step === undefined) {
+                $scope.step = 1;
+            } else {
+                $scope.step = parseInt($scope.step, 10)
+            }
+            if ($scope.cost === undefined) {
+                $scope.cost = 1;
+            } else {
+                $scope.cost = parseInt($scope.cost, 10)
+            }
 
             $scope.decrement = function(){
-                if($scope.number <= opts.min){
-                    return;
+                if (!($scope.min !== undefined && $scope.number <= $scope.min)) {
+                    if ($scope.capital !== undefined && $scope.capital + $scope.cost >= 0) {
+                        $scope.number = $scope.number - $scope.step;
+                        if ($scope.capital !== undefined) {
+                            $scope.capital -= -$scope.cost;
+                            console.log($scope.capital);
+                        }
+                    }
                 }
-                $scope.number = $scope.number - parseInt(opts.step, 10);
-
             };
             $scope.increment = function(){
-                if($scope.number >= opts.max){
-                    return;
+                if(!($scope.max !== undefined && $scope.number >= $scope.max)){
+                    if ($scope.capital !== undefined && $scope.capital - $scope.cost >= 0) {
+                        $scope.number = $scope.number + $scope.step;
+                        if ($scope.capital !== undefined) {
+                            $scope.capital -= $scope.cost;
+                            console.log($scope.capital);
+                        }
+                    }
                 }
-                $scope.number = $scope.number + parseInt(opts.step, 10);
             };
         }
     };
