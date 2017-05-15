@@ -11,11 +11,10 @@ angular.module('gurps-online').directive('numberPicker', ['$timeout', function($
             capital: '=',
             cost: '@',
             step: '@',
-            buttonClass: '@'
         },
         transclude: true,
         templateUrl: 'directives/number-picker/number-picker.html',
-        link: function($scope, $element, $attrs) {
+        link: function($scope, $element) {
 
             $scope.number = parseInt($scope.number, 10) || 0;
             if ($scope.capital !== undefined) {
@@ -34,22 +33,20 @@ angular.module('gurps-online').directive('numberPicker', ['$timeout', function($
 
             $scope.decrement = function(){
                 if (!($scope.min !== undefined && $scope.number <= $scope.min)) {
-                    if ($scope.capital !== undefined && $scope.capital + $scope.cost >= 0) {
+                    if (($scope.capital !== undefined && $scope.capital + $scope.cost >= 0) || $scope.capital === undefined) {
                         $scope.number = $scope.number - $scope.step;
                         if ($scope.capital !== undefined) {
                             $scope.capital -= -$scope.cost;
-                            console.log($scope.capital);
                         }
                     }
                 }
             };
             $scope.increment = function(){
                 if(!($scope.max !== undefined && $scope.number >= $scope.max)){
-                    if ($scope.capital !== undefined && $scope.capital - $scope.cost >= 0) {
+                    if (($scope.capital !== undefined && $scope.capital - $scope.cost >= 0) || $scope.capital === undefined) {
                         $scope.number = $scope.number + $scope.step;
                         if ($scope.capital !== undefined) {
                             $scope.capital -= $scope.cost;
-                            console.log($scope.capital);
                         }
                     }
                 }
