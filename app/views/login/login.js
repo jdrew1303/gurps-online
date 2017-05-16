@@ -10,7 +10,7 @@ angular.module('gurps-online').controller('loginCtrl', function($scope, $mdDialo
     $scope.login = function (data) {
         AuthService.login(data.username, data.password)
             .then(function (success) {
-                $state.go('app');
+                $state.go('app.characters.menu');
             },
             function (error) {
                 console.log(error)

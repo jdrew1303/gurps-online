@@ -16,7 +16,7 @@ md-dialog > form {
 
 md-sidenav {
     overflow: visible;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .side-menu, .side-menu ul {
@@ -103,6 +103,10 @@ md-sidenav {
 }
 
 body, md-content {
+    background-color: white;
+}
+
+body {
     background-color: white;
 }
 

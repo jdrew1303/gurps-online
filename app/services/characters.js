@@ -14,6 +14,13 @@ angular.module('gurps-online').factory('CharactersService', function ($http, $q,
                 'Content-Type': 'application/json'
             }
         },
+        update: {
+            method: "PUT",
+            url: serviceUri + "/:characterId",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        },
         find: {
             method: "GET",
             url: serviceUri + "/:characterId",
@@ -51,6 +58,11 @@ angular.module('gurps-online').factory('CharactersService', function ($http, $q,
     this.get = function (characterId) {
         var deferred = $q.defer();
         CharactersResource.find({characterId: characterId}).$promise.then(deferred.resolve, deferred.reject);
+        return deferred.promise;
+    };
+    this.update = function (character) {
+        var deferred = $q.defer();
+        CharactersResource.update({characterId: character._id}, character.to_json()).$promise.then(deferred.resolve, deferred.reject);
         return deferred.promise;
     };
     this.joinCampaign = function (characterId, campaignId) {

@@ -10,6 +10,7 @@ angular.module('gurps-online').controller('charactersMenuCtrl', function($scope,
     $scope.characters = null;
     $scope.loadCharacters = function () {
         CharactersService.userCharacters().then(function (success) {
+            console.log(success);
             $scope.characters = Characters.json_to_objects(success);
         }, function (error) {
             console.log(error);
