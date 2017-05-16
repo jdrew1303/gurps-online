@@ -90,21 +90,14 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
     $scope.types = OPH.types;
     $scope.addchips = function () {
         $scope.character.habits.push({description: angular.copy($scope.chipText), type: $scope.chipType.title});
-        $scope.character.freexp -= $scope.chipType.cost
-        console.log($scope.character.habits);
+        $scope.character.freexp += $scope.chipType.cost;
         $scope.chipsText = '';
     };
     $scope.transformChip = function (chip) {
-        // Otherwise, create a new one
-        console.log('DEL');
-        // If it is an object, it's already a known chip
-        if (angular.isObject(chip)) {
-            return chip;
-        }
         return { description: chip.description, type: chip.type }
     };
     $scope.removeChips = function (chip) {
-        $scope.character.freexp += OPH.typevalues[chip.type];
+        $scope.character.freexp -= OPH.typevalues[chip.type];
     };
 
     $scope.wealths = Wealth.states;
