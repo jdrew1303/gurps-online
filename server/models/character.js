@@ -9,6 +9,7 @@ module.exports = mongoose.model('Character', new Schema({
     _owner          : { type: Schema.Types.ObjectId, ref: 'User' , default: null},
     name            : String,
     exp             : Number,
+    freexp          : { type: Number, default: 0},
     campaign        : { type: Schema.Types.ObjectId, ref: 'Campaign' , default: null},
     status          : { type: String, enum: ['created', 'alive', 'campaign', 'dead'], default: 'created' },
     strength        : { type: Number, default: 10},
@@ -19,4 +20,11 @@ module.exports = mongoose.model('Character', new Schema({
     hp              : { type: Number, default: 10},
     will            : { type: Number, default: 10},
     fp              : { type: Number, default: 10},
+    charisma        : { type: Number, default: 0},
+    voice           : { type: Boolean, default: false},
+    appearance      : { type: String, enum: ['Hideous', 'Ugly', 'Unattractive', 'Average', 'Attractive', 'Handsome', 'Very Handsome'], default: 'Average'},
+    habits          : [{
+        description    : String,
+        type           : { type: String, enum: ['Minor', 'Intermediate', 'Major']},
+    }],
 }));

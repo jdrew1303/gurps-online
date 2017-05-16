@@ -9,11 +9,13 @@ var User = require('../models/user');
 var Campaign = require('../models/campaign');
 var ObjectId = mongoose.Types.ObjectId;
 
+
 router.post('/', function (req, res) {
     new Character({
         _owner: ObjectId(req.user._id),
         name: req.body.name,
         exp: req.body.exp,
+        freexp: req.body.exp,
     }).save(function(err, character) {
         if (err) throw err;
         req.user.characters.push(ObjectId(character._id));
@@ -33,6 +35,13 @@ router.get('/:id', function(req, res) {
     Character.findOne({_id: ObjectId(req.params.id)}).populate('_owner campaign').exec(function(err, characters) {
         if (err) throw err;
         res.json(characters);
+    });
+});
+
+router.put('/:id', function(req, res) {
+    Character.findOneAndUpdate({_id: ObjectId(req.params.id)}, req.body).populate('_owner campaign').exec(function(err, characters) {
+        if (err) throw err;
+        res.json({ success: true });
     });
 });
 
