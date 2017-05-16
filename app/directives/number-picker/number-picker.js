@@ -11,11 +11,19 @@ angular.module('gurps-online').directive('numberPicker', ['$timeout', function($
             capital: '=',
             cost: '@',
             step: '@',
+            sub: '=?',
+            add: '=?',
         },
         transclude: true,
         templateUrl: 'directives/number-picker/number-picker.html',
         link: function($scope, $element) {
 
+            if ($scope.sub === undefined) {
+                $scope.sub = true
+            }
+            if ($scope.add === undefined) {
+                $scope.add = true
+            }
             $scope.number = parseInt($scope.number, 10) || 0;
             if ($scope.capital !== undefined) {
                 $scope.capital = parseInt($scope.capital, 10);

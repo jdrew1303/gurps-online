@@ -2,9 +2,9 @@
     <md-input-container class="md-icon-float md-block md-input-has-value" style="min-height: 30px;">
         <div ng-transclude></div>
         <div class="number-picker">
-            <button class="number-picker--btn" ng-click="decrement()" ng-class="buttonClass">-</button>
+            <button ng-if="sub" class="number-picker--btn" ng-click="decrement()" ng-class="buttonClass">-</button>
             <div class="number-picker--value">{{number}}</div>
-            <button class="number-picker--btn" ng-click="increment()" ng-class="buttonClass">+</button>
+            <button ng-if="add" class="number-picker--btn" ng-click="increment()" ng-class="buttonClass">+</button>
         </div>
     </md-input-container>
 </div>
