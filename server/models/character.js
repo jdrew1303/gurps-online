@@ -3,6 +3,8 @@
  */
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+require('mongoose-double')(mongoose);
+var SchemaTypes = mongoose.Schema.Types;
 
 // set up a mongoose model and pass it using module.exports
 module.exports = mongoose.model('Character', new Schema({
@@ -27,4 +29,17 @@ module.exports = mongoose.model('Character', new Schema({
         description    : String,
         type           : { type: String, enum: ['Minor', 'Intermediate', 'Major']},
     }],
+    wealthfactor    : { type: SchemaTypes.Double, default: 1.0},
+    statusbonus     : { type: Number, default: 0},
+    reputations     : [{
+        description     : String,
+        bonus           : { type: Number, default: 0},
+        default         : []
+    }],
+    advantages       : [{
+        name: String,
+        level: Number,
+        default: []
+    }],
+    disadvantages    : [{name: String, default: []}]
 }));

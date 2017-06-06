@@ -1,13 +1,14 @@
 /**
  * Created by lelabo on 20/04/17.
  */
-angular.module('gurps-online').factory('Characters', function() {
+angular.module('gurps-online').factory('Characters', function(Advantage) {
 
     /**
      * Constructor, with class name
      */
     function Characters(id, owner, name, exp, freexp, campaign, status, st, dx, iq, ht, hand, hp, will, fp,
-                        charisma, voice, appearance, habits) {
+                        charisma, voice, appearance, habits, wealthfactor, statusbonus, reputations, advantages,
+                        disadvantages) {
         this._id = id;
         this.owner = owner;
         this.name = name;
@@ -27,6 +28,11 @@ angular.module('gurps-online').factory('Characters', function() {
         this.voice = voice;
         this.appearance = appearance;
         this.habits = habits;
+        this.wealthfactor = wealthfactor;
+        this.statusbonus = statusbonus;
+        this.reputations = reputations;
+        this.advantages = advantages;
+        this.disadvantages = disadvantages;
         this.computeSecondaryStats();
         this.computeDamage();
     }
@@ -81,6 +87,50 @@ angular.module('gurps-online').factory('Characters', function() {
         this.swing = damageTable[st][1];
     };
 
+    Characters.prototype.hasEnoughXp = function (amount) {
+        return this.freexp >= amount;
+    };
+
+    Characters.prototype.hasAdvantage = function (name) {
+        var found = false;
+        for(var i = 0; i < this.advantages.length; i++) {
+            if (this.advantages[i].name == name) {
+                found = true;
+                break;
+            }
+        }
+        return found;
+    };
+
+    Characters.prototype.hasDisadvantage = function (name) {
+        var found = false;
+        for(var i = 0; i < this.disadvantages.length; i++) {
+            if (this.disadvantages[i].name == name) {
+                found = true;
+                break;
+            }
+        }
+        return found;
+    };
+
+    Characters.prototype.removeAdvantage = function (name) {
+        for(var i = 0; i < this.advantages.length; i++) {
+            if (this.advantages[i].name == name) {
+                this.advantages.splice(i, 1);
+                break;
+            }
+        }
+    };
+
+    Characters.prototype.removeDisadvantage = function (name) {
+        for(var i = 0; i < this.disadvantages.length; i++) {
+            if (this.disadvantages[i].name == name) {
+                this.disadvantages.splice(i, 1);
+                break;
+            }
+        }
+    };
+
     Characters.prototype.to_json = function () {
         return {
             exp: this.exp,
@@ -99,6 +149,11 @@ angular.module('gurps-online').factory('Characters', function() {
             voice: this.voice,
             appearance: this.appearance,
             habits: this.habits,
+            wealthfactor: this.wealthfactor,
+            statusbonus: this.statusbonus,
+            reputations: this.reputations,
+            advantages: this.advantages,
+            disadvantages: this.disadvantages,
         };
     };
 
@@ -127,6 +182,11 @@ angular.module('gurps-online').factory('Characters', function() {
             data.voice,
             data.appearance,
             data.habits,
+            data.wealthfactor,
+            data.statusbonus,
+            data.reputations,
+            data.advantages,
+            data.disadvantages,
         );
     };
 

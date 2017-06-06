@@ -1,4 +1,4 @@
-<md-content class="md-padding characterProfile"  layout-xs="row" layout="column">
+<md-content class="md-padding characterProfile"  layout-xs="row" layout="column" ng-cloak>
     <div layout layout-align="center center">
         <h4 flex> Campaign: {{character.campaign.name}} </h4>
         <md-button class="md-raised md-primary" aria-label="join"
@@ -12,11 +12,11 @@
             LEAVE
         </md-button>
         <md-button class="md-raised" aria-label="leave"
-                   ng-click="canEdit = !canEdit" flex="10">
+                   ng-click="edit = !edit" flex="10">
             EDIT
         </md-button>
     </div>
-    <div layout layout-align="end end" ng-if="canEdit">
+    <div layout layout-align="end end" ng-if="edit">
         <md-button class="md-raised" aria-label="leave"
                    ng-click="saveChange()" flex="10">
             Save
@@ -32,7 +32,7 @@
                     <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
                              ng-click="showInfo('views/characters/info/strength.html', $event)"></md-icon>
                 </h3>
-                <number-picker number="character.strength" edit="canEdit" sub="creation" min="1" cost="10" capital="character.freexp" flex>
+                <number-picker number="character.strength" edit="edit" sub="canEdit" min="1" cost="10" capital="character.freexp" flex>
                     <label class="text-korinna">±10 points/level</label>
                 </number-picker>
             </div>
@@ -42,7 +42,7 @@
                     <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
                              ng-click="showInfo('views/characters/info/dexterity.html', $event)"></md-icon>
                 </h3>
-                <number-picker number="character.dexterity" edit="canEdit" sub="creation" min="1" cost="20" capital="character.freexp" flex>
+                <number-picker number="character.dexterity" edit="edit" sub="canEdit" min="1" cost="20" capital="character.freexp" flex>
                     <label class="text-korinna">±20 points/level</label>
                 </number-picker>
             </div>
@@ -52,7 +52,7 @@
                     <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
                              ng-click="showInfo('views/characters/info/intelligence.html', $event)"></md-icon>
                 </h3>
-                <number-picker number="character.intelligence" edit="canEdit" sub="creation" min="1" cost="20" capital="character.freexp" flex>
+                <number-picker number="character.intelligence" edit="edit" sub="canEdit" min="1" cost="20" capital="character.freexp" flex>
                     <label class="text-korinna">±20 points/level</label>
                 </number-picker>
             </div>
@@ -62,7 +62,7 @@
                     <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
                              ng-click="showInfo('views/characters/info/health.html', $event)"></md-icon>
                 </h3>
-                <number-picker number="character.health" edit="canEdit" sub="creation" min="1" cost="20" capital="character.freexp" flex>
+                <number-picker number="character.health" edit="edit" sub="canEdit" min="1" cost="20" capital="character.freexp" flex>
                     <label class="text-korinna">±10 points/level</label>
                 </number-picker>
             </div>
@@ -135,7 +135,7 @@
                              ng-click="showInfo('views/characters/info/appearance.html', $event)"></md-icon>
                 </h3>
                 <div style="margin-top: -6px">
-                    <md-select ng-init="oldValue=appearance" ng-click="oldValue=appearance" ng-disabled="!creation"
+                    <md-select ng-init="oldValue=appearance" ng-click="oldValue=appearance" ng-disabled="!canEdit"
                                ng-change="appareanceChange(oldValue, appearance)" ng-model="appearance">
                         <md-option ng-repeat="state in appearances" ng-value="state" ng-selected="$index === appearanceIndex()"
                                    ng-if="character.freexp - state.cost >= 0" >
@@ -161,7 +161,7 @@
                              ng-click="showInfo('views/characters/info/voice.html', $event)"></md-icon>
                 </h3>
                 <md-checkbox ng-model="character.voice" aria-label="voice"
-                             ng-disabled="!creation" ng-change="voiceChange(character.voice)">
+                             ng-disabled="!canEdit" ng-change="voiceChange(character.voice)">
                 </md-checkbox>
             </div>
         </div>
@@ -173,15 +173,15 @@
                              ng-click="showInfo('views/characters/info/oph.html', $event)"></md-icon>
                 </h3>
             </div>
-            <div layout="row">
+            <div layout="row" ng-if="canEdit">
                 <md-input-container style="padding-right: 10px" flex>
                     <label>Title</label>
-                    <input ng-model="chipText">
+                    <input ng-model="chipText" ng-disabled="!canEdit">
                 </md-input-container>
-                <md-select ng-model="chipType" placeholder="Type" class="md-no-underline" flex="20">
+                <md-select ng-model="chipType" placeholder="Type" class="md-no-underline" flex="20" ng-disabled="!canEdit">
                     <md-option ng-repeat="type in types" ng-value="type" ng-selected="$index === 0">{{type.title}} ({{-type.cost}})</md-option>
                 </md-select>
-                <md-button class="md-fab md-mini md-primary" aria-label="add" ng-click="addchips()">
+                <md-button class="md-fab md-mini md-primary" aria-label="add" ng-click="addchips()" ng-disabled="!canEdit">
                     <md-icon md-font-icon="fa-plus" class="fa md-primary"></md-icon>
                 </md-button>
             </div>
@@ -208,9 +208,11 @@
                              ng-click="showInfo('views/characters/info/wealth.html', $event)"></md-icon>
                 </h3>
                 <div style="margin-top: -6px">
-                    <md-select ng-model="wealth">
-                        <md-option ng-repeat="wealth in wealths" ng-value="wealth" ng-selected="$index === 3">
-                            {{wealth.name}} (money x {{wealth.multiplicator}} / {{-wealth.cost}}pt)
+                    <md-select ng-model="wealth" ng-init="oldValue=wealth" ng-click="oldValue=wealth"
+                               ng-disabled="!canEdit" ng-change="wealthChange(oldValue, wealth)">
+                        <md-option ng-repeat="wealth in wealths" ng-value="wealth" ng-selected="$index === wealthIndex()"
+                                   ng-if="character.freexp - wealth.cost >= 0">
+                            {{wealth.name}} ($ x {{wealth.multiplicator}} / {{-wealth.cost}}pt)
                         </md-option>
                     </md-select>
                 </div>
@@ -221,40 +223,148 @@
                     <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
                              ng-click="showInfo('views/characters/info/status.html', $event)"></md-icon>
                 </h3>
-                <number-picker number="level" edit="canEdit" flex>
+                <number-picker number="character.statusbonus" edit="canEdit" min="-2" max="8" cost="5" capital="character.freexp" flex>
                     <label class="text-korinna">-5 points/level</label>
                 </number-picker>
             </div>
         </div>
+        <div layout="column" flex>
+            <div layout="row">
+                <h3 class="text-korinna">
+                    Reputation
+                    <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
+                             ng-click="showInfo('views/characters/info/reputation.html', $event)"></md-icon>
+                </h3>
+            </div>
+            <div layout="row" ng-if="canEdit">
+                <md-input-container style="padding-right: 10px" flex="70">
+                    <label>Title</label>
+                    <input ng-model="repText">
+                </md-input-container>
+                <number-picker number="level" edit="canEdit" min="-4" max="4"flex>
+                    <label class="text-korinna">-5 points/level</label>
+                </number-picker>
+                <md-button class="md-fab md-mini md-primary" aria-label="add" ng-click="addReputation()">
+                    <md-icon md-font-icon="fa-plus" class="fa md-primary"></md-icon>
+                </md-button>
+            </div>
+            <div layout="row">
+                <md-list flex>
+                    <md-list-item class="md-2-line" ng-repeat="item in character.reputations"
+                                  ng-click="null" layout="row">
+                        <div class="md-list-item-text" layout="column">
+                            <h3><b>Name:</b> {{ item.what }}</h3>
+                            <h4><b>Bonus:</b> {{ item.bonus }}</h4>
+                        </div>
+                        <md-button class="md-icon-button md-fab md-mini" aria-label="delete" ng-if="canEdit"
+                                   ng-click="deleteReputation(item, $index)" style="background-color: red;">
+                            <md-icon md-font-icon="fa-minus" class="md-primary fa"></md-icon>
+                        </md-button>
+                    </md-list-item>
+                </md-list>
+            </div>
+        </div>
+    </div>
+    <h1 class="text-korinna">Advantages</h1>
+    <div id="advantages">
         <div layout="row" flex>
-            <md-input-container style="padding-right: 10px" flex>
-                <label>Title</label>
-                <input ng-model="repText">
-            </md-input-container>
-            <number-picker number="level" edit="canEdit" flex>
-                <label class="text-korinna">-5 points/level</label>
-            </number-picker>
-            <md-button class="md-fab md-mini md-primary" aria-label="add" ng-click="addReputation()">
+            <md-autocomplete flex
+                    ng-disabled="false"
+                    md-selected-item="advgItem"
+                    md-no-cache="true"
+                    md-search-text="advgText"
+                    md-selected-item-change="selectedAdvgChange(item)"
+                    md-items="item in advantageSearch(advgText)"
+                    md-item-text="item.name"
+                    md-min-length="0"
+                    bluring="exitAdvgInput()"
+                    placeholder="Pick an advantage"
+                    md-menu-class="autocomplete-custom-template">
+                <md-item-template>
+                  <span class="item-title">
+                        <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
+                                 ng-click="showInfo('views/characters/advantage/' + item.info, $event)"></md-icon>
+                      <span> <b> {{item.name}} </b></span>
+                  </span>
+                    <span class="item-metadata">
+                    <span>
+                      <strong>{{item.cost}}pt</strong><strong ng-if="item.haslevel">/level</strong>
+                    </span>
+                  </span>
+                </md-item-template>
+            </md-autocomplete>
+            <number-picker number="advglevel" edit="canEdit" min="1" flex="10" class="big-number-wrapper" style="padding-left: 5px; margin-top: -15px;"></number-picker>
+            <md-button class="md-fab md-mini md-primary" aria-label="add" ng-click="addAdvantage()" style="margin-top: 0;">
                 <md-icon md-font-icon="fa-plus" class="fa md-primary"></md-icon>
             </md-button>
         </div>
+    </div>
+    <div layout="row" flex>
+        <md-list flex>
+            <md-list-item class="md-2-line" ng-repeat="item in character.advg_pretty" layout="row">
+                <div class="md-list-item-text" layout="column">
+                    <h3><b>{{ item.name }}</b><b ng-if="item.haslevel">(lvl: {{item.level}})</b>
+                        <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
+                                 ng-click="showInfo('views/characters/advantage/' + item.info, $event)"></md-icon>
+                    </h3>
+                    <p>{{item.desc}}</p>
+                </div>
+                <md-button class="md-icon-button md-fab md-mini" aria-label="delete" ng-if="canEdit"
+                           ng-click="deleteAdvg(item, $index)" style="background-color: red; margin-top: 20px">
+                    <md-icon md-font-icon="fa-minus" class="md-primary fa"></md-icon>
+                </md-button>
+            </md-list-item>
+        </md-list>
+    </div>
+    <h1 class="text-korinna">Disadvantages</h1>
+    <div id="disadvantages">
         <div layout="row" flex>
-            <md-list flex>
-                <md-list-item class="md-2-line" ng-repeat="item in reputations"
-                              ng-click="null" layout="row">
-                    <div class="md-list-item-text" layout="column">
-                        <h3>Name: {{ item.what }}</h3>
-                        <h4>Bonus: {{ item.bonus }}</h4>
-                    </div>
-                    <md-button class="md-icon-button md-fab md-mini" aria-label="delete"
-                               ng-click="delete(item, $index)" style="background-color: red;">
-                        <md-icon md-font-icon="fa-minus" class="md-primary fa" ></md-icon>
-                    </md-button>
-                </md-list-item>
-            </md-list>
+            <md-autocomplete flex
+                             ng-disabled="false"
+                             md-selected-item="disadvgItem"
+                             md-no-cache="true"
+                             md-search-text="disadvgText"
+                             md-selected-item-change="selectedDisadvgChange(item)"
+                             md-items="item in disadvantageSearch(disadvgText)"
+                             md-item-text="item.name"
+                             md-min-length="0"
+                             bluring="exitDisadvgInput()"
+                             placeholder="Pick a disavantage"
+                             md-menu-class="autocomplete-custom-template">
+                <md-item-template>
+                  <span class="item-title">
+                        <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
+                                 ng-click="showInfo('views/characters/disadvantage/' + item.info, $event)"></md-icon>
+                      <span> <b> {{item.name}} </b></span>
+                  </span>
+                    <span class="item-metadata">
+                    <span>
+                      <strong>{{item.cost}}pt</strong><strong ng-if="item.haslevel">/level</strong>
+                    </span>
+                  </span>
+                </md-item-template>
+            </md-autocomplete>
+            <md-button class="md-fab md-mini md-primary" aria-label="add" ng-click="addDisadvantage()" style="margin-top: 0;">
+                <md-icon md-font-icon="fa-plus" class="fa md-primary"></md-icon>
+            </md-button>
         </div>
     </div>
-
+    <div layout="row" flex>
+        <md-list flex>
+            <md-list-item class="md-2-line" ng-repeat="item in character.disadvg_pretty" layout="row">
+                <div class="md-list-item-text" layout="column">
+                    <h3><b>{{ item.name }}</b>
+                        <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
+                                 ng-click="showInfo('views/characters/disadvantage/' + item.info, $event)"></md-icon>
+                    </h3>
+                    <p>{{item.desc}}</p>
+                </div>
+                <md-button class="md-icon-button md-fab md-mini" aria-label="delete" ng-if="canEdit"
+                           ng-click="deleteDisadvg(item, $index)" style="background-color: red; margin-top: 20px">
+                    <md-icon md-font-icon="fa-minus" class="md-primary fa"></md-icon>
+                </md-button>
+            </md-list-item>
+        </md-list>
     </div>
 
 </md-content>
