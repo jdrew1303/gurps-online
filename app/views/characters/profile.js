@@ -81,10 +81,10 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
         if (!disadvg.haslevel) {
             level = 1
         }
-        if (!$scope.character.hasAdvantage($scope.disadvgText) && $scope.character.hasEnoughXp(level * disadvg.cost)) {
+        if (!$scope.character.hasDisadvantage($scope.disadvgText) && $scope.character.hasEnoughXp(level * disadvg.cost)) {
             disadvg.level = level;
-            $scope.character.advantages.push(Disadvantage.instance($scope.disadvgText, level));
-            $scope.character.advg_pretty.push(disadvg);
+            $scope.character.disadvantages.push(Disadvantage.instance($scope.disadvgText, level));
+            $scope.character.disadvg_pretty.push(disadvg);
             $scope.character.freexp -= level * disadvg.cost;
         }
     };
@@ -106,14 +106,12 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
     };
 
     $scope.selectedDisadvgChange = function(item) {
-        console.log(item);
         $scope.itemChanging = true;
         if (item == undefined) {
             document.getElementsByTagName('md-virtual-repeat-container')[1].style.cssText  = $scope.style ;
         } else {
             $scope.style = document.getElementsByTagName('md-virtual-repeat-container')[1].style.cssText ;
             document.getElementsByTagName('md-virtual-repeat-container')[1].removeAttribute("style");
-            console.log(document.getElementsByTagName('md-virtual-repeat-container')[1]);
         }
     };
 
@@ -216,6 +214,7 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
         CharactersService.get($stateParams.characterId).then(function (character) {
             $scope.character = Characters.build(character);
             $scope.character.advg_pretty = Advantage.instances_to_advglist($scope.character.advantages);
+            $scope.character.disadvg_pretty = Disadvantage.instances_to_advglist($scope.character.disadvantages);
             $scope.creation = character.status == 'created';
             $scope.canEdit = $scope.edit && $scope.creation;
             MenuService.currentTitle = 'Character : ' + $scope.character.name;
