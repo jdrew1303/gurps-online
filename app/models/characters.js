@@ -1,14 +1,14 @@
 /**
  * Created by lelabo on 20/04/17.
  */
-angular.module('gurps-online').factory('Characters', function(Advantage) {
+angular.module('gurps-online').factory('Characters', function(Advantage, Skills) {
 
     /**
      * Constructor, with class name
      */
     function Characters(id, owner, name, exp, freexp, campaign, status, st, dx, iq, ht, hand, hp, will, fp,
                         charisma, voice, appearance, habits, wealthfactor, statusbonus, reputations, advantages,
-                        disadvantages) {
+                        disadvantages, skills, background, details, notes) {
         this._id = id;
         this.owner = owner;
         this.name = name;
@@ -33,6 +33,10 @@ angular.module('gurps-online').factory('Characters', function(Advantage) {
         this.reputations = reputations;
         this.advantages = advantages;
         this.disadvantages = disadvantages;
+        this.skills = skills.map(Skills.build);
+        this.background = background;
+        this.details = details;
+        this.notes = notes;
         this.computeSecondaryStats();
         this.computeDamage();
     }
@@ -91,44 +95,48 @@ angular.module('gurps-online').factory('Characters', function(Advantage) {
         return this.freexp >= amount;
     };
 
-    Characters.prototype.hasAdvantage = function (name) {
+    function findObjectByName(collection, name) {
         var found = false;
-        for(var i = 0; i < this.advantages.length; i++) {
-            if (this.advantages[i].name == name) {
+        for(var i = 0; i < collection.length; i++) {
+            if (collection[i].name == name) {
                 found = true;
                 break;
             }
         }
         return found;
+    }
+
+    Characters.prototype.hasAdvantage = function (name) {
+        return findObjectByName(this.advantages, name)
     };
 
     Characters.prototype.hasDisadvantage = function (name) {
-        var found = false;
-        for(var i = 0; i < this.disadvantages.length; i++) {
-            if (this.disadvantages[i].name == name) {
-                found = true;
-                break;
-            }
-        }
-        return found;
+        return findObjectByName(this.disadvantages, name)
     };
 
-    Characters.prototype.removeAdvantage = function (name) {
-        for(var i = 0; i < this.advantages.length; i++) {
-            if (this.advantages[i].name == name) {
-                this.advantages.splice(i, 1);
+    Characters.prototype.hasSkills = function (name) {
+        return findObjectByName(this.skills, name)
+    };
+
+    function removeObjectByName(collection, name) {
+        for(var i = 0; i < collection.length; i++) {
+            if (collection[i].name == name) {
+                collection.splice(i, 1);
                 break;
             }
         }
+    }
+
+    Characters.prototype.removeAdvantage = function (name) {
+        removeObjectByName(this.advantages, name);
     };
 
     Characters.prototype.removeDisadvantage = function (name) {
-        for(var i = 0; i < this.disadvantages.length; i++) {
-            if (this.disadvantages[i].name == name) {
-                this.disadvantages.splice(i, 1);
-                break;
-            }
-        }
+        removeObjectByName(this.disadvantages, name);
+    };
+
+    Characters.prototype.removeSkills = function (name) {
+        removeObjectByName(this.skills, name);
     };
 
     Characters.prototype.to_json = function () {
@@ -154,6 +162,10 @@ angular.module('gurps-online').factory('Characters', function(Advantage) {
             reputations: this.reputations,
             advantages: this.advantages,
             disadvantages: this.disadvantages,
+            skills: this.skills.map(Skills.to_json),
+            background: this.background,
+            details: this.details,
+            notes: this.notes,
         };
     };
 
@@ -187,6 +199,10 @@ angular.module('gurps-online').factory('Characters', function(Advantage) {
             data.reputations,
             data.advantages,
             data.disadvantages,
+            data.skills,
+            data.background,
+            data.details,
+            data.notes,
         );
     };
 

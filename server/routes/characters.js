@@ -39,7 +39,7 @@ router.get('/:id', function(req, res) {
 });
 
 router.put('/:id', function(req, res) {
-    Character.findOneAndUpdate({_id: ObjectId(req.params.id)}, req.body).populate('_owner campaign').exec(function(err, characters) {
+    Character.findOneAndUpdate({_id: ObjectId(req.params.id)}, req.body).exec(function(err, characters) {
         if (err) throw err;
         res.json({ success: true });
     });

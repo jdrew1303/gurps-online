@@ -366,5 +366,79 @@
             </md-list-item>
         </md-list>
     </div>
+    <h1 class="text-korinna">Skills</h1>
+    <div id="skills">
+        <div layout="row" flex>
+            <md-autocomplete flex
+                             ng-disabled="false"
+                             md-selected-item="skillsItem"
+                             md-no-cache="true"
+                             md-search-text="skillsText"
+                             md-selected-item-change="selectedSkillsChange(item)"
+                             md-items="item in skillsSearch(skillsText)"
+                             md-item-text="item.name"
+                             md-min-length="0"
+                             bluring="exitSkillsInput()"
+                             placeholder="Pick a skill"
+                             md-menu-class="autocomplete-custom-template">
+                <md-item-template>
+                  <span class="item-title">
+                        <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
+                                 ng-click="showInfo('views/characters/skills/' + item.info, $event)"></md-icon>
+                      <span> <b> {{item.name}} </b></span>
+                  </span>
+                    <span class="item-metadata">
+                    <span>
+                      <strong>{{item.desc()}}</strong>
+                    </span>
+                  </span>
+                </md-item-template>
+            </md-autocomplete>
+            <md-button class="md-fab md-mini md-primary" aria-label="add" ng-click="addSkills()" style="margin-top: 0;">
+                <md-icon md-font-icon="fa-plus" class="fa md-primary"></md-icon>
+            </md-button>
+        </div>
+    </div>
+    <div layout="row" flex>
+        <md-list flex>
+            <md-list-item class="md-2-line" ng-repeat="item in character.skills" layout="row">
+                <div class="md-list-item-text" layout="column">
+                    <h3><b>{{ item.name }}</b>
+                        <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
+                                 ng-click="showInfo('views/characters/skills/' + item.info, $event)"></md-icon>
+                    </h3>
+                    <p>{{item.desc()}}</p>
+                </div>
+                <md-input-container class="md-icon-float md-block md-input-has-value" style="height: 100%; padding-top: 15px; padding-left: 30px;">
+                    <div class="number-picker">
+                        <button ng-if="canEdit" class="number-picker--btn" ng-click="downgradeSkill(item)" ng-class="buttonClass">-</button>
+                        <div class="number-picker--value">{{item.bonus}}</div>
+                        <button ng-if="edit" class="number-picker--btn" ng-click="upgradeSkill(item)" ng-class="buttonClass">+</button>
+                    </div>
+                </md-input-container>
+                <md-button class="md-icon-button md-fab md-mini" aria-label="delete" ng-if="canEdit"
+                           ng-click="deleteSkills(item, $index)" style="background-color: red; margin-top: 20px">
+                    <md-icon md-font-icon="fa-minus" class="md-primary fa"></md-icon>
+                </md-button>
+            </md-list-item>
+        </md-list>
+    </div>
+    <h1 class="text-korinna">Information</h1>
+    <div id="information">
+        <div layout="column" flex>
+            <md-input-container flex>
+                <label>Background</label>
+                <textarea ng-model="character.background"></textarea>
+            </md-input-container>
+            <md-input-container flex>
+                <label>Technicals Details</label>
+                <textarea ng-model="character.details"></textarea>
+            </md-input-container>
+            <md-input-container flex>
+                <label>Notes</label>
+                <textarea ng-model="character.notes"></textarea>
+            </md-input-container>
+        </div>
+    </div>
 
 </md-content>

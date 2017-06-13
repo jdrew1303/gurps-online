@@ -14,9 +14,8 @@ angular.module('gurps-online').factory('Disadvantage', function() {
         this.info = info;
     }
 
-    function DisadvantageInstance(name, level) {
+    function DisadvantageInstance(name) {
         this.name = name;
-        this.level = level;
     }
 
     var disadvantageTable = [
@@ -73,15 +72,14 @@ angular.module('gurps-online').factory('Disadvantage', function() {
         return Disadvantage.str_to_object(this.name);
     };
 
-    Disadvantage.instance = function (name, level) {
-        return new DisadvantageInstance(name, level);
+    Disadvantage.instance = function (name) {
+        return new DisadvantageInstance(name);
     };
 
     Disadvantage.instances_to_advglist = function(instances) {
         var result = [];
         for (var index = 0; index < instances.length; ++index) {
             var advg = Disadvantage.str_to_object(instances[index].name);
-            advg.level = instances[index].level;
             result.push(advg);
         }
         return result;

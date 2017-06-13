@@ -4,7 +4,7 @@
 angular.module('gurps-online').controller('charactersProfileCtrl', function($scope, $state, $stateParams, $mdDialog,
                                                                             CharactersService, Characters, Appearance,
                                                                             OPH, Wealth, Reputation, Advantage,
-                                                                            Disadvantage, MenuService,
+                                                                            Disadvantage, Skills, MenuService,
                                                                             $log, $timeout, $q) {
     $scope.edit = true;
     $scope.creation = false;
@@ -16,6 +16,8 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
 
 
     $scope.saveChange = function () {
+        console.log($scope.character);
+        console.log($scope.character.to_json());
       CharactersService.update($scope.character).then(function () {
           loadCharacter();
       });
@@ -29,9 +31,15 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
     };
 
     $scope.disadvantages = loadAll(Disadvantage.disadvantages);
-    $scope.disadvglevel = 1;
     $scope.disadvantageSearch = function(query) {
         var results = query ? $scope.disadvantages.filter( createFilterFor(query) ) : $scope.disadvantages, deferred;
+        return results;
+    };
+
+    $scope.skills = loadAll(Skills.available);
+    $scope.skillslevel = 1;
+    $scope.skillsSearch = function(query) {
+        var results = query ? $scope.skills.filter( createFilterFor(query) ) : $scope.skills, deferred;
         return results;
     };
 
@@ -53,18 +61,29 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
         }, 150);
     };
 
+    $scope.exitSkillsInput = function() {
+        $scope.itemChanging = false;
+        $timeout(function () {
+            if (!$scope.itemChanging) {
+                document.getElementsByTagName('md-virtual-repeat-container')[2].removeAttribute("style");
+            }
+        }, 150);
+    };
+
     $scope.addAdvantage = function () {
-        var advg = Advantage.str_to_object($scope.advgText);
-        var level = $scope.advglevel;
-        $scope.advglevel = 1;
-        if (!advg.haslevel) {
-            level = 1
-        }
-        if (!$scope.character.hasAdvantage($scope.advgText) && $scope.character.hasEnoughXp(level * advg.cost)) {
-            advg.level = level;
-            $scope.character.advantages.push(Advantage.instance($scope.advgText, level));
-            $scope.character.advg_pretty.push(advg);
-            $scope.character.freexp -= level * advg.cost;
+        if ($scope.advgText) {
+            var advg = Advantage.str_to_object($scope.advgText);
+            var level = $scope.advglevel;
+            $scope.advglevel = 1;
+            if (!advg.haslevel) {
+                level = 1
+            }
+            if (!$scope.character.hasAdvantage($scope.advgText) && $scope.character.hasEnoughXp(level * advg.cost)) {
+                advg.level = level;
+                $scope.character.advantages.push(Advantage.instance($scope.advgText, level));
+                $scope.character.advg_pretty.push(advg);
+                $scope.character.freexp -= level * advg.cost;
+            }
         }
     };
 
@@ -75,24 +94,62 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
     };
 
     $scope.addDisadvantage = function () {
-        var disadvg = Disadvantage.str_to_object($scope.disadvgText);
-        var level = $scope.disadvglevel;
-        $scope.disadvglevel = 1;
-        if (!disadvg.haslevel) {
-            level = 1
-        }
-        if (!$scope.character.hasDisadvantage($scope.disadvgText) && $scope.character.hasEnoughXp(level * disadvg.cost)) {
-            disadvg.level = level;
-            $scope.character.disadvantages.push(Disadvantage.instance($scope.disadvgText, level));
-            $scope.character.disadvg_pretty.push(disadvg);
-            $scope.character.freexp -= level * disadvg.cost;
+        if ($scope.disadvgText) {
+            var disadvg = Disadvantage.str_to_object($scope.disadvgText);
+            if (!$scope.character.hasDisadvantage($scope.disadvgText) && $scope.character.hasEnoughXp(disadvg.cost)) {
+                $scope.character.disadvantages.push(Disadvantage.instance($scope.disadvgText));
+                $scope.character.disadvg_pretty.push(disadvg);
+                $scope.character.freexp -= disadvg.cost;
+            }
         }
     };
 
     $scope.deleteDisadvg = function (item) {
         $scope.character.removeDisadvantage(item.name);
-        $scope.character.freexp += item.cost * item.level;
+        $scope.character.freexp += item.cost;
         $scope.character.advg_pretty = Disadvantage.instances_to_advglist($scope.character.disadvantages);
+    };
+
+    $scope.addSkills = function () {
+        if ($scope.skillsText) {
+            var skills = Skills.str_to_object($scope.skillsText);
+            if (!$scope.character.hasSkills($scope.skillsText)) {
+                $scope.character.skills.push(skills);
+            }
+        }
+    };
+
+    $scope.deleteSkills = function (item) {
+        $scope.character.freexp += item.cost;
+        $scope.character.removeSkills(item.name);
+    };
+
+    $scope.upgradeSkill = function (item) {
+        var oldBonus = item.bonus;
+        item.bonus += 1;
+        if (!Skills.changeAuthorized(item.difficulty, item.bonus)) {
+            item.bonus = 0 - item.difficulty;
+        }
+        var cost = Skills.cost(item.difficulty, item.bonus);
+        if ($scope.character.freexp >= cost - item.cost) {
+            $scope.character.freexp += item.cost - cost;
+            item.cost = cost;
+        } else {
+            item.bonus= oldBonus;
+        }
+    };
+
+    $scope.downgradeSkill = function (item) {
+        if (item.cost > 0) {
+            item.bonus -= 1;
+            if (Skills.changeAuthorized(item.difficulty, item.bonus)) {
+                var cost = Skills.cost(item.difficulty, item.bonus);
+                $scope.character.freexp += item.cost - cost;
+                item.cost = cost;
+            } else {
+                item.bonus += 1;
+            }
+        }
     };
 
     $scope.selectedAdvgChange = function(item) {
@@ -105,6 +162,7 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
         }
     };
 
+
     $scope.selectedDisadvgChange = function(item) {
         $scope.itemChanging = true;
         if (item == undefined) {
@@ -115,6 +173,15 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
         }
     };
 
+    $scope.selectedSkillsChange = function(item) {
+        $scope.itemChanging = true;
+        if (item == undefined) {
+            document.getElementsByTagName('md-virtual-repeat-container')[2].style.cssText  = $scope.style ;
+        } else {
+            $scope.style = document.getElementsByTagName('md-virtual-repeat-container')[2].style.cssText ;
+            document.getElementsByTagName('md-virtual-repeat-container')[2].removeAttribute("style");
+        }
+    };
 
     function loadAll(content) {
         var objs = content;
@@ -124,12 +191,12 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
         });
     }
 
-    $scope.createFilterFor = function(query) {
+    function createFilterFor (query) {
         var lowercaseQuery = angular.lowercase(query);
         return function filterFn(item) {
             return (item.value.indexOf(lowercaseQuery) === 0);
         };
-    };
+    }
 
     $scope.voiceChange = function (toggle) {
         if (toggle) {
