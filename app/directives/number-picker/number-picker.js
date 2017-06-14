@@ -9,7 +9,7 @@ angular.module('gurps-online').directive('numberPicker', ['$timeout', function($
             min: '@',
             max: '@',
             capital: '=',
-            cost: '@',
+            cost: '=?',
             step: '@',
             sub: '=?',
             add: '=?',

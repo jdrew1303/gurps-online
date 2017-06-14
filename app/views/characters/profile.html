@@ -26,46 +26,10 @@
     <h1 class="text-korinna">Stats</h1>
     <div id="stats">
         <div layout="row">
-            <div layout="row" flex>
-                <h3 class="text-korinna">
-                    Strength (ST)
-                    <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
-                             ng-click="showInfo('views/characters/info/strength.html', $event)"></md-icon>
-                </h3>
-                <number-picker number="character.strength" edit="edit" sub="canEdit" min="1" cost="10" capital="character.freexp" flex>
-                    <label class="text-korinna">±10 points/level</label>
-                </number-picker>
-            </div>
-            <div layout="row" flex>
-                <h3 class="text-korinna">
-                    Dexterity (DX)
-                    <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
-                             ng-click="showInfo('views/characters/info/dexterity.html', $event)"></md-icon>
-                </h3>
-                <number-picker number="character.dexterity" edit="edit" sub="canEdit" min="1" cost="20" capital="character.freexp" flex>
-                    <label class="text-korinna">±20 points/level</label>
-                </number-picker>
-            </div>
-            <div layout="row" flex>
-                <h3 class="text-korinna">
-                    Intelligence (IQ)
-                    <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
-                             ng-click="showInfo('views/characters/info/intelligence.html', $event)"></md-icon>
-                </h3>
-                <number-picker number="character.intelligence" edit="edit" sub="canEdit" min="1" cost="20" capital="character.freexp" flex>
-                    <label class="text-korinna">±20 points/level</label>
-                </number-picker>
-            </div>
-            <div layout="row" flex>
-                <h3 class="text-korinna">
-                    Health (HT)
-                    <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
-                             ng-click="showInfo('views/characters/info/health.html', $event)"></md-icon>
-                </h3>
-                <number-picker number="character.health" edit="edit" sub="canEdit" min="1" cost="20" capital="character.freexp" flex>
-                    <label class="text-korinna">±10 points/level</label>
-                </number-picker>
-            </div>
+            <attributes placeholder="Strength (ST)" info="views/characters/info/strength.html" variable="character.strength" cost="10" edit="edit" sub="canEdit" capital="character.freexp" flex></attributes>
+            <attributes placeholder="Dexterity (DX)" info="views/characters/info/dexterity.html" variable="character.dexterity" cost="20" edit="edit" sub="canEdit" capital="character.freexp" flex></attributes>
+            <attributes placeholder="Intelligence (IQ)" info="views/characters/info/intelligence.html" variable="character.intelligence" cost="20" edit="edit" sub="canEdit" capital="character.freexp" flex></attributes>
+            <attributes placeholder="Health (HT)" info="views/characters/info/health.html" variable="character.health" cost="10" edit="edit" sub="canEdit" capital="character.freexp" flex></attributes>
         </div>
         <div ng-if="canEdit">
             <value-bar name="HP" info="views/characters/info/hitpoints.html" value="character.health" total="character.health"></value-bar>
