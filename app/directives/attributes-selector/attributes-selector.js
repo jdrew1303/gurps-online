@@ -1,20 +1,18 @@
 /**
  * Created by lelabo on 14/06/17.
  */
-angular.module('gurps-online').directive('attributes', function ($timeout, $mdDialog) {
+angular.module('gurps-online').directive('attributesSelector', function ($timeout, $mdDialog) {
     return {
         scope: {
             placeholder: "@",
             info: "@",
-            variable: "=",
+            states: "=",
             edit: "=",
-            sub: "=",
-            levelcost: "=cost",
             capital: "=",
-            min: "@",
-            max: "@"
+            change: "=",
+            indexer: "=",
         },
-        templateUrl: "directives/attributes/attributes.html",
+        templateUrl: "directives/attributes-selector/attributes-selector.html",
         restrict: 'E',
         link: function($scope, $element) {
             $scope.showInfo = function (template, ev) {
@@ -25,6 +23,19 @@ angular.module('gurps-online').directive('attributes', function ($timeout, $mdDi
                     clickOutsideToClose: true,
                     targetEvent: ev
                 });
+            };
+
+            $scope.changeFunction = function (old, item) {
+                if ($scope.change) {
+                    $scope.change(old, item);
+                }
+            };
+
+            $scope.indexFunction = function () {
+                if ($scope.indexer) {
+                    return $scope.indexer();
+                }
+                return 0;
             };
         }
     };

@@ -209,16 +209,18 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
             $scope.character.freexp += 10;
         }
     };
-    $scope.appearance = null;
     $scope.appearanceIndex = function () {
-        for (var i = 0; i < $scope.appearances.length; ++i) {
-            if ($scope.character !== undefined && $scope.appearances[i].name == $scope.character.appearance) {
-              return i;
+        if ($scope.character !== undefined) {
+            for (var i = 0; i < $scope.appearances.length; ++i) {
+                if ($scope.appearances[i].name == $scope.character.appearance) {
+                    return i;
+                }
             }
         }
+        return 0;
     };
-    $scope.appareanceChange = function(oldval, newval) {
-        if ($scope.character !== undefined && newval.name !== $scope.character.appearance) {
+    $scope.appearanceChange = function(oldval, newval) {
+        if ($scope.character !== undefined && oldval && newval && newval.name !== $scope.character.appearance) {
             if (oldval !== undefined && oldval !== null) {
                 $scope.character.freexp += oldval.cost;
             }

@@ -26,10 +26,10 @@
     <h1 class="text-korinna">Stats</h1>
     <div id="stats">
         <div layout="row">
-            <attributes placeholder="Strength (ST)" info="views/characters/info/strength.html" variable="character.strength" cost="10" edit="edit" sub="canEdit" capital="character.freexp" flex></attributes>
-            <attributes placeholder="Dexterity (DX)" info="views/characters/info/dexterity.html" variable="character.dexterity" cost="20" edit="edit" sub="canEdit" capital="character.freexp" flex></attributes>
-            <attributes placeholder="Intelligence (IQ)" info="views/characters/info/intelligence.html" variable="character.intelligence" cost="20" edit="edit" sub="canEdit" capital="character.freexp" flex></attributes>
-            <attributes placeholder="Health (HT)" info="views/characters/info/health.html" variable="character.health" cost="10" edit="edit" sub="canEdit" capital="character.freexp" flex></attributes>
+            <attributes placeholder="Strength (ST)" info="views/characters/info/strength.html" variable="character.strength" cost="10" edit="edit" sub="canEdit" capital="character.freexp" min="1" flex></attributes>
+            <attributes placeholder="Dexterity (DX)" info="views/characters/info/dexterity.html" variable="character.dexterity" cost="20" edit="edit" sub="canEdit" capital="character.freexp" min="1" flex></attributes>
+            <attributes placeholder="Intelligence (IQ)" info="views/characters/info/intelligence.html" variable="character.intelligence" cost="20" edit="edit" sub="canEdit" capital="character.freexp" min="1" flex></attributes>
+            <attributes placeholder="Health (HT)" info="views/characters/info/health.html" variable="character.health" cost="10" edit="edit" sub="canEdit" capital="character.freexp" min="1" flex></attributes>
         </div>
         <div ng-if="canEdit">
             <value-bar name="HP" info="views/characters/info/hitpoints.html" value="character.health" total="character.health"></value-bar>
@@ -43,41 +43,13 @@
         </div>
 
         <div layout="row">
-            <div layout="row">
-                <h3 class="text-korinna">
-                    Perception (Per)
-                    <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
-                             ng-click="showInfo('views/characters/info/perception.html', $event)"></md-icon>
-                    {{character.intelligence}}
-                </h3>
-            </div>
+            <secondary-attributes placeholder="Perception (Per)" info="views/characters/info/perception.html" variable="character.intelligence"></secondary-attributes>
             <md-divider vertical></md-divider>
-            <div layout="row">
-                <h3 class="text-korinna">
-                    Basic Speed
-                    <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
-                             ng-click="showInfo('views/characters/info/speed.html', $event)"></md-icon>
-                    {{character.speed}}
-                </h3>
-            </div>
+            <secondary-attributes placeholder="Basic Speed" info="views/characters/info/speed.html" variable="character.speed"></secondary-attributes>
             <md-divider vertical></md-divider>
-            <div layout="row">
-                <h3 class="text-korinna">
-                    Dodge
-                    <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
-                             ng-click="showInfo('views/characters/info/dodge.html', $event)"></md-icon>
-                    {{character.dodge}}
-                </h3>
-            </div>
+            <secondary-attributes placeholder="Dodge" info="views/characters/info/dodge.html" variable="character.dodge"></secondary-attributes>
             <md-divider vertical></md-divider>
-            <div layout="row">
-                <h3 class="text-korinna">
-                    Basic Move
-                    <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
-                             ng-click="showInfo('views/characters/info/move.html', $event)"></md-icon>
-                    {{character.move}}
-                </h3>
-            </div>
+            <secondary-attributes placeholder="Basic Move" info="views/characters/info/move.html" variable="character.move"></secondary-attributes>
         </div>
         <div layout="row">
             <h3 class="text-korinna">
@@ -92,32 +64,26 @@
     <h1 class="text-korinna">Image and Looks</h1>
     <div id="looks">
         <div layout="row">
-            <div layout="row" flex>
-                <h3 class="text-korinna">
-                    Appearance
-                    <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
-                             ng-click="showInfo('views/characters/info/appearance.html', $event)"></md-icon>
-                </h3>
-                <div style="margin-top: -6px">
-                    <md-select ng-init="oldValue=appearance" ng-click="oldValue=appearance" ng-disabled="!canEdit"
-                               ng-change="appareanceChange(oldValue, appearance)" ng-model="appearance">
-                        <md-option ng-repeat="state in appearances" ng-value="state" ng-selected="$index === appearanceIndex()"
-                                   ng-if="character.freexp - state.cost >= 0" >
-                            {{state.name}} ({{-state.cost}})
-                        </md-option>
-                    </md-select>
-                </div>
-            </div>
-            <div layout="row" flex>
-                <h3 class="text-korinna">
-                    Charisma
-                    <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
-                             ng-click="showInfo('views/characters/info/charisma.html', $event)"></md-icon>
-                </h3>
-                <number-picker number="character.charisma" edit="canEdit && creation" cost="5" capital="character.freexp" flex>
-                    <label class="text-korinna">-5 points/level</label>
-                </number-picker>
-            </div>
+            <attributes-selector placeholder="Appearance" info="views/characters/info/appearance.html" states="appearances"
+                                 edit="canEdit" capital="character.freexp" change="appearanceChange" indexer="appearanceIndex" flex>
+            </attributes-selector>
+            <!--<div layout="row" flex>-->
+                <!--<h3 class="text-korinna">-->
+                    <!--Appearance-->
+                    <!--<md-icon md-font-icon="fa-info-circle" class="fa md-primary"-->
+                             <!--ng-click="showInfo('views/characters/info/appearance.html', $event)"></md-icon>-->
+                <!--</h3>-->
+                <!--<div style="margin-top: -6px">-->
+                    <!--<md-select ng-init="oldValue=appearance" ng-click="oldValue=appearance" ng-disabled="!canEdit"-->
+                               <!--ng-change="appareanceChange(oldValue, appearance)" ng-model="appearance">-->
+                        <!--<md-option ng-repeat="state in appearances" ng-value="state" ng-selected="$index === appearanceIndex()"-->
+                                   <!--ng-if="character.freexp - state.cost >= 0" >-->
+                            <!--{{state.name}} ({{-state.cost}})-->
+                        <!--</md-option>-->
+                    <!--</md-select>-->
+                <!--</div>-->
+            <!--</div>-->
+            <attributes placeholder="Charisma" info="views/characters/info/charisma.html" variable="character.charisma" cost="5" min="0" edit="canEdit" capital="character.freexp" flex></attributes>
             <div layout="row" flex>
                 <h3 class="text-korinna">
                     Voice
@@ -181,16 +147,7 @@
                     </md-select>
                 </div>
             </div>
-            <div layout="row" flex>
-                <h3 class="text-korinna">
-                    Status
-                    <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
-                             ng-click="showInfo('views/characters/info/status.html', $event)"></md-icon>
-                </h3>
-                <number-picker number="character.statusbonus" edit="canEdit" min="-2" max="8" cost="5" capital="character.freexp" flex>
-                    <label class="text-korinna">-5 points/level</label>
-                </number-picker>
-            </div>
+            <attributes placeholder="Status" info="views/characters/info/status.html" variable="character.statusbonus" cost="5" min="-2" max="8" edit="canEdit" capital="character.freexp" flex></attributes>
         </div>
         <div layout="column" flex>
             <div layout="row">

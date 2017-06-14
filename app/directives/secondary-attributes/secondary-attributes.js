@@ -1,20 +1,14 @@
 /**
  * Created by lelabo on 14/06/17.
  */
-angular.module('gurps-online').directive('attributes', function ($timeout, $mdDialog) {
+angular.module('gurps-online').directive('secondaryAttributes', function ($timeout, $mdDialog) {
     return {
         scope: {
             placeholder: "@",
             info: "@",
             variable: "=",
-            edit: "=",
-            sub: "=",
-            levelcost: "=cost",
-            capital: "=",
-            min: "@",
-            max: "@"
         },
-        templateUrl: "directives/attributes/attributes.html",
+        templateUrl: "directives/secondary-attributes/secondary-attributes.html",
         restrict: 'E',
         link: function($scope, $element) {
             $scope.showInfo = function (template, ev) {

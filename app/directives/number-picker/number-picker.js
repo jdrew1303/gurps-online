@@ -6,8 +6,8 @@ angular.module('gurps-online').directive('numberPicker', ['$timeout', function($
         scope: {
             number: '=',
             edit: '=',
-            min: '@',
-            max: '@',
+            min: '=',
+            max: '=',
             capital: '=',
             cost: '=?',
             step: '@',
