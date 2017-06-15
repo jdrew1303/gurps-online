@@ -12,6 +12,8 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
     $scope.appearances = Appearance.states;
     $scope.types = OPH.types;
     $scope.advantages = Advantage.advantages;
+    $scope.skills = Skills.available;
+    $scope.disadvantages = Disadvantage.disadvantages;
     loadCharacter();
 
 
@@ -23,67 +25,21 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
       });
     };
 
-    $scope.advantages = loadAll(Advantage.advantages);
     $scope.advglevel = 1;
-    $scope.advantageSearch = function(query) {
-        var results = query ? $scope.advantages.filter( createFilterFor(query) ) : $scope.advantages, deferred;
-        return results;
-    };
-
-    $scope.disadvantages = loadAll(Disadvantage.disadvantages);
-    $scope.disadvantageSearch = function(query) {
-        var results = query ? $scope.disadvantages.filter( createFilterFor(query) ) : $scope.disadvantages, deferred;
-        return results;
-    };
-
-    $scope.skills = loadAll(Skills.available);
     $scope.skillslevel = 1;
-    $scope.skillsSearch = function(query) {
-        var results = query ? $scope.skills.filter( createFilterFor(query) ) : $scope.skills, deferred;
-        return results;
-    };
 
-    $scope.exitAdvgInput = function() {
-        $scope.itemChanging = false;
-        $timeout(function () {
-            if (!$scope.itemChanging) {
-                document.getElementsByTagName('md-virtual-repeat-container')[0].removeAttribute("style");
-            }
-        }, 150);
-    };
-
-    $scope.exitDisadvgInput = function() {
-        $scope.itemChanging = false;
-        $timeout(function () {
-            if (!$scope.itemChanging) {
-                document.getElementsByTagName('md-virtual-repeat-container')[1].removeAttribute("style");
-            }
-        }, 150);
-    };
-
-    $scope.exitSkillsInput = function() {
-        $scope.itemChanging = false;
-        $timeout(function () {
-            if (!$scope.itemChanging) {
-                document.getElementsByTagName('md-virtual-repeat-container')[2].removeAttribute("style");
-            }
-        }, 150);
-    };
-
-    $scope.addAdvantage = function () {
-        if ($scope.advgText) {
-            var advg = Advantage.str_to_object($scope.advgText);
-            var level = $scope.advglevel;
-            $scope.advglevel = 1;
-            if (!advg.haslevel) {
-                level = 1
-            }
-            if (!$scope.character.hasAdvantage($scope.advgText) && $scope.character.hasEnoughXp(level * advg.cost)) {
-                advg.level = level;
-                $scope.character.advantages.push(Advantage.instance($scope.advgText, level));
-                $scope.character.advg_pretty.push(advg);
-                $scope.character.freexp -= level * advg.cost;
-            }
+    $scope.addAdvantage = function (text) {
+        var advg = Advantage.str_to_object(text);
+        var level = $scope.advglevel;
+        $scope.advglevel = 1;
+        if (!advg.haslevel) {
+            level = 1
+        }
+        if (!$scope.character.hasAdvantage(text) && $scope.character.hasEnoughXp(level * advg.cost)) {
+            advg.level = level;
+            $scope.character.advantages.push(Advantage.instance(text, level));
+            $scope.character.advg_pretty.push(advg);
+            $scope.character.freexp -= level * advg.cost;
         }
     };
 
@@ -93,14 +49,12 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
       $scope.character.advg_pretty = Advantage.instances_to_advglist($scope.character.advantages);
     };
 
-    $scope.addDisadvantage = function () {
-        if ($scope.disadvgText) {
-            var disadvg = Disadvantage.str_to_object($scope.disadvgText);
-            if (!$scope.character.hasDisadvantage($scope.disadvgText) && $scope.character.hasEnoughXp(disadvg.cost)) {
-                $scope.character.disadvantages.push(Disadvantage.instance($scope.disadvgText));
-                $scope.character.disadvg_pretty.push(disadvg);
-                $scope.character.freexp -= disadvg.cost;
-            }
+    $scope.addDisadvantage = function (text) {
+        var disadvg = Disadvantage.str_to_object(text);
+        if (!$scope.character.hasDisadvantage(text) && $scope.character.hasEnoughXp(disadvg.cost)) {
+            $scope.character.disadvantages.push(Disadvantage.instance(text));
+            $scope.character.disadvg_pretty.push(disadvg);
+            $scope.character.freexp -= disadvg.cost;
         }
     };
 
@@ -110,12 +64,10 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
         $scope.character.advg_pretty = Disadvantage.instances_to_advglist($scope.character.disadvantages);
     };
 
-    $scope.addSkills = function () {
-        if ($scope.skillsText) {
-            var skills = Skills.str_to_object($scope.skillsText);
-            if (!$scope.character.hasSkills($scope.skillsText)) {
-                $scope.character.skills.push(skills);
-            }
+    $scope.addSkills = function (text) {
+        var skills = Skills.str_to_object(text);
+        if (!$scope.character.hasSkills(text)) {
+            $scope.character.skills.push(skills);
         }
     };
 
@@ -152,52 +104,6 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
         }
     };
 
-    $scope.selectedAdvgChange = function(item) {
-        $scope.itemChanging = true;
-        if (item == undefined) {
-            document.getElementsByTagName('md-virtual-repeat-container')[0].style.cssText  = $scope.style ;
-        } else {
-            $scope.style = document.getElementsByTagName('md-virtual-repeat-container')[0].style.cssText ;
-            document.getElementsByTagName('md-virtual-repeat-container')[0].removeAttribute("style");
-        }
-    };
-
-
-    $scope.selectedDisadvgChange = function(item) {
-        $scope.itemChanging = true;
-        if (item == undefined) {
-            document.getElementsByTagName('md-virtual-repeat-container')[1].style.cssText  = $scope.style ;
-        } else {
-            $scope.style = document.getElementsByTagName('md-virtual-repeat-container')[1].style.cssText ;
-            document.getElementsByTagName('md-virtual-repeat-container')[1].removeAttribute("style");
-        }
-    };
-
-    $scope.selectedSkillsChange = function(item) {
-        $scope.itemChanging = true;
-        if (item == undefined) {
-            document.getElementsByTagName('md-virtual-repeat-container')[2].style.cssText  = $scope.style ;
-        } else {
-            $scope.style = document.getElementsByTagName('md-virtual-repeat-container')[2].style.cssText ;
-            document.getElementsByTagName('md-virtual-repeat-container')[2].removeAttribute("style");
-        }
-    };
-
-    function loadAll(content) {
-        var objs = content;
-        return objs.map( function (objs) {
-            objs.value = objs.name.toLowerCase();
-            return objs;
-        });
-    }
-
-    function createFilterFor (query) {
-        var lowercaseQuery = angular.lowercase(query);
-        return function filterFn(item) {
-            return (item.value.indexOf(lowercaseQuery) === 0);
-        };
-    }
-
     $scope.appearanceIndex = function () {
         if ($scope.character !== undefined) {
             for (var i = 0; i < $scope.appearances.length; ++i) {
@@ -219,7 +125,6 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
             }
         }
     };
-    $scope.wealth = null;
     $scope.wealthIndex = function () {
         for (var i = 0; i < $scope.wealths.length; ++i) {
             if ($scope.character !== undefined && $scope.wealths[i].multiplicator == $scope.character.wealthfactor) {

@@ -6,7 +6,7 @@
     </h3>
     <div style="margin-top: -6px">
         <md-select ng-init="oldValue=item" ng-click="oldValue=item" ng-disabled="!edit"
-                   ng-change="changeFunction(oldValue, item)" ng-model="item">
+                   ng-change="changeFunction(oldValue, item)" ng-model="item" aria-label="selector">
             <md-option ng-repeat="state in states" ng-value="state" ng-selected="$index === indexFunction()"
                        ng-if="capital - state.cost >= 0" >
                 {{state.name}} ({{-state.cost}})

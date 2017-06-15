@@ -9,7 +9,7 @@ angular.module('gurps-online').factory('Disadvantage', function() {
     function Disadvantage(name, cost, desc, info, action) {
         this.name = name;
         this.cost = cost;
-        this.desc = desc;
+        this.description = desc;
         this.action = action;
         this.info = info;
     }
@@ -17,6 +17,10 @@ angular.module('gurps-online').factory('Disadvantage', function() {
     function DisadvantageInstance(name) {
         this.name = name;
     }
+
+    Disadvantage.prototype.desc = function () {
+        return this.cost;
+    };
 
     var disadvantageTable = [
         new Disadvantage('Bad Sight (glass or contact lenses)', 10, "-6 vision rolls / -2 hit in combat", "badsight.html", null),

@@ -1,0 +1,31 @@
+<div layout="row" flex>
+    <md-autocomplete flex
+                     ng-disabled="!edit"
+                     md-selected-item="selectItem"
+                     md-no-cache="true"
+                     md-search-text="selectText"
+                     md-selected-item-change="selectedChange(item)"
+                     md-items="item in Search(selectText)"
+                     md-item-text="item.name"
+                     md-min-length="0"
+                     bluring="exitInput()"
+                     placeholder="{{placeholder}}"
+                     md-menu-class="autocomplete-custom-template">
+        <md-item-template>
+            <span class="item-title">
+                <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
+                         ng-click="showInfo(path + item.info, $event)"></md-icon>
+                <span><b> {{item.name}} </b></span>
+            </span>
+            <span class="item-metadata">
+                <span>
+                    <strong>{{item.desc()}}</strong>
+                </span>
+            </span>
+        </md-item-template>
+    </md-autocomplete>
+    <div ng-transclude style="padding-top: -15px; margin-top: -15px; padding-left: 5px"></div>
+    <md-button class="md-fab md-mini md-primary" aria-label="add" ng-click="addFunction(selectText)" style="margin-top: 0;">
+        <md-icon md-font-icon="fa-plus" class="fa md-primary"></md-icon>
+    </md-button>
+</div>

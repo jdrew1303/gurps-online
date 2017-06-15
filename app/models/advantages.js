@@ -10,7 +10,7 @@ angular.module('gurps-online').factory('Advantage', function() {
         this.name = name;
         this.haslevel = haslevel;
         this.cost = cost;
-        this.desc = desc;
+        this.description = desc;
         this.action = action;
         this.info = info;
         this.level = 0
@@ -20,6 +20,14 @@ angular.module('gurps-online').factory('Advantage', function() {
         this.name = name;
         this.level = level;
     }
+
+    Advantage.prototype.desc = function () {
+        var substr = "";
+        if (this.haslevel) {
+            substr += "/level";
+        }
+        return this.cost + substr;
+    };
 
     var advantageTable = [
         new Advantage('Acute Hearing', true, 2, "+1 to Hearing rolls", "senses.html", null),
