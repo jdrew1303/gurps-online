@@ -67,33 +67,8 @@
             <attributes-selector placeholder="Appearance" info="views/characters/info/appearance.html" states="appearances"
                                  edit="canEdit" capital="character.freexp" change="appearanceChange" indexer="appearanceIndex" flex>
             </attributes-selector>
-            <!--<div layout="row" flex>-->
-                <!--<h3 class="text-korinna">-->
-                    <!--Appearance-->
-                    <!--<md-icon md-font-icon="fa-info-circle" class="fa md-primary"-->
-                             <!--ng-click="showInfo('views/characters/info/appearance.html', $event)"></md-icon>-->
-                <!--</h3>-->
-                <!--<div style="margin-top: -6px">-->
-                    <!--<md-select ng-init="oldValue=appearance" ng-click="oldValue=appearance" ng-disabled="!canEdit"-->
-                               <!--ng-change="appareanceChange(oldValue, appearance)" ng-model="appearance">-->
-                        <!--<md-option ng-repeat="state in appearances" ng-value="state" ng-selected="$index === appearanceIndex()"-->
-                                   <!--ng-if="character.freexp - state.cost >= 0" >-->
-                            <!--{{state.name}} ({{-state.cost}})-->
-                        <!--</md-option>-->
-                    <!--</md-select>-->
-                <!--</div>-->
-            <!--</div>-->
             <attributes placeholder="Charisma" info="views/characters/info/charisma.html" variable="character.charisma" cost="5" min="0" edit="canEdit" capital="character.freexp" flex></attributes>
-            <div layout="row" flex>
-                <h3 class="text-korinna">
-                    Voice
-                    <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
-                             ng-click="showInfo('views/characters/info/voice.html', $event)"></md-icon>
-                </h3>
-                <md-checkbox ng-model="character.voice" aria-label="voice"
-                             ng-disabled="!canEdit" ng-change="voiceChange(character.voice)">
-                </md-checkbox>
-            </div>
+            <attributes-checkbox placeholder="Voice" info="views/characters/info/voice.html" edit="canEdit" variable="character.voice" capital="character.freexp" cost="10" flex></attributes-checkbox>
         </div>
         <div layout="column" flex>
             <div layout="row">
@@ -131,22 +106,9 @@
     <h1 class="text-korinna">Wealth and Influence</h1>
     <div id="wealth">
         <div layout="row" flex>
-            <div layout="row" flex>
-                <h3 class="text-korinna">
-                    Wealth
-                    <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
-                             ng-click="showInfo('views/characters/info/wealth.html', $event)"></md-icon>
-                </h3>
-                <div style="margin-top: -6px">
-                    <md-select ng-model="wealth" ng-init="oldValue=wealth" ng-click="oldValue=wealth"
-                               ng-disabled="!canEdit" ng-change="wealthChange(oldValue, wealth)">
-                        <md-option ng-repeat="wealth in wealths" ng-value="wealth" ng-selected="$index === wealthIndex()"
-                                   ng-if="character.freexp - wealth.cost >= 0">
-                            {{wealth.name}} ($ x {{wealth.multiplicator}} / {{-wealth.cost}}pt)
-                        </md-option>
-                    </md-select>
-                </div>
-            </div>
+            <attributes-selector placeholder="Wealth" info="views/characters/info/wealth.html" states="wealths"
+                                 edit="canEdit" capital="character.freexp" change="wealthChange" indexer="wealthIndex" flex>
+            </attributes-selector>
             <attributes placeholder="Status" info="views/characters/info/status.html" variable="character.statusbonus" cost="5" min="-2" max="8" edit="canEdit" capital="character.freexp" flex></attributes>
         </div>
         <div layout="column" flex>

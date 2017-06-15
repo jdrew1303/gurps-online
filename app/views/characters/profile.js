@@ -198,17 +198,6 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
         };
     }
 
-    $scope.voiceChange = function (toggle) {
-        if (toggle) {
-            if ($scope.character.hasEnoughXp(10)) {
-                $scope.character.freexp -= 10;
-            } else {
-                $scope.character.voice = false;
-            }
-        } else {
-            $scope.character.freexp += 10;
-        }
-    };
     $scope.appearanceIndex = function () {
         if ($scope.character !== undefined) {
             for (var i = 0; i < $scope.appearances.length; ++i) {
