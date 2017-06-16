@@ -223,18 +223,9 @@
     <h1 class="text-korinna">Information</h1>
     <div id="information">
         <div layout="column" flex>
-            <md-input-container flex>
-                <label>Background</label>
-                <textarea ng-model="character.background"></textarea>
-            </md-input-container>
-            <md-input-container flex>
-                <label>Technicals Details</label>
-                <textarea ng-model="character.details"></textarea>
-            </md-input-container>
-            <md-input-container flex>
-                <label>Notes</label>
-                <textarea ng-model="character.notes"></textarea>
-            </md-input-container>
+            <textbox placeholder="Background" variable="character.background" flex></textbox>
+            <textbox placeholder="Technical Details" variable="character.details" flex></textbox>
+            <textbox placeholder="Notes" variable="character.notes" flex></textbox>
         </div>
     </div>
 </md-content>
