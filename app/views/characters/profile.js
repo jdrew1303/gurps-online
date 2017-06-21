@@ -210,9 +210,13 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
             $scope.character.computeDamage();
         }
     });
-    $scope.$watch('edit', function() {
+    $scope.editOnOff = function() {
+        $scope.edit = !$scope.edit;
+        console.log($scope.edit);
+        console.log($scope.creation);
         $scope.canEdit = $scope.edit && $scope.creation;
-    });
+        console.log($scope.canEdit);
+    };
     $scope.showJoin = function (ev) {
         $mdDialog.show({
             controller: JoinController,

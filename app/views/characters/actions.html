@@ -2,5 +2,14 @@
     <h1 class="text-korinna">Characteristics</h1>
     <div layout="row">
         <characteristic-roll shortname="ST" longname="Strength (3D6)" variable="character.strength"></characteristic-roll>
+        <characteristic-roll shortname="DX" longname="Dexterity (3D6)" variable="character.dexterity"></characteristic-roll>
+        <characteristic-roll shortname="IQ" longname="Intelligence (3D6)" variable="character.intelligence"></characteristic-roll>
+        <characteristic-roll shortname="HT" longname="Health (3D6)" variable="character.health"></characteristic-roll>
+    </div>
+    <div layout="row">
+        <md-button class="md-raised md-primary" aria-label="st"
+                   ng-click="climbing('views/characters/actions/climbing.html', $event)">
+            CLIMBING
+        </md-button>
     </div>
 </md-content>

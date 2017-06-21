@@ -35,7 +35,6 @@ angular.module('gurps-online').directive('characteristicRoll', function ($timeou
 function RollController($scope, $mdDialog, Dices, variable, placeholder) {
     $scope.variable = variable;
     $scope.placeholder = placeholder;
-    console.log($scope.variable);
 
     $scope.roll = function () {
         var modifier = $scope.modifier;
@@ -46,7 +45,6 @@ function RollController($scope, $mdDialog, Dices, variable, placeholder) {
         Dices.roll(draw).then(function (score) {
             $scope.score = score;
             $scope.result = Dices.type_of_result(score, $scope.variable + modifier);
-            console.log($scope.result);
         });
     };
     $scope.hide = function() {

@@ -139,6 +139,19 @@ angular.module('gurps-online').factory('Characters', function(Advantage, Skills)
         removeObjectByName(this.skills, name);
     };
 
+    function getObjectByName(collection, name) {
+        for(var i = 0; i < collection.length; i++) {
+            if (collection[i].name == name) {
+                return collection[i];
+            }
+        }
+        return null;
+    }
+
+    Characters.prototype.getSkills = function (name) {
+        return getObjectByName(this.skills, name);
+    };
+
     Characters.prototype.to_json = function () {
         return {
             exp: this.exp,
