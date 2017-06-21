@@ -1,0 +1,28 @@
+<md-dialog aria-label="Info" style="width: 25%; height: auto" class="md-padding">
+    <div layout="column">
+        <h1 class="text-korinna">Hiking (Daily roll)</h1>
+        <div layout="row">
+            <h2 class="text-korinna" style="margin-top: 30px; padding-right: 20px">{{skill}}</h2>
+            <div style="margin-top: 10px">
+                <md-select placeholder="Condition" ng-model="modifier" aria-label="selector">
+                    <md-option value="0.2">Very Bad (x 0.2)</md-option>
+                    <md-option value="0.5">Bad (x 0.5)</md-option>
+                    <md-option value="1">Average (x 1)</md-option>
+                    <md-option value="1.25">Good (x 1.25)</md-option>
+                    <md-option value="1.5">Very Good (x 1.5)</md-option>
+                </md-select>
+            </div>
+            <h2 class="text-korinna" style="margin-top: 30px; padding-right: 20px">=</h2>
+                <md-input-container class="md-icon-float md-icon-right md-block" style="margin-top: 25px" flex>
+                <input ng-model="score" type="number" ng-disabled="true" style="color: black">
+            </md-input-container>
+        </div>
+        <div layout="row" ng-if="result !== undefined" style="margin-top: -20px">
+            <h3 class="text-korinna">{{result}} * (Move - encumbrance - injury - exhaustion)</h3>
+        </div>
+        <div layout="row">
+            <md-button class="md-primary" ng-click="roll()" style="background-color: #1565C0; color: white" flex>Roll</md-button>
+            <md-button class="md-primary" ng-click="hide()" flex>Close</md-button>
+        </div>
+    </div>
+</md-dialog>
