@@ -18,6 +18,7 @@
     "mongoose-migration": "^0.2.0",
     "morgan": "^1.8.1",
     "password-hash": "^1.2.2",
+    "roll": "^1.2.0",
     "serve-favicon": "~2.4.2"
   }
 }

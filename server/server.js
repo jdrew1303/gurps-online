@@ -21,6 +21,7 @@ app.use(bodyParser.json());
 app.use(morgan('dev')); // LOG
 app.use(cors());
 app.use('/api/users', require('./routes/auth'));
+app.use('/api/dices', require('./routes/rolls'));
 app.use('/api', require('./routes/middleware'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/characters', require('./routes/characters'));

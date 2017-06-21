@@ -3,22 +3,26 @@
         <h4 flex> Campaign: {{character.campaign.name}} </h4>
         <md-button class="md-raised md-primary" aria-label="join"
                    ng-if="!character.campaign"
-                   ng-click="showJoin()" flex="10">
+                   ng-click="showJoin()">
             JOIN
         </md-button>
         <md-button class="md-raised" aria-label="leave" style="color: white; background-color: #F44336"
                    ng-if="character.campaign"
-                   ng-click="leave()" flex="10">
+                   ng-click="leave()">
             LEAVE
         </md-button>
-        <md-button class="md-raised" aria-label="leave"
-                   ng-click="edit = !edit" flex="10">
-            EDIT
+        <md-button class="md-raised" style="background-color: #388E3C; color: white" aria-label="leave"
+                   ng-click="goToAction()">
+            Actions
         </md-button>
     </div>
-    <div layout layout-align="end end" ng-if="edit">
+    <div layout layout-align="end end" ng-if="!edit">
         <md-button class="md-raised" aria-label="leave"
-                   ng-click="saveChange()" flex="10">
+                   ng-click="edit = !edit">
+            EDIT
+        </md-button>
+        <md-button class="md-raised" aria-label="leave" ng-if="edit"
+                   ng-click="saveChange()">
             Save
         </md-button>
     </div>
@@ -86,7 +90,7 @@
                 <md-select ng-model="chipType" placeholder="Type" class="md-no-underline" flex="20" ng-disabled="!canEdit">
                     <md-option ng-repeat="type in types" ng-value="type" ng-selected="$index === 0">{{type.title}} ({{-type.cost}})</md-option>
                 </md-select>
-                <md-button class="md-fab md-mini md-primary" aria-label="add" ng-click="addchips()" ng-disabled="!canEdit">
+                <md-button class="md-fab md-mini md-primary" aria-label="add" ng-click="addchips(chipType, chipText)" ng-disabled="!canEdit">
                     <md-icon md-font-icon="fa-plus" class="fa md-primary"></md-icon>
                 </md-button>
             </div>
@@ -124,10 +128,10 @@
                     <label>Title</label>
                     <input ng-model="repText">
                 </md-input-container>
-                <number-picker number="level" edit="canEdit" min="-4" max="4"flex>
+                <number-picker number="level" edit="canEdit" min="-4" max="4" flex>
                     <label class="text-korinna">-5 points/level</label>
                 </number-picker>
-                <md-button class="md-fab md-mini md-primary" aria-label="add" ng-click="addReputation()">
+                <md-button class="md-fab md-mini md-primary" aria-label="add" ng-click="addReputation(level)">
                     <md-icon md-font-icon="fa-plus" class="fa md-primary"></md-icon>
                 </md-button>
             </div>

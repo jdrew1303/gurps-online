@@ -4,9 +4,8 @@
 angular.module('gurps-online').controller('charactersProfileCtrl', function($scope, $state, $stateParams, $mdDialog,
                                                                             CharactersService, Characters, Appearance,
                                                                             OPH, Wealth, Reputation, Advantage,
-                                                                            Disadvantage, Skills, MenuService,
-                                                                            $log, $timeout, $q) {
-    $scope.edit = true;
+                                                                            Disadvantage, Skills, MenuService) {
+    $scope.edit = false;
     $scope.creation = false;
     $scope.wealths = Wealth.states;
     $scope.appearances = Appearance.states;
@@ -16,13 +15,19 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
     $scope.disadvantages = Disadvantage.disadvantages;
     loadCharacter();
 
+    $scope.goToAction = function () {
+        $state.go('app.characters.actions', {'characterId': $scope.character._id});
+    };
 
     $scope.saveChange = function () {
-        console.log($scope.character);
-        console.log($scope.character.to_json());
-      CharactersService.update($scope.character).then(function () {
+        if ($scope.canEdit) {
+            $scope.character.hp = $scope.character.health;
+            $scope.character.fp = $scope.character.health;
+            $scope.character.will = $scope.character.intelligence;
+        }
+        CharactersService.update($scope.character).then(function () {
           loadCharacter();
-      });
+        });
     };
 
     $scope.advglevel = 1;
@@ -146,12 +151,15 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
 
     $scope.repText = '';
     $scope.level = 0;
-    $scope.addReputation = function () {
-        if ($scope.level == 0 || !$scope.character.hasEnoughXp($scope.level * 5)) {
+
+    $scope.addReputation = function (level) {
+        console.log(level);
+        console.log($scope.character.hasEnoughXp(level * 5));
+        if ($scope.level == 0 || !$scope.character.hasEnoughXp(level * 5)) {
             return;
         }
-        var rep = new Reputation($scope.repText, $scope.level);
-        $scope.character.freexp -= $scope.level * 5;
+        var rep = new Reputation($scope.repText, level);
+        $scope.character.freexp -= level * 5;
         $scope.repText = '';
         $scope.level = 0;
         $scope.character.reputations.push(rep);
@@ -160,10 +168,11 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
         $scope.character.freexp += item.bonus * 5;
         $scope.character.reputations.splice(index);
     };
+
     $scope.chipText = '';
-    $scope.addchips = function () {
-        $scope.character.habits.push({description: angular.copy($scope.chipText), type: $scope.chipType.title});
-        $scope.character.freexp += $scope.chipType.cost;
+    $scope.addchips = function (item, text) {
+        $scope.character.habits.push({description: angular.copy(text), type: item.title});
+        $scope.character.freexp += item.cost;
         $scope.chipText = '';
     };
 

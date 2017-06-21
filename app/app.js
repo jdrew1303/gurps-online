@@ -76,6 +76,15 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $mdThemin
                 }
             }
         })
+        .state('app.characters.actions', {
+            url: '/actions/:characterId',
+            views: {
+                'content@app': {
+                    templateUrl: 'views/characters/actions.html',
+                    controller: 'charactersActionCtrl'
+                }
+            }
+        })
         .state('app.campaigns', {
             url: '^/campaigns',
             abstract: true
