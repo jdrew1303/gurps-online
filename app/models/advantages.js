@@ -40,6 +40,7 @@ angular.module('gurps-online').factory('Advantage', function() {
         new Advantage('Combat Reflexes', false, 15, "+1 to active defense / +2 Fright Checks / +6 IQ vs stun, wake up, surprise.", "combatreflexes.html", null),
         new Advantage('Danger Sense', false, 15, "GM rolls against Perception. Success = warning.", "dangersense.html", null),
         new Advantage('Daredevil', false, 15, "Reveal NPC emotion on first contact.", "empathy.html", null),
+        new Advantage('Empathy', false, 15, "Reveals NPC feeling when you meet them.", "animalempathy.html", null),
         new Advantage('Enhanced Block', true, 5, "+1/level to block with shield skill.", "defenses.html", null),
         new Advantage('Enhanced Dodge', true, 15, "+1/level to dodge.", "defenses.html", null),
         new Advantage('Enhanced Parry Melee', true, 5, "+1/level for bare hands or melee weapons", "defenses.html", null),

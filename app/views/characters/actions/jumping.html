@@ -1,0 +1,32 @@
+<md-dialog aria-label="Info" style="width: 25%; height: auto" class="md-padding">
+    <div layout="column">
+        <h1 class="text-korinna">Jumping</h1>
+        <div layout="row">
+            <h2 class="text-korinna" style="margin-top: 30px; padding-right: 20px">Skill: {{skill}}</h2>
+            <h2 class="text-korinna" style="margin-top: 30px; padding-right: 20px">=</h2>
+            <md-input-container class="md-icon-float md-icon-right md-block" style="margin-top: 25px" flex>
+                <input ng-model="score" type="number" ng-disabled="true" style="color: black">
+            </md-input-container>
+        </div>
+        <div layout="row">
+            <h2 class="text-korinna" style="margin-top: 25px; padding-right: 20px">Distance bonus:</h2>
+            <md-input-container class="md-icon-float md-icon-right md-block" style="margin-top: 25px" flex>
+                <label>Bonus</label>
+                <input ng-model="modifier" type="number">
+            </md-input-container>
+        </div>
+        <div layout="row" ng-if="result.success !== null" style="margin-top: -20px">
+            <div layout="column" ng-if="result.success">
+                <h3 class="text-korinna">High Jump: {{result.high}} cm</h3>
+                <h3 class="text-korinna">Long Jump: {{result.long}} cm</h3>
+            </div>
+            <div layout="row" ng-if="!result.success">
+                <h3 style="color: #F44336" class="text-korinna">Fail</h3>
+            </div>
+        </div>
+        <div layout="row">
+            <md-button class="md-primary" ng-click="roll()" style="background-color: #1565C0; color: white" flex>Roll</md-button>
+            <md-button class="md-primary" ng-click="hide()" flex>Close</md-button>
+        </div>
+    </div>
+</md-dialog>

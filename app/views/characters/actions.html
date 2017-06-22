@@ -15,5 +15,21 @@
                    ng-click="hiking('views/characters/actions/hiking.html', $event)">
             HIKING
         </md-button>
+        <md-button class="md-raised md-primary" aria-label="ju"
+                   ng-click="jumping('views/characters/actions/jumping.html', $event)">
+            JUMPING
+        </md-button>
+    </div>
+    <div layout="row">
+        <md-button class="md-raised md-primary" aria-label="da"
+                   ng-if="character.hasAdvantage('Danger Sense')"
+                   ng-click="danger('views/characters/actions/danger.html', $event)">
+            Danger Sense
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="da"
+                   ng-if="character.hasAdvantage('Animal Empathy') || character.hasAdvantage('Empathy')"
+                   ng-click="empathy('views/characters/actions/base.html', $event)">
+            Empathy
+        </md-button>
     </div>
 </md-content>

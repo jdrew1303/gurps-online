@@ -1,0 +1,21 @@
+<md-dialog aria-label="Info" style="width: 25%; height: auto" class="md-padding">
+    <div layout="column">
+        <h1 class="text-korinna">Danger Sense</h1>
+        <div layout="row">
+            <h2 class="text-korinna" style="margin-top: 30px; padding-right: 20px">Perception: {{skill}}</h2>
+            <h2 class="text-korinna" style="margin-top: 30px; padding-right: 20px">=</h2>
+            <md-input-container class="md-icon-float md-icon-right md-block" style="margin-top: 25px" flex>
+                <input ng-model="score" type="number" ng-disabled="true" style="color: black">
+            </md-input-container>
+        </div>
+        <div layout="row" ng-if="result !== undefined" style="margin-top: -20px">
+            <h3 ng-if="result == 0" style="color: #2E7D32" class="text-korinna">Ask the GM for an hint!</h3>
+            <h3 ng-if="result == 1" class="text-korinna">You sense something!</h3>
+            <h3 ng-if="result == 2" style="color: #F44336" class="text-korinna">Nothing</h3>
+        </div>
+        <div layout="row">
+            <md-button class="md-primary" ng-click="roll()" style="background-color: #1565C0; color: white" flex>Roll</md-button>
+            <md-button class="md-primary" ng-click="hide()" flex>Close</md-button>
+        </div>
+    </div>
+</md-dialog>

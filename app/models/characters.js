@@ -76,10 +76,14 @@ angular.module('gurps-online').factory('Characters', function(Advantage, Skills)
     Characters.prototype.computeMove = function () {
         this.move = Math.floor(this.speed);
     };
+    Characters.prototype.computeLift = function () {
+        this.lift = (Math.pow(this.strength) / 5.0) * 2.2;
+    };
     Characters.prototype.computeSecondaryStats = function () {
         this.computeSpeed();
         this.computeDodge();
-        this.computeMove()
+        this.computeMove();
+        this.computeLift();
     };
     Characters.prototype.computeDamage = function () {
         var st = this.strength - 1;
