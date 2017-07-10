@@ -14,6 +14,7 @@ module.exports = mongoose.model('Character', new Schema({
     freexp          : { type: Number, default: 0},
     campaign        : { type: Schema.Types.ObjectId, ref: 'Campaign' , default: null},
     status          : { type: String, enum: ['created', 'alive', 'campaign', 'dead'], default: 'created' },
+    mind            : { type: String, enum: ['clear', 'stun', 'unconscious'], default: 'clear' },
     strength        : { type: Number, default: 10},
     dexterity       : { type: Number, default: 10},
     intelligence    : { type: Number, default: 10},

@@ -7,6 +7,64 @@
         <characteristic-roll shortname="HT" longname="Health (3D6)" variable="character.health"></characteristic-roll>
     </div>
     <div layout="row">
+        <md-button class="md-raised md-primary" aria-label="fri"
+                   ng-click="action('views/characters/actions/fright.html', $event, 'fright')">
+            FRIGHT
+        </md-button>
+    </div>
+    <h2 class="text-korinna">Sense Rolls</h2>
+    <div layout="row">
+        <md-button class="md-raised md-primary" aria-label="vis"
+                   ng-click="action('views/characters/actions/vision.html', $event, 'vision')">
+            VISION
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="hea"
+                   ng-click="action('views/characters/actions/hearing.html', $event, 'hearing')">
+            HEARING
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="ta"
+                   ng-click="action('views/characters/actions/taste.html', $event, 'taste')">
+            TASTE/SMELL
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="da"
+                   ng-if="character.hasAdvantage('Danger Sense')"
+                   ng-click="action('views/characters/actions/danger.html', $event, 'danger')">
+            Danger Sense
+        </md-button>
+    </div>
+    <h2 class="text-korinna">Influence Rolls</h2>
+    <div layout="row">
+        <md-button class="md-raised md-primary" aria-label="cl"
+                   ng-click="reaction('views/characters/actions/reaction.html', $event)">
+            REACTION
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="cl"
+                   ng-click="action('views/characters/actions/influence.html', $event, 'diplomacy')">
+            DIPLOMACY
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="cl"
+                   ng-click="action('views/characters/actions/influence.html', $event, 'fasttalk')">
+            FAST-TALK
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="cl"
+                   ng-click="action('views/characters/actions/influence.html', $event, 'intimidation')">
+            INTIMIDATION
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="cl"
+                   ng-click="action('views/characters/actions/influence.html', $event, 'savoirfaire')">
+            SAVOIR-FAIRE
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="cl"
+                   ng-click="reaction('views/characters/actions/reaction.html', $event)">
+            SEX APPEAL
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="cl"
+                   ng-click="action('views/characters/actions/influence.html', $event, 'streetwise')">
+            STREETWISE
+        </md-button>
+    </div>
+    <h2 class="text-korinna">Phisical Feats</h2>
+    <div layout="row">
         <md-button class="md-raised md-primary" aria-label="cl"
                    ng-click="climbing('views/characters/actions/climbing.html', $event)">
             CLIMBING
@@ -20,12 +78,53 @@
             JUMPING
         </md-button>
     </div>
+    <h2 class="text-korinna">Maneuvers</h2>
     <div layout="row">
-        <md-button class="md-raised md-primary" aria-label="da"
-                   ng-if="character.hasAdvantage('Danger Sense')"
-                   ng-click="danger('views/characters/actions/danger.html', $event)">
-            Danger Sense
+        <md-button class="md-raised md-primary" aria-label="cl"
+                   ng-click="reaction('views/characters/actions/reaction.html', $event)">
+            DO NOTHING
         </md-button>
+        <md-button class="md-raised md-primary" aria-label="cl"
+                   ng-click="reaction('views/characters/actions/reaction.html', $event)">
+            MOVE
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="cl"
+                   ng-click="reaction('views/characters/actions/reaction.html', $event)">
+            CHANGE POSTURE
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="cl"
+                   ng-click="reaction('views/characters/actions/reaction.html', $event)">
+            AIM
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="cl"
+                   ng-click="reaction('views/characters/actions/reaction.html', $event)">
+            READY
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="cl"
+                   ng-click="reaction('views/characters/actions/reaction.html', $event)">
+            CONCENTRATE
+        </md-button>
+    </div>
+    <div layout="row">
+        <md-button class="md-raised md-primary" aria-label="cl"
+                   ng-click="reaction('views/characters/actions/reaction.html', $event)">
+            ATTACK
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="cl"
+                   ng-click="reaction('views/characters/actions/reaction.html', $event)">
+            ALL-OUT ATTACK
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="cl"
+                   ng-click="reaction('views/characters/actions/reaction.html', $event)">
+            MOVE AND ATTACK
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="cl"
+                   ng-click="reaction('views/characters/actions/reaction.html', $event)">
+            ALL-OUT DEFENSE
+        </md-button>
+    </div>
+
+    <div layout="row">
         <md-button class="md-raised md-primary" aria-label="da"
                    ng-if="character.hasAdvantage('Animal Empathy') || character.hasAdvantage('Empathy')"
                    ng-click="empathy('views/characters/actions/base.html', $event)">

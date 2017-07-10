@@ -14,7 +14,7 @@ angular.module('gurps-online').directive('attributesCatalog', function ($timeout
         templateUrl: "directives/attributes-catalog/attributes-catalog.html",
         restrict: 'E',
         transclude: true,
-        link: function($scope, $element) {
+        link: function($scope) {
             $scope.showInfo = function (template, ev) {
                 $mdDialog.show({
                     controller: InfoController,
@@ -48,6 +48,7 @@ angular.module('gurps-online').directive('attributesCatalog', function ($timeout
                     }
                 }, 150);
             };
+
 
             function loadAll(content) {
                 var objs = content;

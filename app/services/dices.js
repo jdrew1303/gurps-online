@@ -14,24 +14,21 @@ angular.module('gurps-online').factory('Dices', function ($q, $resource, global)
         },
     });
 
-    var types = {
-        critical_success: 0,
-        success: 1,
-        failure: 2,
-        critical_failure: 3
-    };
+    self.critical_success = 0;
+    self.success = 1;
+    self.failure = 2;
+    self.critical_failure = 3;
 
     var types_str = ["Critical Success", "Success", "Failure", "Critical Failure"];
 
     this.type_of_result = function(score, skill) {
-        console.log(score);
-        var code = types.failure;
+        var code = self.failure;
         if (score <= 4 || (score == 5 && skill >= 15) || (score == 6 && skill >= 16)) {
-            code = types.critical_success;
+            code = self.critical_success;
         } else if (score >= 18 || (score == 17 && skill <= 15) || (score - skill >= 10)) {
-            code = types.critical_failure;
+            code = self.critical_failure;
         } else if (score <= skill) {
-            code = types.success;
+            code = self.success;
         }
         return { value: code, text: types_str[code] };
     };
@@ -42,7 +39,7 @@ angular.module('gurps-online').factory('Dices', function ($q, $resource, global)
             if (modifier > 0) {
                 res += '+' + modifier;
             } else if (modifier < 0) {
-                res += '-' + modifier;
+                res += modifier;
             }
         }
         return res;

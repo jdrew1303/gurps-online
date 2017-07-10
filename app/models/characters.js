@@ -152,8 +152,20 @@ angular.module('gurps-online').factory('Characters', function(Advantage, Skills)
         return null;
     }
 
+    Characters.prototype.getAdvantage = function(name) {
+        return getObjectByName(this.advantages, name);
+    };
+
     Characters.prototype.getSkills = function (name) {
         return getObjectByName(this.skills, name);
+    };
+
+    Characters.prototype.knockdown = function (duration) {
+      // TODO
+    };
+
+    Characters.prototype.unconscious = function (duration) {
+        // TODO
     };
 
     Characters.prototype.to_json = function () {

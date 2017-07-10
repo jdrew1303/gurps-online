@@ -1,0 +1,32 @@
+<md-dialog aria-label="Info" style="width: 25%; height: auto" class="md-padding">
+    <div layout="column">
+        <h1 class="text-korinna">{{placeholder}}</h1>
+        <h3 class="text-korinna">{{subtitle}}</h3>
+        <div layout="row">
+            <h2 class="text-korinna" style="margin-top: 25px; padding-right: 20px">{{skill}} (+/-)</h2>
+            <md-input-container class="md-icon-float md-icon-right md-block" style="margin-top: 25px" flex>
+                <label>Modifier</label>
+                <input ng-model="modifier" type="number">
+            </md-input-container>
+            <h2 class="text-korinna" style="margin-top: 25px; padding-right: 20px">=</h2>
+            <md-input-container class="md-icon-float md-icon-right md-block" style="margin-top: 25px" flex>
+                <input ng-model="score" type="number" ng-disabled="true" style="color: black">
+            </md-input-container>
+        </div>
+        <div layout="row" ng-if="score !== undefined" style="margin-top: -20px">
+            <div ng-if="margin >= 0">
+                <h3 style="color: #2E7D32" class="text-korinna">Succes of: {{margin}}</h3>
+                <h3 style="color: #2E7D32" class="text-korinna">Expected reaction: {{expected}}</h3>
+            </div>
+            <div ng-if="margin < 0" ng-if="score !== undefined" style="margin-top: -20px">
+                <h3 style="color: #F44336" class="text-korinna">Failure of: {{margin}}</h3>
+                <h3 style="color: #F44336" class="text-korinna">Expected reaction: {{expected}}</h3>
+                <h3 ng-if="comment !== undefined">{{comment}}</h3>
+            </div>
+        </div>
+        <div layout="row">
+            <md-button class="md-primary" ng-click="roll()" style="background-color: #1565C0; color: white" flex>Roll</md-button>
+            <md-button class="md-primary" ng-click="hide()" flex>Close</md-button>
+        </div>
+    </div>
+</md-dialog>

@@ -30,13 +30,14 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
         });
     };
 
-    $scope.advglevel = 1;
+    $scope.data = {};
+    $scope.data.advglevel = 1;
     $scope.skillslevel = 1;
 
     $scope.addAdvantage = function (text) {
         var advg = Advantage.str_to_object(text);
-        var level = $scope.advglevel;
-        $scope.advglevel = 1;
+        var level = $scope.data.advglevel;
+        $scope.data.advglevel = 1;
         if (!advg.haslevel) {
             level = 1
         }
