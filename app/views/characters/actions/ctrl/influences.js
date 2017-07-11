@@ -104,6 +104,41 @@ function SavoirFaireCtrl($scope, $mdDialog, Dices, character) {
     linkScopeAndModal($scope, $mdDialog);
 }
 
+function SexAppealCtrl($scope, $mdDialog, Dices, character) {
+    $scope.placeholder = 'Sex Appeal';
+    $scope.subtitle = 'Vamping and seduction, usually of the opposite sex.';
+    $scope.character = character;
+    $scope.opposite_sex = true;
+    $scope.skill = character.health - 3;
+    var skill = character.getSkills("Sex Appeal");
+    if (skill) {
+        $scope.skill = character.intelligence + skill.bonus;
+    }
+    $scope.$watch('opposite_sex', function (newValue, oldValue) {
+        if (character.appearance == 'Handsome') {
+            $scope.skill += newValue ? 4 : -4;
+        }
+        if (character.appearance == 'Very Handsome') {
+            $scope.skill += newValue ? 6 : -6;
+            }
+    });
+    $scope.skill += character.charisma;
+
+    $scope.roll = function () {
+        var modifier = $scope.modifier;
+        if (modifier == undefined) {
+            modifier = 0;
+        }
+        var draw = Dices.compose('3d6', modifier);
+        Dices.roll(draw).then(function (score) {
+            $scope.score = score;
+            $scope.margin = $scope.skill - score;
+            $scope.expected = $scope.margin >= 0 && $scope.opposite_sex ? 'Very Good' : $scope.margin >= 0 ? 'Good' : 'Bad';
+        });
+    };
+    linkScopeAndModal($scope, $mdDialog);
+}
+
 function StreetwiseCtrl($scope, $mdDialog, Dices, character) {
     $scope.placeholder = 'Streetwise';
     $scope.subtitle = 'Contacts and (usually) subtle intimidation. Only useful in "street" and criminal situations.';

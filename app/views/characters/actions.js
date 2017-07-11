@@ -15,7 +15,7 @@ angular.module('gurps-online').controller('charactersActionCtrl', function($scop
     }
     loadCharacter();
 
-
+    // TODO: refactoring modifier system (inverse value + apply after roll in order to detect critical faillure).
     function modalData(template, ev, controller) {
      return {
          controller: controller,
@@ -42,6 +42,7 @@ angular.module('gurps-online').controller('charactersActionCtrl', function($scop
         savoirfaire: SavoirFaireCtrl,
         intimidation: IntimidationCtrl,
         streetwise: StreetwiseCtrl,
+        sexappeal: SexAppealCtrl,
     };
 
     $scope.action = function (template, ev, ctrl) {

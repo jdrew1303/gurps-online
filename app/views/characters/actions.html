@@ -6,12 +6,6 @@
         <characteristic-roll shortname="IQ" longname="Intelligence (3D6)" variable="character.intelligence"></characteristic-roll>
         <characteristic-roll shortname="HT" longname="Health (3D6)" variable="character.health"></characteristic-roll>
     </div>
-    <div layout="row">
-        <md-button class="md-raised md-primary" aria-label="fri"
-                   ng-click="action('views/characters/actions/fright.html', $event, 'fright')">
-            FRIGHT
-        </md-button>
-    </div>
     <h2 class="text-korinna">Sense Rolls</h2>
     <div layout="row">
         <md-button class="md-raised md-primary" aria-label="vis"
@@ -30,6 +24,10 @@
                    ng-if="character.hasAdvantage('Danger Sense')"
                    ng-click="action('views/characters/actions/danger.html', $event, 'danger')">
             Danger Sense
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="fri"
+                   ng-click="action('views/characters/actions/fright.html', $event, 'fright')">
+            FRIGHT
         </md-button>
     </div>
     <h2 class="text-korinna">Influence Rolls</h2>
@@ -55,7 +53,7 @@
             SAVOIR-FAIRE
         </md-button>
         <md-button class="md-raised md-primary" aria-label="cl"
-                   ng-click="reaction('views/characters/actions/reaction.html', $event)">
+                   ng-click="action('views/characters/actions/sexappeal.html', $event, 'sexappeal')">
             SEX APPEAL
         </md-button>
         <md-button class="md-raised md-primary" aria-label="cl"
@@ -76,6 +74,26 @@
         <md-button class="md-raised md-primary" aria-label="ju"
                    ng-click="jumping('views/characters/actions/jumping.html', $event)">
             JUMPING
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="ju"
+                   ng-click="jumping('views/characters/actions/jumping.html', $event)">
+            LIGTING
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="ju"
+                   ng-click="jumping('views/characters/actions/jumping.html', $event)">
+            MOVING
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="ju"
+                   ng-click="jumping('views/characters/actions/jumping.html', $event)">
+            RUNNING
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="ju"
+                   ng-click="jumping('views/characters/actions/jumping.html', $event)">
+            SWIMMING
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="ju"
+                   ng-click="jumping('views/characters/actions/jumping.html', $event)">
+            THROWING
         </md-button>
     </div>
     <h2 class="text-korinna">Maneuvers</h2>
