@@ -1,0 +1,18 @@
+<md-dialog aria-label="Info" style="width: 25%; height: auto" class="md-padding">
+    <div layout="column">
+        <h1 class="text-korinna">{{placeholder}}</h1>
+        <div layout="row">
+            <p><b>Selected:</b> <span class="radioValue">{{option}}</span> </p>
+        </div>
+        <div layout="row">
+            <md-radio-group ng-model="option">
+                <md-radio-button value="Sprint" class="md-primary">Sprint ({{sprint}} m/s)</md-radio-button>
+                <md-radio-button value="Long-Sprint" class="md-primary">Long-Sprint (every 15s) ({{longrun}} m/s)</md-radio-button>
+            </md-radio-group>
+        </div>
+        <div layout="row">
+            <md-button class="md-primary" ng-click="select()" style="background-color: #1565C0; color: white" flex>Select</md-button>
+            <md-button class="md-primary" ng-click="hide()" flex>Close</md-button>
+        </div>
+    </div>
+</md-dialog>
