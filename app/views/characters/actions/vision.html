@@ -1,6 +1,15 @@
 <md-dialog aria-label="Info" style="width: 25%; height: auto" class="md-padding">
     <div layout="column">
         <h1 class="text-korinna">{{placeholder}}</h1>
+        <collapse collapsible-title="Description">
+            <div>
+                Make a Vision roll whenever it is important that you see something.
+                When you try to spot something that is deliberately hidden, the GM may treat this
+                roll as a Quick Contest against a concealment
+                skill (Camouflage, Holdout, etc.), and may allow – or require – a skill such as
+                Observation or Search to replace Perception for the roll.
+            </div>
+        </collapse>
         <div layout="row">
             <h2 class="text-korinna" style="margin-top: 25px; padding-right: 20px">{{skill}} (+/-)</h2>
             <md-input-container class="md-icon-float md-icon-right md-block" style="margin-top: 25px" flex>
