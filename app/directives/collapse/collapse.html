@@ -1,0 +1,9 @@
+<div class="clps" ng-class="{'clps--expanded': collapsed}">
+    <a href="#" class="clps__title" ng-click="toggle($event)">
+        <i class="fa fa-chevron-down" ng-if="collapsed"></i>
+        <i class="fa fa-chevron-up" ng-if="!collapsed"></i>
+        <span class="text-korinna"><b>{{title}}</b></span>
+    </a>
+
+    <div ng-transclude class="clps__content" ng-if="!collapsed"></div>
+</div>
