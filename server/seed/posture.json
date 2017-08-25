@@ -1,0 +1,8 @@
+{ "name": "Standing", "attack": 0, "defense": 0, "target": 0, "movement": 1 }
+{ "name": "Crouching", "attack": -2, "defense": 0, "target": -2, "movement": 0.66 }
+{ "name": "Kneeling", "attack": -2, "defense": -2, "target": -2, "movement": 0.33 }
+{ "name": "Crawling", "attack": -4, "defense": -3, "target": -2, "movement": 0.33 }
+{ "name": "Sitting", "attack": -2, "defense": -2, "target": -2, "movement": 0 }
+{ "name": "Lying Down", "attack": -4, "defense": -3, "target": -2, "movement": 0.1 }
+
+

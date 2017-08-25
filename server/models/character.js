@@ -55,5 +55,6 @@ module.exports = mongoose.model('Character', new Schema({
     background: {type: String, default: ''},
     details: {type: String, default: ''},
     notes: {type: String, default: ''},
-    encumbrance: {type: Number, default: 0}
+    encumbrance: {type: Number, default: 0},
+    posture: { type: Schema.Types.ObjectId, ref: 'Posture' , default: null},
 }));

@@ -9,7 +9,7 @@ angular.module('gurps-online').controller('charactersActionCtrl', function($scop
         CharactersService.get($stateParams.characterId).then(function (character) {
             $scope.character = Characters.build(character);
             MenuService.currentTitle = 'Character : ' + $scope.character.name;
-
+            console.log($scope.character);
             $scope.knownSkills = [];
             angular.forEach($scope.character.skills, function(value) {
                 this.push(value.name);
@@ -28,18 +28,18 @@ angular.module('gurps-online').controller('charactersActionCtrl', function($scop
 
     // TODO: refactoring modifier system (inverse value + apply after roll in order to detect critical faillure).
     function modalData(template, ev, controller) {
-     return {
-         controller: controller,
-         templateUrl: template,
-         parent: angular.element(document.body),
-         clickOutsideToClose: true,
-         targetEvent: ev,
-         resolve: {
-             character: function () {
-                 return $scope.character;
+         return {
+             controller: controller,
+             templateUrl: template,
+             parent: angular.element(document.body),
+             clickOutsideToClose: true,
+             targetEvent: ev,
+             resolve: {
+                 character: function () {
+                     return $scope.character;
+                 }
              }
          }
-     }
     }
 
     var controllers = {

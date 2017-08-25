@@ -8,7 +8,7 @@ angular.module('gurps-online').factory('Characters', function(Advantage, Skills)
      */
     function Characters(id, owner, name, exp, freexp, campaign, status, st, dx, iq, ht, hand, hp, will, fp,
                         charisma, voice, appearance, habits, wealthfactor, statusbonus, reputations, advantages,
-                        disadvantages, skills, background, details, notes, encumbrance) {
+                        disadvantages, skills, background, details, notes, encumbrance, posture) {
         this._id = id;
         this.owner = owner;
         this.name = name;
@@ -38,6 +38,7 @@ angular.module('gurps-online').factory('Characters', function(Advantage, Skills)
         this.details = details;
         this.notes = notes;
         this.encumbrance = encumbrance;
+        this.posture = posture;
         this.computeSecondaryStats();
         this.computeDamage();
     }
@@ -75,7 +76,7 @@ angular.module('gurps-online').factory('Characters', function(Advantage, Skills)
         this.dodge = Math.floor(this.speed + 3.0) - this.encumbrance;
     };
     Characters.prototype.computeMove = function () {
-        this.move = Math.floor(this.speed) * (1.0 - (0.2 * this.encumbrance));
+        this.move = Math.floor(this.speed) * (1.0 - (0.2 * this.encumbrance)) * this.posture.movement;
     };
     Characters.prototype.computeLift = function () {
         this.lift = (Math.floor(Math.pow(this.strength, 2) / 5.0) * 0.45);
@@ -202,6 +203,7 @@ angular.module('gurps-online').factory('Characters', function(Advantage, Skills)
             details: this.details,
             notes: this.notes,
             encumbrance: this.encumbrance,
+            posture: this.posture,
         };
     };
 
@@ -239,7 +241,8 @@ angular.module('gurps-online').factory('Characters', function(Advantage, Skills)
             data.background,
             data.details,
             data.notes,
-            data.encumbrance
+            data.encumbrance,
+            data.posture,
         );
     };
 

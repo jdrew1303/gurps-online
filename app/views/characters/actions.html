@@ -80,7 +80,7 @@
             LIFTING
         </md-button>
         <md-button class="md-raised md-primary" aria-label="ju"
-                   ng-click="action('views/characters/actions/running.html', $event, 'running')">
+                   ng-click="action('views/characters/actions/running.html', $event, 'running')" ng-disabled="character.position.name == 'Standing'">
             RUNNING
         </md-button>
         <md-button class="md-raised md-primary" aria-label="ju"
