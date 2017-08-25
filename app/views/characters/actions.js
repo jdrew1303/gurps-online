@@ -60,6 +60,7 @@ angular.module('gurps-online').controller('charactersActionCtrl', function($scop
         lifting: LiftingCtrl,
         running: RunningCtrl,
         swimming: SwimmingCtrl,
+        posture: PostureCtrl,
     };
     $scope.specialActions = ['Climbing', 'Hiking', 'Diplomacy', 'Fast-Talk', 'Intimidation', 'Savoir-Faire', 'Sex Appeal',
     'Streetwise', 'Interogation', 'Jumping', 'Swimming'];

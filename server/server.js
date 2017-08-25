@@ -26,6 +26,7 @@ app.use('/api', require('./routes/middleware'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/characters', require('./routes/characters'));
 app.use('/api/campaigns', require('./routes/campaigns'));
+app.use('/api/postures', require('./routes/postures'));
 
 app.listen(port);
 console.log("Server ready!");
