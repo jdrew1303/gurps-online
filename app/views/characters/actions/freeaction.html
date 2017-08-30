@@ -1,0 +1,45 @@
+<md-dialog aria-label="Info" style="width: 35%; height: auto" class="md-padding">
+    <div layout="column">
+        <h1 class="text-korinna">{{placeholder}}</h1>
+        <div layout="row">
+            <collapse collapsible-title="Description">
+                <div>
+                    <p>
+                        “Free actions” are things you can do during any maneuver. Some examples:
+                    </p>
+                    <p>
+                        <b>Talk.</b> You can always talk. If the GM wants to be realistic, he should allow only
+                        one sentence of communication per second... but it is usually more fun when you
+                        ignore this limitation!
+                    </b>
+                    <p>
+                        <b>Drop an item.</b> You can drop any “ready” item at any time during any maneuver.
+                        If you’re moving, you may drop it at any point within your reach during your movement.
+                    </p>
+                    <p>
+                        <b>Crouch.</b> If standing, you may opt to crouch (to make yourself a smaller target for
+                        ranged attacks) at the beginning of your turn. This will usually slow your movement
+                        speed (see Posture Table, below), and you cannot crouch and sprint. If you were
+                        already crouching, it is a free action to rise from a crouching position at the start of
+                        your turn.
+                    </p>
+                </div>
+            </collapse>
+        </div>
+        <div layout="row">
+            <p><b>Selected:</b> <span class="radioValue">{{option}}</span> </p>
+        </div>
+        <div layout="row">
+            <md-radio-group ng-model="option">
+                <md-radio-button value="Talk" class="md-primary">Talk</md-radio-button>
+                <md-radio-button value="Drop an Item" class="md-primary">Drop an item.</md-radio-button>
+                <md-radio-button value="Crouch" class="md-primary">Crouch/Rise</md-radio-button>
+            </md-radio-group>
+
+        </div>
+        <div layout="row">
+            <md-button class="md-primary" ng-click="select()" style="background-color: #1565C0; color: white" flex>Execute</md-button>
+            <md-button class="md-primary" ng-click="hide()" flex>Close</md-button>
+        </div>
+    </div>
+</md-dialog>
