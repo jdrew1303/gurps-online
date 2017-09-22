@@ -24,12 +24,20 @@ angular.module('gurps-online').directive('attributesCatalog', function ($timeout
                     targetEvent: ev
                 });
             };
-            $scope.catalogs = loadAll($scope.variables);
+            if ($scope.variables === undefined) {
+                $scope.$watch('variables', function (data) {
+                    if (data !== undefined) {
+                        $scope.catalogs = loadAll(data);
+                    }
+                });
+            } else {
+                $scope.catalogs = loadAll($scope.variables);
+            }
+
             $scope.Search = function(query) {
                 var results = query ? $scope.catalogs.filter( createFilterFor(query) ) : $scope.catalogs, deferred;
                 return results;
             };
-
             $scope.selectedChange = function(item) {
                 $scope.itemChanging = true;
                 if (item == undefined) {
@@ -39,7 +47,6 @@ angular.module('gurps-online').directive('attributesCatalog', function ($timeout
                     document.getElementsByTagName('md-virtual-repeat-container')[$scope.index].removeAttribute("style");
                 }
             };
-
             $scope.exitInput = function() {
                 $scope.itemChanging = false;
                 $timeout(function () {

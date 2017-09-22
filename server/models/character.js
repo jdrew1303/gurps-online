@@ -44,13 +44,8 @@ module.exports = mongoose.model('Character', new Schema({
     }],
     disadvantages    : [{name: String, default: []}],
     skills    : [{
-        name: String,
-        attr: Number,
-        difficulty: Number,
-        bonus: Number,
-        info: String,
-        cost: Number,
-        default: []
+        _skill: { type: Schema.Types.ObjectId, ref: 'Skill' },
+        value : { type: Number, default: 0 }
     }],
     background: {type: String, default: ''},
     details: {type: String, default: ''},

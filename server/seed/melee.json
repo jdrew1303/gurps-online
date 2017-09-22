@@ -1,0 +1,4 @@
+{ "tl": 0, "name": "Axe", "attack": [{"damage": "sw+2 cut", "st": 11, "category": 0}], "cost": 50, "weight": 4, "skills": ["Impact Weapons"]}
+{ "tl": 2, "name": "Mace", "attack": [{"damage": "sw+3 cr", "st": 12, "category": 0}], "cost": 50, "weight": 5, "skills": ["Impact Weapons"]}
+{ "tl": 0, "name": "Punch", "attack": [{"damage": "thr-1 cr", "st": 0, "category": 0}], "cost": 0, "weight": 0, "skills": ["DX", "Brawling", "Karate"]}
+{ "tl": 1, "name": "Brass Knuckles", "attack": [{"damage": "thr cr", "st": 0, "category": 0}], "cost": 10, "weight": 0.25, "skills": ["DX", "Brawling", "Karate"]}

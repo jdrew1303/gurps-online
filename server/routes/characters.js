@@ -37,7 +37,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/:id', function(req, res) {
-    Character.findOne({_id: ObjectId(req.params.id)}).populate('_owner campaign posture').exec(function(err, characters) {
+    Character.findOne({_id: ObjectId(req.params.id)}).populate('_owner skills campaign posture').exec(function(err, characters) {
         if (err) throw err;
         res.json(characters);
     });

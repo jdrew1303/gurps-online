@@ -33,7 +33,8 @@ angular.module('gurps-online').factory('Characters', function(Advantage, Skills)
         this.reputations = reputations;
         this.advantages = advantages;
         this.disadvantages = disadvantages;
-        this.skills = skills.map(Skills.build);
+        // this.skills = skills.map(Skills.build);
+        this.skills = [];
         this.background = background;
         this.details = details;
         this.notes = notes;

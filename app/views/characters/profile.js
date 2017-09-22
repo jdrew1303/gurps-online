@@ -4,15 +4,22 @@
 angular.module('gurps-online').controller('charactersProfileCtrl', function($scope, $state, $stateParams, $mdDialog,
                                                                             CharactersService, Characters, Appearance,
                                                                             OPH, Wealth, Reputation, Advantage,
-                                                                            Disadvantage, Skills, MenuService) {
+                                                                            Disadvantage, Skills, MenuService, SkillsService) {
+
+
     $scope.edit = false;
     $scope.creation = false;
     $scope.wealths = Wealth.states;
     $scope.appearances = Appearance.states;
     $scope.types = OPH.types;
     $scope.advantages = Advantage.advantages;
-    $scope.skills = Skills.available;
     $scope.disadvantages = Disadvantage.disadvantages;
+    $scope.repText = '';
+    $scope.level = 0;
+    SkillsService.all().then(function (data) {
+        $scope.skills = Skills.json_to_objects(data);
+    });
+
     loadCharacter();
 
     $scope.goToAction = function () {
@@ -150,8 +157,6 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
         }
     };
 
-    $scope.repText = '';
-    $scope.level = 0;
 
     $scope.addReputation = function (level) {
         console.log(level);

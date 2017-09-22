@@ -1,0 +1,32 @@
+{ "name": "Acute Hearing", "haslevel": true, "cost": 2, "description": "+1 to Hearing rolls", "info": "senses.html"}
+{ "name": "Acute Taste and Smell", "haslevel": true, "cost": 2, "description": "+1 to Taste and Smell rolls", "info": "senses.html"}
+{ "name": "Acute Touch", "haslevel": true, "cost": 2, "description": "+1 to Touch rolls", "info": "senses.html"}
+{ "name": "Acute Vision", "haslevel": true, "cost": 2, "description": "+1 to Vision rolls", "info": "senses.html"}
+{ "name": "Ambidexterity", "haslevel": false, "cost": 5, "description": "No wrong hand malus.", "info": "ambidexterity.html"}
+{ "name": "Animal Empathy", "haslevel": false, "cost": 5, "description": "Reveals beast emotionnal state and Influence them.", "info": "animalempathy.html"}
+{ "name": "Catfall", "haslevel": false, "cost": 10, "description": "Fall < 4.572 = Automatic Success", "info": "catfall.html"}
+{ "name": "Combat Reflexes", "haslevel": false, "cost": 15, "description": "+1 to active defense / +2 Fright Checks / +6 IQ vs stun, wake up, surprise.", "info": "combatreflexes.html"}
+{ "name": "Danger Sense", "haslevel": false, "cost": 15, "description": "GM rolls against Perception. Success = warning.", "info": "dangersense.html"}
+{ "name": "Daredevil", "haslevel": false, "cost": 15, "description": "Reveal NPC emotion on first contact.", "info": "empathy.html"}
+{ "name": "Empathy", "haslevel": false, "cost": 15, "description": "Reveals NPC feeling when you meet them.", "info": "animalempathy.html"}
+{ "name": "Enhanced Block", "haslevel": true, "cost": 5, "description": "+1/level to block with shield skill.", "info": "defenses.html"}
+{ "name": "Enhanced Dodge", "haslevel": true, "cost": 15, "description": "+1/level to dodge.", "info": "defenses.html"}
+{ "name": "Enhanced Parry Melee", "haslevel": true, "cost": 5, "description": "+1/level for bare hands or melee weapons", "info": "defenses.html"}
+{ "name": "Enhanced Parry All", "haslevel": true, "cost": 10, "description": "+1/level for all parries", "info": "defenses.html"}
+{ "name": "Fearlessness", "haslevel": true, "cost": 2, "description": "Bonus on Fright Check or Intimidation.", "info": "fearlessness.html"}
+{ "name": "Flexibility", "haslevel": false, "cost": 5, "description": "+3 on Climbing, on Escape. Ignore -3 for working in close spaces.", "info": "flexibility.html"}
+{ "name": "Double-Jointed", "haslevel": false, "cost": 15, "description": "+5 on Climbing, on Escape. Ignore -5 for working in close spaces.", "info": "flexibility.html"}
+{ "name": "Hard to Kill", "haslevel": true, "cost": 2, "description": "+1 to HT roll for survival.", "info": "hardtokill.html"}
+{ "name": "High Pain Threshold", "haslevel": true, "cost": 10, "description": "+3 on HT roll vs knockdown, stunning, torturing. Will+3 to ignore pain.", "info": "hardtokill.html"}
+{ "name": "Jumper (Time)", "haslevel": false, "cost": 100, "description": "Travel through time.", "info": "jumper.html"}
+{ "name": "Jumper (Space)", "haslevel": false, "cost": 100, "description": "Travel through space.", "info": "jumper.html"}
+{ "name": "Language Talent", "haslevel": false, "cost": 10, "description": "When you learn a language you automatically reach next higher level", "info": "language.html"}
+{ "name": "Luck", "haslevel": false, "cost": 15, "description": "1 reroll per hour.", "info": "luck.html"}
+{ "name": "Extraordinary Luck", "haslevel": false, "cost": 30, "description": "1 reroll per 30 minutes.", "info": "luck.html"}
+{ "name": "Ridiculous Luck", "haslevel": false, "cost": 60, "description": "1 reroll per 10 minutes.", "info": "luck.html"}
+{ "name": "Night Vision", "haslevel": true, "cost": 1, "description": "Ignore -1 / level malus in darkness.", "info": "luck.html"}
+{ "name": "Perfect Balance", "haslevel": false, "cost": 15, "description": "+6 to keep balance. +4 to DX in combat to keep balance. +1 to Acrobatics and Climbing.", "info": "perfectbalance.html"}
+{ "name": "Resistant to Disease Minor", "haslevel": false, "cost": 3, "description": "+3 to HT rolls vs diseases.", "info": "resistant.html"}
+{ "name": "Resistant to Disease Major", "haslevel": false, "cost": 5, "description": "+8 to HT rolls vs diseases.", "info": "resistant.html"}
+{ "name": "Resistant to Poison Minor", "haslevel": false, "cost": 3, "description": "+3 to HT rolls vs poisons.", "info": "resistant.html"}
+{ "name": "Resistant to Poison Major", "haslevel": false, "cost": 5, "description": "+8 to HT rolls vs poisons.", "info": "resistant.html"}

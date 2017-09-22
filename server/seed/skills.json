@@ -1,0 +1,99 @@
+{ "name": "Acrobatics", "attribute": "DX", "difficulty": "Hard", "base": -6, "info": "acrobatics.html"}
+{ "name": "Acting", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "acting.html"}
+{ "name": "Animal Handling", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "animalhandling.html"}
+{ "name": "Area Knowledge", "attribute": "IQ", "difficulty": "Easy", "base": -4, "info": "areaknowledge.html"}
+{ "name": "Armoury", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "armoury.html"}
+{ "name": "Brawling", "attribute": "DX", "difficulty": "Easy", "base": -100, "info": "brawling.html"}
+{ "name": "Camouflage", "attribute": "IQ", "difficulty": "Easy", "base": -4, "info": "camouflage.html"}
+{ "name": "Carousing", "attribute": "HT", "difficulty": "Easy", "base": -4, "info": "carousing.html"}
+{ "name": "Climbing", "attribute": "DX", "difficulty": "Medium", "base": -5, "info": "climbing.html"}
+{ "name": "Computer Operation", "attribute": "IQ", "difficulty": "Easy", "base": -4, "info": "computeroperation.html"}
+{ "name": "Computer Programming", "attribute": "IQ", "difficulty": "Hard", "base": -100, "info": "computerprogramming.html"}
+{ "name": "Crewman", "attribute": "IQ", "difficulty": "Easy", "base": -4, "info": "crewman.html"}
+{ "name": "Criminology", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "criminology.html"}
+{ "name": "Diagnosis", "attribute": "IQ", "difficulty": "Hard", "base": -100, "info": "diagnosis.html"}
+{ "name": "Disguise", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "disguise.html"}
+{ "name": "Electronics Operation", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "electronicsoperation.html"}
+{ "name": "Electronics Repair", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "electronicsrepair.html"}
+{ "name": "Engineer", "attribute": "IQ", "difficulty": "Hard", "base": -100, "info": "engineer.html"}
+{ "name": "Battlesuit", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "suit.html"}
+{ "name": "Diving Suit", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "suit.html"}
+{ "name": "NBC Suit", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "suit.html"}
+{ "name": "Vacc Suit", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "suit.html"}
+{ "name": "Escape", "attribute": "DX", "difficulty": "Hard", "base": -6, "info": "escape.html"}
+{ "name": "Explosives", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "explosives.html"}
+{ "name": "First Aid", "attribute": "IQ", "difficulty": "Easy", "base": -4, "info": "firstaid.html"}
+{ "name": "Forgery", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "forgery.html"}
+{ "name": "Gambling", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "gambling.html"}
+{ "name": "Hiking", "attribute": "HT", "difficulty": "Medium", "base": -5, "info": "hiking.html"}
+{ "name": "Holdout", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "holdout.html"}
+{ "name": "History", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "university.html"}
+{ "name": "Literature", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "university.html"}
+{ "name": "Philosophy", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "university.html"}
+{ "name": "Theology", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "university.html"}
+{ "name": "Arts", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "university.html"}
+{ "name": "Diplomacy", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "influence.html"}
+{ "name": "Fast-Talk", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "influence.html"}
+{ "name": "Intimidation", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "influence.html"}
+{ "name": "Savoir-Faire", "attribute": "IQ", "difficulty": "Easy", "base": -4, "info": "influence.html"}
+{ "name": "Sex Appeal", "attribute": "HT", "difficulty": "Medium", "base": -5, "info": "influence.html"}
+{ "name": "Streetwise", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "influence.html"}
+{ "name": "Interogation", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "interogation.html"}
+{ "name": "Jumping", "attribute": "DX", "difficulty": "Easy", "base": -100, "info": "jumping.html"}
+{ "name": "Karate", "attribute": "DX", "difficulty": "Hard", "base": -100, "info": "karate.html"}
+{ "name": "Law", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "law.html"}
+{ "name": "Leadership", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "leadership.html"}
+{ "name": "Lockpicking", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "lockpicking.html"}
+{ "name": "Mathematics", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "math.html"}
+{ "name": "Mechanic", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "mechanic.html"}
+{ "name": "Fencing Weapons", "attribute": "DX", "difficulty": "Medium", "base": -5, "info": "melee.html"}
+{ "name": "Flails Weapons", "attribute": "DX", "difficulty": "Hard", "base": -6, "info": "melee.html"}
+{ "name": "Impact Weapons", "attribute": "DX", "difficulty": "Medium", "base": -5, "info": "melee.html"}
+{ "name": "Pole Weapons", "attribute": "DX", "difficulty": "Medium", "base": -5, "info": "melee.html"}
+{ "name": "Sword Weapons", "attribute": "DX", "difficulty": "Medium", "base": -5, "info": "melee.html"}
+{ "name": "Knife Weapons", "attribute": "DX", "difficulty": "Easy", "base": -4, "info": "melee.html"}
+{ "name": "Merchant", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "merchant.html"}
+{ "name": "Flamethrower", "attribute": "DX", "difficulty": "Easy", "base": -5, "info": "missile.html"}
+{ "name": "Gunner", "attribute": "DX", "difficulty": "Easy", "base": -4, "info": "missile.html"}
+{ "name": "Guns", "attribute": "DX", "difficulty": "Easy", "base": -4, "info": "missile.html"}
+{ "name": "Sarbacane/Blowpipe", "attribute": "DX", "difficulty": "Hard", "base": -6, "info": "missile.html"}
+{ "name": "Bow", "attribute": "DX", "difficulty": "Medium", "base": -5, "info": "missile.html"}
+{ "name": "Crossbow", "attribute": "DX", "difficulty": "Easy", "base": -4, "info": "missile.html"}
+{ "name": "Astronomy", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "naturalsciences.html"}
+{ "name": "Biology", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "naturalsciences.html"}
+{ "name": "Chemistry", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "naturalsciences.html"}
+{ "name": "Geology", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "naturalsciences.html"}
+{ "name": "Physics", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "naturalsciences.html"}
+{ "name": "Naturalist", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "naturalist.html"}
+{ "name": "Navigation", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "navigation.html"}
+{ "name": "Observation", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "observation.html"}
+{ "name": "Occultism", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "occultism.html"}
+{ "name": "Photography", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "photography.html"}
+{ "name": "Physician", "attribute": "IQ", "difficulty": "Hard", "base": -7, "info": "physician.html"}
+{ "name": "Pickpocket", "attribute": "DX", "difficulty": "Hard", "base": -6, "info": "pickpocket.html"}
+{ "name": "Public Speaking", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "publicspeaking.html"}
+{ "name": "Research", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "research.html"}
+{ "name": "Riding", "attribute": "DX", "difficulty": "Medium", "base": -5, "info": "riding.html"}
+{ "name": "Scrounging", "attribute": "IQ", "difficulty": "Easy", "base": -4, "info": "scrounging.html"}
+{ "name": "Search", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "search.html"}
+{ "name": "Shadowing", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "shadowing.html"}
+{ "name": "Shield", "attribute": "DX", "difficulty": "Easy", "base": -4, "info": "shield.html"}
+{ "name": "Anthropology", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "socialsciences.html"}
+{ "name": "Archeology", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "socialsciences.html"}
+{ "name": "Psychology", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "socialsciences.html"}
+{ "name": "Sociology", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "socialsciences.html"}
+{ "name": "Smugling", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "smugling.html"}
+{ "name": "Stealth", "attribute": "DX", "difficulty": "Medium", "base": -5, "info": "stealth.html"}
+{ "name": "Survival", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "survival.html"}
+{ "name": "Swimming", "attribute": "HT", "difficulty": "Easy", "base": -4, "info": "swimming.html"}
+{ "name": "Tactics", "attribute": "IQ", "difficulty": "Hard", "base": -6, "info": "tactics.html"}
+{ "name": "Throwing", "attribute": "DX", "difficulty": "Easy", "base": -3, "info": "throwing.html"}
+{ "name": "Thrown Weapons", "attribute": "DX", "difficulty": "Easy", "base": -4, "info": "thrown.html"}
+{ "name": "Tracking", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "tracking.html"}
+{ "name": "Traps", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "traps.html"}
+{ "name": "Bicycling", "attribute": "DX", "difficulty": "Easy", "base": -4, "info": "vehicles.html"}
+{ "name": "Boating", "attribute": "DX", "difficulty": "Medium", "base": -5, "info": "vehicles.html"}
+{ "name": "Driving", "attribute": "DX", "difficulty": "Medium", "base": -5, "info": "vehicles.html"}
+{ "name": "Piloting", "attribute": "DX", "difficulty": "Medium", "base": -5, "info": "vehicles.html"}
+{ "name": "Submarine", "attribute": "DX", "difficulty": "Medium", "base": -5, "info": "vehicles.html"}
+{ "name": "Writing", "attribute": "IQ", "difficulty": "Medium", "base": -5, "info": "writing.html"}
