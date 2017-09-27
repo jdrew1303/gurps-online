@@ -126,5 +126,10 @@ app.run(function(Resource) {
     Resource.appearances.then(function (data) {
         console.log(data)
     });
+    console.log(Resource.advantages);
+    console.log(Resource.disadvantages);
+    console.log(Resource.postures);
+    console.log(Resource.skills);
+    console.log(Resource.wealths);
     console.log("INIT");
 });
