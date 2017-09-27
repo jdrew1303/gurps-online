@@ -23,11 +23,15 @@ app.use(cors());
 app.use('/api/users', require('./routes/auth'));
 app.use('/api/dices', require('./routes/rolls'));
 app.use('/api/skills', require('./routes/skills'));
+app.use('/api/postures', require('./routes/postures'));
+app.use('/api/advantages', require('./routes/advantages'));
+app.use('/api/appearances', require('./routes/appearances'));
+app.use('/api/disadvantages', require('./routes/disadvantages'));
+app.use('/api/wealths', require('./routes/wealths'));
 app.use('/api', require('./routes/middleware'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/characters', require('./routes/characters'));
 app.use('/api/campaigns', require('./routes/campaigns'));
-app.use('/api/postures', require('./routes/postures'));
 
 app.listen(port);
 console.log("Server ready!");

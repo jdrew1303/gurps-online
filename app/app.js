@@ -121,7 +121,10 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $mdThemin
     $urlRouterProvider.otherwise('/login');
 });
 
-app.run(function(Skills) {
-    // Skills.init();
+app.run(function(Resource) {
+    Resource.init();
+    Resource.appearances.then(function (data) {
+        console.log(data)
+    });
     console.log("INIT");
 });

@@ -1,0 +1,18 @@
+{ "name": "Dead Broke", "cost": -25, "multiplicator": 0 }
+{ "name": "Poor", "cost": -15, "multiplicator": 0.2 }
+{ "name": "Struggling", "cost": -10, "multiplicator": 0.5 }
+{ "name": "Average", "cost": 0, "multiplicator": 1 }
+{ "name": "Comfortable", "cost": 10, "multiplicator": 2 }
+{ "name": "Wealthy", "cost": 20, "multiplicator": 5 }
+{ "name": "Very Wealthy", "cost": 30, "multiplicator": 20 }
+{ "name": "Filthy Rich", "cost": 50, "multiplicator": 100 }
+
+
+
+
+
+
+
+
+
+

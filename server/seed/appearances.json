@@ -1,0 +1,12 @@
+{ "name": "Hideous", "cost": -16, "attract": -4, "reaction": -4 }
+{ "name": "Ugly", "cost": -8, "attract": -2, "reaction": -2 }
+{ "name": "Unattractive", "cost": -4, "attract": -1, "reaction": -1 }
+{ "name": "Average", "cost": 0, "attract": 0, "reaction": 0 }
+{ "name": "Attractive", "cost": 4, "attract": 1, "reaction": 1 }
+{ "name": "Handsome", "cost": 12, "attract": 4, "reaction": 2 }
+{ "name": "Very Handsome", "cost": 16, "attract": 6, "reaction": 2 }
+
+
+
+
+

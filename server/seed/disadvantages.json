@@ -1,32 +1,38 @@
-{ "name": "Acute Hearing", "haslevel": true, "cost": 2, "description": "+1 to Hearing rolls", "info": "senses.html"}
-{ "name": "Acute Taste and Smell", "haslevel": true, "cost": 2, "description": "+1 to Taste and Smell rolls", "info": "senses.html"}
-{ "name": "Acute Touch", "haslevel": true, "cost": 2, "description": "+1 to Touch rolls", "info": "senses.html"}
-{ "name": "Acute Vision", "haslevel": true, "cost": 2, "description": "+1 to Vision rolls", "info": "senses.html"}
-{ "name": "Ambidexterity", "haslevel": false, "cost": 5, "description": "No wrong hand malus.", "info": "ambidexterity.html"}
-{ "name": "Animal Empathy", "haslevel": false, "cost": 5, "description": "Reveals beast emotionnal state and Influence them.", "info": "animalempathy.html"}
-{ "name": "Catfall", "haslevel": false, "cost": 10, "description": "Fall < 4.572 = Automatic Success", "info": "catfall.html"}
-{ "name": "Combat Reflexes", "haslevel": false, "cost": 15, "description": "+1 to active defense / +2 Fright Checks / +6 IQ vs stun, wake up, surprise.", "info": "combatreflexes.html"}
-{ "name": "Danger Sense", "haslevel": false, "cost": 15, "description": "GM rolls against Perception. Success = warning.", "info": "dangersense.html"}
-{ "name": "Daredevil", "haslevel": false, "cost": 15, "description": "Reveal NPC emotion on first contact.", "info": "empathy.html"}
-{ "name": "Empathy", "haslevel": false, "cost": 15, "description": "Reveals NPC feeling when you meet them.", "info": "animalempathy.html"}
-{ "name": "Enhanced Block", "haslevel": true, "cost": 5, "description": "+1/level to block with shield skill.", "info": "defenses.html"}
-{ "name": "Enhanced Dodge", "haslevel": true, "cost": 15, "description": "+1/level to dodge.", "info": "defenses.html"}
-{ "name": "Enhanced Parry Melee", "haslevel": true, "cost": 5, "description": "+1/level for bare hands or melee weapons", "info": "defenses.html"}
-{ "name": "Enhanced Parry All", "haslevel": true, "cost": 10, "description": "+1/level for all parries", "info": "defenses.html"}
-{ "name": "Fearlessness", "haslevel": true, "cost": 2, "description": "Bonus on Fright Check or Intimidation.", "info": "fearlessness.html"}
-{ "name": "Flexibility", "haslevel": false, "cost": 5, "description": "+3 on Climbing, on Escape. Ignore -3 for working in close spaces.", "info": "flexibility.html"}
-{ "name": "Double-Jointed", "haslevel": false, "cost": 15, "description": "+5 on Climbing, on Escape. Ignore -5 for working in close spaces.", "info": "flexibility.html"}
-{ "name": "Hard to Kill", "haslevel": true, "cost": 2, "description": "+1 to HT roll for survival.", "info": "hardtokill.html"}
-{ "name": "High Pain Threshold", "haslevel": true, "cost": 10, "description": "+3 on HT roll vs knockdown, stunning, torturing. Will+3 to ignore pain.", "info": "hardtokill.html"}
-{ "name": "Jumper (Time)", "haslevel": false, "cost": 100, "description": "Travel through time.", "info": "jumper.html"}
-{ "name": "Jumper (Space)", "haslevel": false, "cost": 100, "description": "Travel through space.", "info": "jumper.html"}
-{ "name": "Language Talent", "haslevel": false, "cost": 10, "description": "When you learn a language you automatically reach next higher level", "info": "language.html"}
-{ "name": "Luck", "haslevel": false, "cost": 15, "description": "1 reroll per hour.", "info": "luck.html"}
-{ "name": "Extraordinary Luck", "haslevel": false, "cost": 30, "description": "1 reroll per 30 minutes.", "info": "luck.html"}
-{ "name": "Ridiculous Luck", "haslevel": false, "cost": 60, "description": "1 reroll per 10 minutes.", "info": "luck.html"}
-{ "name": "Night Vision", "haslevel": true, "cost": 1, "description": "Ignore -1 / level malus in darkness.", "info": "luck.html"}
-{ "name": "Perfect Balance", "haslevel": false, "cost": 15, "description": "+6 to keep balance. +4 to DX in combat to keep balance. +1 to Acrobatics and Climbing.", "info": "perfectbalance.html"}
-{ "name": "Resistant to Disease Minor", "haslevel": false, "cost": 3, "description": "+3 to HT rolls vs diseases.", "info": "resistant.html"}
-{ "name": "Resistant to Disease Major", "haslevel": false, "cost": 5, "description": "+8 to HT rolls vs diseases.", "info": "resistant.html"}
-{ "name": "Resistant to Poison Minor", "haslevel": false, "cost": 3, "description": "+3 to HT rolls vs poisons.", "info": "resistant.html"}
-{ "name": "Resistant to Poison Major", "haslevel": false, "cost": 5, "description": "+8 to HT rolls vs poisons.", "info": "resistant.html"}
+{ "name": "Bad Sight (glass or contact lenses)", "chronic": false, "cost": 10, "description": "-6 vision rolls / -2 hit in combat", "info": "badsight.html"}
+{ "name": "Bad Sight", "chronic": false, "cost": 25, "description": "-6 vision rolls / -2 hit in combat", "info": "badsight.html"}
+{ "name": "Bad Temper*", "chronic": true, "cost": 10, "description": "Self-control roll in any stressful situation", "info": "badtemper.html"}
+{ "name": "Bloodlust*", "chronic": true, "cost": 10, "description": "Self-control roll whenever you need to accept a surrender, evade a sentry, take a prisoner, etc.", "info": "bloodlust.html"}
+{ "name": "Code of Honor (Pirate)*", "chronic": true, "cost": 5, "description": "Always avenge an insult; buddy’s foe is your own; never attack partner/buddy except in duel.", "info": "honor.html"}
+{ "name": "Code of Honor (Gentleman)*", "chronic": true, "cost": 10, "description": "Never break words. Never ignore insults (apology or a duel - death not necessarily). Never take advantage of an opponent (weapons, circumstances - except in open war). Only applies between gentlemen.", "info": "honor.html"}
+{ "name": "Curious*", "chronic": true, "cost": 5, "description": "self-control roll with interesting item/situation. Fail: examine it even if dangerous.", "info": "curious.html"}
+{ "name": "Minor Delusion", "chronic": false, "cost": 5, "description": "Affects your behavior, and anyone around you will soon notice it (and react at -1), but it does not keep you from functioning more-or-less normally.", "info": "delusions.html"}
+{ "name": "Major Delusion", "chronic": false, "cost": 10, "description": "Affects your behavior, but does not keep you from living a fairly normal life. Others will react to you at -2.", "info": "delusions.html"}
+{ "name": "Severe Delusion", "chronic": false, "cost": 15, "description": "Affects your behavior so much that it may keep you from functioning in the everyday world. Others react to you at -3, but they are more likely to fearor pity you than to attack.", "info": "delusions.html"}
+{ "name": "Gluttony*", "chronic": true, "cost": 5, "description": "Self-control roll when presented with tempting foof/wine you should resist. Fail: Eat it regardless consequences.", "info": "gluttony.html"}
+{ "name": "Greed*", "chronic": true, "cost": 15, "description": "Self-control roll any time payment for fair work, gains from adventure, spoils of crime, or just bait. Fail: do whatever it takes to get the payoff. If rich, small sums does not tempt you. If poor, you get -5 or more for rich prize.", "info": "gluttony.html"}
+{ "name": "Hard of Hearing", "chronic": false, "cost": 10, "description": "-4 on Hearing and skill roll when you need to understand someone (not if your are the one talking).", "info": "hearing.html"}
+{ "name": "Honesty*", "chronic": true, "cost": 10, "description": " Self-control roll when faced with the “need” to break unreasonable laws. Fail: you must obey the law, whatever the consequences. Success: make a second self-control roll. Fail 2: turn yourself into the authorities!", "info": "honesty.html"}
+{ "name": "Impulsiveness*", "chronic": true, "cost": 10, "description": "Roleplay it! Make a self-control roll whenever it would be wise to wait and ponder. If you fail, you must act.", "info": "impulsivennes.html"}
+{ "name": "Intolerance (total)*", "chronic": true, "cost": 10, "description": "You react at -3 toward anyone not of your own class, ethnicity, nationality, religion, or species (pick one).", "info": "intolerance.html"}
+{ "name": "Intolerance (specific class)*", "chronic": true, "cost": 5, "description": "You react at -3 toward only one specific class, ethnicity, nationality, religion, sex, or species.", "info": "intolerance.html"}
+{ "name": "Intolerance (specific person)*", "chronic": true, "cost": 1, "description": "You react at -3 toward only one nasty quirk for a rare victim.", "info": "intolerance.html"}
+{ "name": "Jealousy", "chronic": false, "cost": 10, "description": "You resist any plan proposed by a “rival,” and hate it if someone else is in the limelight", "info": "jealousy.html"}
+{ "name": "Lecherousness*", "chronic": true, "cost": 15, "description": "Make a self-control roll whenever contact with an appealing member of the sex you find attractive (-5 if Beautiful / -10 if Very Beautiful). If you fail, you must make a “pass,” using whatever wiles and skills you can bring to bear.", "info": "lecherousness.html"}
+{ "name": "Obsession (short-term)*", "chronic": true, "cost": 5, "description": "Make a self-control roll whenever it would be wise to deviate from your goal. If you fail, you continue to pursue your Obsession, regardless of the consequences.", "info": "obsession.html"}
+{ "name": "Obsession (long-term)*", "chronic": true, "cost": 10, "description": "Make a self-control roll whenever it would be wise to deviate from your goal. If you fail, you continue to pursue your Obsession, regardless of the consequences.", "info": "obsession.html"}
+{ "name": "Overconfidence*", "chronic": true, "cost": 5, "description": " +2 reaction rolls from young / naive NPC, -2 experienced NPCs. make a self-control roll any time the GM feels you show an unreasonable degree of caution. If you fail, you must go ahead as though you were able to handle the situation! Caution is not an option", "info": "overconfidence.html"}
+{ "name": "Reluctant Killer", "chronic": false, "cost": 5, "description": "-4 to hit a person (not a monster, machine, etc.) with a deadly attack (-2 if you can’t see his face). If you kill someone, roll 3d – you’re morose and useless for that many days.", "info": "pacifism.html"}
+{ "name": "Cannot Harm Innocents", "chronic": false, "cost": 10, "description": "Fights allowed but only use deadly force on a foe attempting to do you serious harm", "info": "pacifism.html"}
+{ "name": "Rare Phobia*", "chronic": true, "cost": 5, "description": "-2 to IQ/DX and skill rolls while fear is present. Roll every 10 minutes to see if the fear overcomes you. Fail: flee, panic, or react in a manner that prevent action.", "info": "phobias.html"}
+{ "name": "Frequent Phobia*", "chronic": true, "cost": 10, "description": "-2 to IQ/DX and skill rolls while fear is present. Roll every 10 minutes to see if the fear overcomes you. Fail: flee, panic, or react in a manner that prevent action.", "info": "phobias.html"}
+{ "name": "Common Phobia*", "chronic": true, "cost": 15, "description": "-2 to IQ/DX and skill rolls while fear is present. Roll every 10 minutes to see if the fear overcomes you. Fail: flee, panic, or react in a manner that prevent action.", "info": "phobias.html"}
+{ "name": "Sense of Duty (Individual)", "chronic": false, "cost": 2, "description": "You will never betray them, abandon them when they’re in trouble, or let them suffer or go hungry if you can help.", "info": "duty.html"}
+{ "name": "Sense of Duty (Small Group)", "chronic": false, "cost": 5, "description": "You will never betray them, abandon them when they’re in trouble, or let them suffer or go hungry if you can help.", "info": "duty.html"}
+{ "name": "Sense of Duty (Small Group)", "chronic": false, "cost": 10, "description": "You will never betray them, abandon them when they’re in trouble, or let them suffer or go hungry if you can help.", "info": "duty.html"}
+{ "name": "Sense of Duty (Race)", "chronic": false, "cost": 15, "description": "You will never betray them, abandon them when they’re in trouble, or let them suffer or go hungry if you can help.", "info": "duty.html"}
+{ "name": "Sense of Duty (Every Living Being)", "chronic": false, "cost": 20, "description": "You will never betray them, abandon them when they’re in trouble, or let them suffer or go hungry if you can help.", "info": "duty.html"}
+{ "name": "Truthfulness*", "chronic": true, "cost": 5, "description": " -5 to Fast-Talk skill, -5 at acting when you try to deceive, make a self-control roll when you should keep silent about truth, -5 when lying. Fail: Your lie is obvious.", "info": "thruthfulness.html"}
+{ "name": "Unluckiness", "chronic": false, "cost": 10, "description": "Once per play session, the GM will arbitrarily and maliciously make something go wrong for you.", "info": "unluckiness.html"}
+{ "name": "Minor vow", "chronic": false, "cost": 5, "description": "You have sworn an oath to do (or not to do) something. Whatever the oath, you take it seriously; if you didn’t, it would not be a disadvantage.", "info": "vow.html"}
+{ "name": "Major vow", "chronic": false, "cost": 10, "description": "You have sworn an oath to do (or not to do) something. Whatever the oath, you take it seriously; if you didn’t, it would not be a disadvantage.", "info": "vow.html"}
+{ "name": "Great vow", "chronic": false, "cost": 15, "description": "You have sworn an oath to do (or not to do) something. Whatever the oath, you take it seriously; if you didn’t, it would not be a disadvantage.", "info": "vow.html"}
