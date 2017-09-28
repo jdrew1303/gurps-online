@@ -7,7 +7,9 @@ var router = express.Router();
 var Character = require('../models/character');
 var User = require('../models/user');
 var Campaign = require('../models/campaign');
+var Appearance = require('../models/appearance');
 var Posture = require('../models/posture');
+var Wealth = require('../models/wealth');
 var ObjectId = mongoose.Types.ObjectId;
 
 
@@ -23,8 +25,14 @@ router.post('/', function (req, res) {
         req.user.save();
         Posture.findOne({name: 'Standing'}, function(err,obj) {
             character.posture = ObjectId(obj._id);
-            character.save();
-            res.json({ success: true });
+            Wealth.findOne({name: 'Average'}, function(err,obj) {
+                character.wealth = ObjectId(obj._id);
+                Appearance.findOne({name: 'Average'}, function(err,obj) {
+                    character.wealth = ObjectId(obj._id);
+                    character.save();
+                    res.json({ success: true });
+                });
+            });
         });
     });
 });
