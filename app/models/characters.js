@@ -14,6 +14,7 @@ angular.module('gurps-online').factory('Characters', function(Advantage, Skills,
         this.computeDamage();
     }
 
+
     /**
      * Public method, assigned to prototype
      */
@@ -121,37 +122,6 @@ angular.module('gurps-online').factory('Characters', function(Advantage, Skills,
         // TODO
     };
 
-    Characters.prototype.to_json = function () {
-        return {
-            exp: this.exp,
-            freexp: this.freexp,
-            campaign: this.campaign,
-            status: this.status,
-            strength: this.strength,
-            dexterity: this.dexterity,
-            intelligence: this.intelligence,
-            health: this.health,
-            handedness: this.handedness,
-            hp: this.hp,
-            will: this.will,
-            fp: this.fp,
-            charisma: this.charisma,
-            voice: this.voice,
-            appearance: this.appearance,
-            habits: this.habits,
-            wealthfactor: this.wealthfactor,
-            statusbonus: this.statusbonus,
-            reputations: this.reputations,
-            advantages: this.advantages,
-            disadvantages: this.disadvantages,
-            skills: [],
-            background: this.background,
-            details: this.details,
-            notes: this.notes,
-            encumbrance: this.encumbrance,
-            posture: this.posture,
-        };
-    };
 
     /**
      * Static method, assigned to class
