@@ -28,7 +28,7 @@ router.post('/', function (req, res) {
             Wealth.findOne({name: 'Average'}, function(err,obj) {
                 character.wealth = ObjectId(obj._id);
                 Appearance.findOne({name: 'Average'}, function(err,obj) {
-                    character.wealth = ObjectId(obj._id);
+                    character.appearance = ObjectId(obj._id);
                     character.save();
                     res.json({ success: true });
                 });
@@ -38,6 +38,7 @@ router.post('/', function (req, res) {
 });
 
 router.get('/', function(req, res) {
+    console.log("PLOP");
     Character.find({_owner: ObjectId(req.user._id)}).populate('_owner').exec(function(err, characters) {
         if (err) throw err;
         res.json(characters);

@@ -28,7 +28,7 @@ angular.module('gurps-online').factory('CharactersService', function ($http, $q,
         ownned: {
             method: "GET",
             url: serviceUri + "/",
-            isArray: true
+            isArray: true,
         },
         remove: {
             method: "DELETE",
@@ -62,7 +62,7 @@ angular.module('gurps-online').factory('CharactersService', function ($http, $q,
     };
     this.update = function (character) {
         var deferred = $q.defer();
-        CharactersResource.update({characterId: character._id}, character.to_json()).$promise.then(deferred.resolve, deferred.reject);
+        CharactersResource.update({characterId: character._id}, character).$promise.then(deferred.resolve, deferred.reject);
         return deferred.promise;
     };
     this.joinCampaign = function (characterId, campaignId) {

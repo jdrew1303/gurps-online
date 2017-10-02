@@ -1,0 +1,38 @@
+<h1 class="text-korinna">Stats</h1>
+<div id="stats">
+    <div layout="row">
+        <attributes placeholder="Strength (ST)" info="views/characters/info/strength.html" variable="character.strength" cost="10" edit="edit" sub="canEdit" capital="character.freexp" min="1" flex></attributes>
+        <attributes placeholder="Dexterity (DX)" info="views/characters/info/dexterity.html" variable="character.dexterity" cost="20" edit="edit" sub="canEdit" capital="character.freexp" min="1" flex></attributes>
+        <attributes placeholder="Intelligence (IQ)" info="views/characters/info/intelligence.html" variable="character.intelligence" cost="20" edit="edit" sub="canEdit" capital="character.freexp" min="1" flex></attributes>
+        <attributes placeholder="Health (HT)" info="views/characters/info/health.html" variable="character.health" cost="10" edit="edit" sub="canEdit" capital="character.freexp" min="1" flex></attributes>
+    </div>
+    <div ng-if="canEdit">
+        <value-bar name="HP" info="views/characters/info/hitpoints.html" value="character.health" total="character.health"></value-bar>
+        <value-bar name="Will" info="views/characters/info/will.html" value="character.intelligence" total="character.intelligence"></value-bar>
+        <value-bar name="Stamina" info="views/characters/info/fatigue.html" value="character.health" total="character.health"></value-bar>
+    </div>
+    <div ng-if="!canEdit">
+        <value-bar name="HP" info="views/characters/info/hitpoints.html" value="character.hp" total="character.health"></value-bar>
+        <value-bar name="Will" info="views/characters/info/will.html" value="character.will" total="character.intelligence"></value-bar>
+        <value-bar name="Stamina" info="views/characters/info/fatigue.html" value="character.fp" total="character.health"></value-bar>
+    </div>
+
+    <div layout="row">
+        <secondary-attributes placeholder="Perception (Per)" info="views/characters/info/perception.html" variable="character.intelligence"></secondary-attributes>
+        <md-divider vertical></md-divider>
+        <secondary-attributes placeholder="Basic Speed" info="views/characters/info/speed.html" variable="character.speed"></secondary-attributes>
+        <md-divider vertical></md-divider>
+        <secondary-attributes placeholder="Dodge" info="views/characters/info/dodge.html" variable="character.dodge"></secondary-attributes>
+        <md-divider vertical></md-divider>
+        <secondary-attributes placeholder="Basic Move" info="views/characters/info/move.html" variable="character.move"></secondary-attributes>
+    </div>
+    <div layout="row">
+        <h3 class="text-korinna">
+            Damage
+            <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
+                     ng-click="showInfo('views/characters/info/damage.html', $event)"></md-icon>
+            Thrust: {{character.thrust}}
+            Swing: {{character.swing}}
+        </h3>
+    </div>
+</div>

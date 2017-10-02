@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+mongoimport --db gurps-online --collection damages --drop --file seed/damages.json
 mongoimport --db gurps-online --collection wealths --drop --file seed/wealths.json
 mongoimport --db gurps-online --collection appearances --drop --file seed/appearances.json
 mongoimport --db gurps-online --collection disadvantages --drop --file seed/disadvantages.json

@@ -27,6 +27,7 @@ app.use('/api/postures', require('./routes/postures'));
 app.use('/api/advantages', require('./routes/advantages'));
 app.use('/api/appearances', require('./routes/appearances'));
 app.use('/api/disadvantages', require('./routes/disadvantages'));
+app.use('/api/damages', require('./routes/damages'));
 app.use('/api/wealths', require('./routes/wealths'));
 app.use('/api', require('./routes/middleware'));
 app.use('/api/users', require('./routes/users'));

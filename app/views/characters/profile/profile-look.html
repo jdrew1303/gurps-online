@@ -1,0 +1,42 @@
+<h1 class="text-korinna">Image and Looks</h1>
+<div id="looks">
+    <div layout="row">
+        <attributes-selector placeholder="Appearance" info="views/characters/info/appearance.html" states="appearances"
+                             edit="canEdit" capital="character.freexp" change="appearanceChange" indexer="appearanceIndex" flex>
+        </attributes-selector>
+        <attributes placeholder="Charisma" info="views/characters/info/charisma.html" variable="character.charisma" cost="5" min="0" edit="canEdit" capital="character.freexp" flex></attributes>
+        <attributes-checkbox placeholder="Voice" info="views/characters/info/voice.html" edit="canEdit" variable="character.voice" capital="character.freexp" cost="10" flex></attributes-checkbox>
+    </div>
+    <div layout="column" flex>
+        <div layout="row">
+            <h3 class="text-korinna">
+                Odious Personnal Habits
+                <md-icon md-font-icon="fa-info-circle" class="fa md-primary"
+                         ng-click="showInfo('views/characters/info/oph.html', $event)"></md-icon>
+            </h3>
+        </div>
+        <div layout="row" ng-if="canEdit">
+            <md-input-container style="padding-right: 10px" flex>
+                <label>Title</label>
+                <input ng-model="chipText" ng-disabled="!canEdit">
+            </md-input-container>
+            <md-select ng-model="chipType" placeholder="Type" class="md-no-underline" flex="20" ng-disabled="!canEdit">
+                <md-option ng-repeat="type in types" ng-value="type" ng-selected="$index === 0">{{type.title}} ({{-type.cost}})</md-option>
+            </md-select>
+            <md-button class="md-fab md-mini md-primary" aria-label="add" ng-click="addchips(chipType, chipText)" ng-disabled="!canEdit">
+                <md-icon md-font-icon="fa-plus" class="fa md-primary"></md-icon>
+            </md-button>
+        </div>
+        <div layout="row">
+            <md-chips ng-model="character.habits" readonly="false"
+                      md-transform-chip="transformChip($chip)" md-on-remove="removeChips($chip)" flex>
+                <md-chip-template>
+                        <span>
+                          <strong>{{$chip.description}}</strong>
+                          <em>({{$chip.type}})</em>
+                        </span>
+                </md-chip-template>
+            </md-chips>
+        </div>
+    </div>
+</div>

@@ -2,22 +2,21 @@
  * Created by lelabo on 05/05/17.
  */
 angular.module('gurps-online').factory('Resource',
-    function(AppearancesService, AdvantagesService, DisdvantagesService, PosturesService, SkillsService, WealthsService) {
+    function(Appearance, AdvantagesService, DisdvantagesService, PosturesService, SkillsService, WealthsService,
+    DamagesService) {
 
-    /**
-     * Constructor, with class name
-     */
-    function Resource() {
-    }
+    var self = this;
 
-    Resource.init = function () {
-        Resource.appearances = AppearancesService.all();
-        Resource.advantages = AdvantagesService.all();
-        Resource.disadvantages = DisdvantagesService.all();
-        Resource.postures = PosturesService.all();
-        Resource.skills = SkillsService.all();
-        Resource.wealths = WealthsService.all();
+    self.init = function () {
+        Appearance.init();
+        self.appearances = Appearance.promise;
+        self.advantages = AdvantagesService.all();
+        self.disadvantages = DisdvantagesService.all();
+        self.postures = PosturesService.all();
+        self.skills = SkillsService.all();
+        self.wealths = WealthsService.all();
+        self.damages = DamagesService.all()
     };
 
-    return Resource;
+    return self;
 });

@@ -1,7 +1,7 @@
 /**
  * Created by lelabo on 21/04/17.
  */
-angular.module('gurps-online').controller('homeCtrl', function($scope, AuthService, UserService, MenuService) {
+angular.module('gurps-online').controller('homeCtrl', function($scope, AuthService, UserService, MenuService, Damage) {
     MenuService.currentTitle = 'Home';
 
     UserService.me(true).then(function (success) {

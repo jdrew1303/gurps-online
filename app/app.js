@@ -12,6 +12,19 @@ app.constant("global", {
 app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $mdThemingProvider) {
     $httpProvider.interceptors.push('HttpInterceptor');
 
+    // First, checks if it isn't implemented yet.
+    if (!String.prototype.format) {
+        String.prototype.format = function() {
+            var args = arguments;
+            return this.replace(/{(\d+)}/g, function(match, number) {
+                return typeof args[number] != 'undefined'
+                    ? args[number]
+                    : match
+                    ;
+            });
+        };
+    }
+
     function onSecureEnter($location, AuthService) {
         if (!AuthService.connected()) {
             $location.path('/login');
@@ -71,7 +84,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $mdThemin
             url: '/profile/:characterId',
             views: {
                 'content@app': {
-                    templateUrl: 'views/characters/profile.html',
+                    templateUrl: 'views/characters/profile/profile.html',
                     controller: 'charactersProfileCtrl'
                 }
             }
@@ -121,15 +134,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $mdThemin
     $urlRouterProvider.otherwise('/login');
 });
 
-app.run(function(Resource) {
+app.run(function(Resource, Damage) {
     Resource.init();
-    Resource.appearances.then(function (data) {
-        console.log(data)
-    });
-    console.log(Resource.advantages);
-    console.log(Resource.disadvantages);
-    console.log(Resource.postures);
-    console.log(Resource.skills);
-    console.log(Resource.wealths);
-    console.log("INIT");
+    Damage.init()
 });

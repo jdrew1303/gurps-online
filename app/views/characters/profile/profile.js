@@ -2,18 +2,27 @@
  * Created by lelabo on 02/05/17.
  */
 angular.module('gurps-online').controller('charactersProfileCtrl', function($scope, $state, $stateParams, $mdDialog,
-                                                                            CharactersService, Characters, Appearance,
-                                                                            OPH, Wealth, Reputation, Advantage,
+                                                                            Appearance,
+                                                                            CharactersService, Characters, Resource,
+                                                                            OPH, Reputation, Advantage,
                                                                             Disadvantage, Skills, MenuService, SkillsService) {
 
 
     $scope.edit = false;
     $scope.creation = false;
-    $scope.wealths = Wealth.states;
-    $scope.appearances = Appearance.states;
+    Resource.appearances.then(function (appearances) {
+        $scope.appearances = appearances;
+    });
+    Resource.advantages.then(function (advantages) {
+        $scope.advantages = advantages;
+    });
+    Resource.disadvantages.then(function (disadvantages) {
+        $scope.disadvantages = disadvantages;
+    });
+    Resource.wealths.then(function (wealths) {
+        $scope.wealths = wealths;
+    });
     $scope.types = OPH.types;
-    $scope.advantages = Advantage.advantages;
-    $scope.disadvantages = Disadvantage.disadvantages;
     $scope.repText = '';
     $scope.level = 0;
     SkillsService.all().then(function (data) {
@@ -117,27 +126,9 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
         }
     };
 
-    $scope.appearanceIndex = function () {
-        if ($scope.character !== undefined) {
-            for (var i = 0; i < $scope.appearances.length; ++i) {
-                if ($scope.appearances[i].name == $scope.character.appearance) {
-                    return i;
-                }
-            }
-        }
-        return 0;
-    };
-    $scope.appearanceChange = function(oldval, newval) {
-        if ($scope.character !== undefined && oldval && newval && newval.name !== $scope.character.appearance) {
-            if (oldval !== undefined && oldval !== null) {
-                $scope.character.freexp += oldval.cost;
-            }
-            if (newval !== undefined && newval !== null) {
-                $scope.character.freexp -= newval.cost;
-                $scope.character.appearance = newval.name;
-            }
-        }
-    };
+    $scope.appearanceIndex = Appearance.index($scope);
+    $scope.appearanceChange = Appearance.change($scope);
+
     $scope.wealthIndex = function () {
         for (var i = 0; i < $scope.wealths.length; ++i) {
             if ($scope.character !== undefined && $scope.wealths[i].multiplicator == $scope.character.wealthfactor) {
