@@ -25,28 +25,28 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $mdThemin
         };
     }
 
-    function onSecureEnter($location, AuthService) {
+    function IsNotConnected($location, AuthService) {
         if (!AuthService.connected()) {
             $location.path('/login');
         }
     }
-    // function onUnSecureEnter($location, AuthService) {
-    //     if (AuthService.connected()) {
-    //         $location.path('/');
-    //     }
-    // }
+    function IsConnected($location, AuthService) {
+        console.log("PLOP");
+        if (AuthService.connected()) {
+            $location.path('/');
+        }
+    }
 
     $stateProvider
         .state('login', {
             url: '/login',
             templateUrl: 'views/login/login.html',
             controller: 'loginCtrl',
-            // onEnter: onUnSecureEnter
+            onEnter: IsConnected
         })
         .state('app', {
             url: '/',
             views: {
-
                 '@': {
                     templateUrl: 'views/menu/menu.html',
                     controller: 'menuCtrl as vm'
@@ -54,7 +54,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $mdThemin
                 'content@app': {
                     templateUrl: 'views/home/home.html',
                     controller: 'homeCtrl',
-                    // onEnter: onSecureEnter
+                    onEnter: IsNotConnected
                 }
             },
         })
@@ -134,7 +134,8 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $mdThemin
     $urlRouterProvider.otherwise('/login');
 });
 
-app.run(function(Resource, Damage) {
+app.run(function(Resource, Damage, Habits) {
     Resource.init();
-    Damage.init()
+    Damage.init();
+    Habits.init();
 });
