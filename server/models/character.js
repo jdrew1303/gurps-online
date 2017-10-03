@@ -26,8 +26,9 @@ module.exports = mongoose.model('Character', new Schema({
     charisma        : { type: Number, default: 0},
     voice           : { type: Boolean, default: false},
     habits          : [{
-        description    : String,
-        type           : { type: String, enum: ['Minor', 'Intermediate', 'Major']},
+        name        : String,
+        description : String,
+        _type        : { type: Schema.Types.ObjectId, ref: 'HabitType' }
     }],
     appearance      : { type: Schema.Types.ObjectId, ref: 'Appearance' , default: null },
     wealth          : { type: Schema.Types.ObjectId, ref: 'Wealth' , default: null },

@@ -6,9 +6,8 @@ var Schema = mongoose.Schema;
 require('mongoose-double')(mongoose);
 
 // set up a mongoose model and pass it using module.exports
-module.exports = mongoose.model('Habit', new Schema({
-    _owner          : { type: Schema.Types.ObjectId, ref: 'Character' },
+module.exports = mongoose.model('HabitType', new Schema({
     name            : String,
-    description     : String,
-    _type           : { type: Schema.Types.ObjectId, ref: 'HabitType' },
+    cost            : Number,
+    malus           : Number,
 }));

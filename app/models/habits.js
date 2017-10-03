@@ -1,45 +1,52 @@
 /**
  * Created by lelabo on 09/05/17.
  */
-angular.module('gurps-online').factory('OPH', function() {
+angular.module('gurps-online').factory('Habits', function($mdDialog, HabitsService) {
 
-    /**
-     * Constructor, with class name
-     */
-    function OdiousPersonnalHabits(type, cost) {
-        this.title = type;
-        this.cost = cost;
-    }
+    var self = this;
 
-
-    var possibleTypes = [
-        new OdiousPersonnalHabits('Minor', 5),
-        new OdiousPersonnalHabits('Intermediate', 10),
-        new OdiousPersonnalHabits('Major', 15),
-    ];
-
-    var typesValues = {
-        Minor: 5,
-        Intermediate: 10,
-        Major: 15,
+    self.init = function () {
+        HabitsService.types().then(function (data) {
+            self.types = data;
+        });
     };
 
-    /**
-     * Static property
-     * Using copy to prevent modifications to private property
-     */
-    OdiousPersonnalHabits.types = angular.copy(possibleTypes);
-    OdiousPersonnalHabits.typevalues = angular.copy(typesValues);
-
-    OdiousPersonnalHabits.build = function (data) {
-        return new OdiousPersonnalHabits(
-            data.type,
-            0
-        );
+    self.new = function (scope) {
+        return function () {
+            $mdDialog.show({
+                controller: HabitsCtrl,
+                templateUrl: '/views/characters/profile/habits.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose: true,
+                targetEvent: null,
+                resolve: {
+                    types: function () {
+                        return self.types;
+                    },
+                    parent_scope: function () {
+                        return scope;
+                    }
+                }
+            });
+        };
     };
 
-    /**
-     * Return the constructor function
-     */
-    return OdiousPersonnalHabits;
+    return self;
 });
+
+function HabitsCtrl($scope, $mdDialog, types, parent_scope) {
+    $scope.types = types;
+    $scope.habit = {
+        name: '',
+        description: '',
+        type: null
+    };
+    $scope.hide = function() {
+        $scope.habit._type = $scope.habit.type._id;
+        parent_scope.character.habits.push($scope.habit);
+        $mdDialog.hide();
+    };
+    $scope.cancel = function() {
+        $mdDialog.cancel();
+    };
+}

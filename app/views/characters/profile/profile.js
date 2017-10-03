@@ -2,12 +2,13 @@
  * Created by lelabo on 02/05/17.
  */
 angular.module('gurps-online').controller('charactersProfileCtrl', function($scope, $state, $stateParams, $mdDialog,
-                                                                            Appearance,
+                                                                            Appearance, Habits,
                                                                             CharactersService, Characters, Resource,
-                                                                            OPH, Reputation, Advantage,
+                                                                            Reputation, Advantage,
                                                                             Disadvantage, Skills, MenuService, SkillsService) {
 
 
+    $scope.newHabit = Habits.new($scope);
     $scope.edit = false;
     $scope.creation = false;
     Resource.appearances.then(function (appearances) {
@@ -22,7 +23,7 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
     Resource.wealths.then(function (wealths) {
         $scope.wealths = wealths;
     });
-    $scope.types = OPH.types;
+    // $scope.types = OPH.types;
     $scope.repText = '';
     $scope.level = 0;
     SkillsService.all().then(function (data) {
@@ -166,19 +167,19 @@ angular.module('gurps-online').controller('charactersProfileCtrl', function($sco
         $scope.character.reputations.splice(index);
     };
 
-    $scope.chipText = '';
-    $scope.addchips = function (item, text) {
-        $scope.character.habits.push({description: angular.copy(text), type: item.title});
-        $scope.character.freexp += item.cost;
-        $scope.chipText = '';
-    };
-
-    $scope.transformChip = function (chip) {
-        return { description: chip.description, type: chip.type }
-    };
-    $scope.removeChips = function (chip) {
-        $scope.character.freexp -= OPH.typevalues[chip.type];
-    };
+    // $scope.chipText = '';
+    // $scope.addchips = function (item, text) {
+    //     $scope.character.habits.push({description: angular.copy(text), type: item.title});
+    //     $scope.character.freexp += item.cost;
+    //     $scope.chipText = '';
+    // };
+    //
+    // $scope.transformChip = function (chip) {
+    //     return { description: chip.description, type: chip.type }
+    // };
+    // $scope.removeChips = function (chip) {
+    //     $scope.character.freexp -= OPH.typevalues[chip.type];
+    // };
     function loadCharacter() {
         CharactersService.get($stateParams.characterId).then(function (character) {
             $scope.character = Characters.build(character);

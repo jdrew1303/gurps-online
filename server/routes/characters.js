@@ -53,6 +53,8 @@ router.get('/:id', function(req, res) {
 });
 
 router.put('/:id', function(req, res) {
+    var character = req.body;
+    console.log(character);
     Character.findOneAndUpdate({_id: ObjectId(req.params.id)}, req.body).exec(function(err, characters) {
         if (err) throw err;
         res.json({ success: true });

@@ -10,10 +10,10 @@ angular.module('gurps-online').factory('Characters', function(Advantage, Skills,
         for(var k in source) {
             this[k] = source[k];
         }
+        console.log(this.posture);
         this.computeSecondaryStats();
         this.computeDamage();
     }
-
 
     /**
      * Public method, assigned to prototype

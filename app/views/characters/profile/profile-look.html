@@ -15,15 +15,24 @@
                          ng-click="showInfo('views/characters/info/oph.html', $event)"></md-icon>
             </h3>
         </div>
-        <div layout="row" ng-if="canEdit">
-            <md-input-container style="padding-right: 10px" flex>
-                <label>Title</label>
-                <input ng-model="chipText" ng-disabled="!canEdit">
-            </md-input-container>
-            <md-select ng-model="chipType" placeholder="Type" class="md-no-underline" flex="20" ng-disabled="!canEdit">
-                <md-option ng-repeat="type in types" ng-value="type" ng-selected="$index === 0">{{type.title}} ({{-type.cost}})</md-option>
-            </md-select>
-            <md-button class="md-fab md-mini md-primary" aria-label="add" ng-click="addchips(chipType, chipText)" ng-disabled="!canEdit">
+        <div layout="column" ng-if="canEdit">
+            <md-list flex>
+                <md-list-item ng-repeat="item in character.habits">
+                    <div class="card" layout="column" flex>
+                        <div layout="row" flex>
+                            <h3 flex="50">{{ item.name }}</h3>
+                            <h4 flex="50" style="text-align: right">{{ item.type.name }}</h4>
+                            <md-icon md-font-icon="fa-times" class="fa" ng-click="deleteHabit($index)" style="padding-left: 10px"></md-icon>
+                        </div>
+                        <div layout="row" flex>
+                            <collapse collapsible-title="Description">
+                                <span style="white-space: pre-line">{{item.description}}</span>
+                            </collapse>
+                        </div>
+                    </div>
+                </md-list-item>
+            </md-list>
+            <md-button class="md-fab md-mini md-primary" aria-label="add" ng-click="newHabit()" ng-disabled="!canEdit">
                 <md-icon md-font-icon="fa-plus" class="fa md-primary"></md-icon>
             </md-button>
         </div>

@@ -1,0 +1,3 @@
+{ "name": 'Minor', "cost": 5, "malus": -1 }
+{ "name": 'Intermediate', "cost": 10, "malus": -2 }
+{ "name": 'Major', "cost": 15, "malus": -3 }

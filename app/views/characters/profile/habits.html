@@ -1,0 +1,27 @@
+<md-dialog aria-label="Info" style="width: 50%; height: auto" class="md-padding">
+    <div layout="column">
+        <h1 class="text-korinna">Odious Personnal Habit</h1>
+        <div layout="column">
+            <md-input-container flex>
+                <label>Title</label>
+                <input ng-model="habit.name">
+            </md-input-container>
+            <md-input-container flex>
+                <label>Description</label>
+                <textbox variable="habit.description" flex></textbox>
+            </md-input-container>
+            <md-input-container flex>
+                <label>Importance</label>
+                <md-select ng-model="habit.type" aria-label="selector">
+                    <md-option ng-repeat="type in types" ng-value="type" ng-selected="$index === 0">
+                        {{type.name}} ({{-type.cost}})
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+        <div layout="row">
+            <md-button class="md-primary" ng-click="hide()" style="background-color: #1565C0; color: white" flex>Create</md-button>
+            <md-button class="md-primary" ng-click="cancel()" flex>Close</md-button>
+        </div>
+    </div>
+</md-dialog>
